@@ -18,15 +18,15 @@ contract NameManager is Ownable {
     address internal bulkRenewalAddress = 0xfF252725f6122A92551A5FA9a6b6bf10eb0Be035;
     uint256 internal renewalPeriod = 28 days; 
 
-    ENS ens;
     BaseRegistrar ensReg;
+    ENS ens;
     BulkRenewal ensBulkRenewal;
 
     constructor() {
         ensReg = BaseRegistrar(baseRegistrarAddress);
-        ens = ENS(ensReg.ens());
+        //ens = ENS(ensReg.ens());
         ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
-
+        
     }
 
     function renewalDue(uint256 _labelhash) public view returns(bool) {

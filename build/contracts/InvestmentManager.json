@@ -23,18 +23,19 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_networkID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"checkLendingPoolAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/InvestmentManager.sol\":\"InvestmentManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/InvestmentManager.sol\":{\"keccak256\":\"0x56bce7239750b510ed00c318c60f223a32cba13b60fd86a66a9408b6bb86ebe5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://adef60882418f75f825f2a81729069bc5b4abb16c92cfdaa2b0470cf1099e1ee\",\"dweb:/ipfs/QmeHWfxujeWsEdEVc8JD1oiU5kQP8KVtXfjpqbihRVgAWC\"]}},\"version\":1}",
-  "bytecode": "0x6080604052739fe532197ad76c5a68961439604c037eb79681f06000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550737d2768de32b0b80b7a3454c06bdac94a69ddc7a9600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055503480156100fb57600080fd5b506040516102d53803806102d58339818101604052602081101561011e57600080fd5b8101908080519060200190929190505050600181141561019c57600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b602a8114156102075760008054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b5060bf806102166000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063aaf298a414602d575b600080fd5b6033605f565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690509056fea26469706673582212201f7df02059411757a20591e1acc1e5da340794b97b799d8abe60598fb3ee66d864736f6c63430007040033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063aaf298a414602d575b600080fd5b6033605f565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690509056fea26469706673582212201f7df02059411757a20591e1acc1e5da340794b97b799d8abe60598fb3ee66d864736f6c63430007040033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_networkID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"checkLendingPoolAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/InvestmentManager.sol\":\"InvestmentManager\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/InvestmentManager.sol\":{\"keccak256\":\"0x6c0cd54a5851af92ca62cab8031de64ba52048600c204ff8199f9eb077484b43\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://71f3bea6c6e373d74a2c7796c27c25b55843bec8adb3d090e58159a7113613ed\",\"dweb:/ipfs/QmZFqT4RADCz42zNUAMP7szqHWnvP5YDqJKXdpBce54SpY\"]}},\"version\":1}",
+  "bytecode": "0x6080604052739fe532197ad76c5a68961439604c037eb79681f06000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550737d2768de32b0b80b7a3454c06bdac94a69ddc7a9600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555061dead600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055503480156100fc57600080fd5b506040516102d63803806102d68339818101604052602081101561011f57600080fd5b8101908080519060200190929190505050600181141561019d57600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b602a8114156102085760008054906101000a900473ffffffffffffffffffffffffffffffffffffffff16600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b5060bf806102176000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063aaf298a414602d575b600080fd5b6033605f565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690509056fea2646970667358221220825c24fdbf266bde7373e25d918f7509c6702d87d48881364f160fe6813d505764736f6c63430007040033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c8063aaf298a414602d575b600080fd5b6033605f565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b6000600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690509056fea2646970667358221220825c24fdbf266bde7373e25d918f7509c6702d87d48881364f160fe6813d505764736f6c63430007040033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
   "sourceMap": "128:740:0:-:0;;;198:42;162:78;;;;;;;;;;;;;;;;;;;;282:42;247:77;;;;;;;;;;;;;;;;;;;;369:42;331:80;;;;;;;;;;;;;;;;;;;;521:225;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;579:1;565:10;:15;561:83;;;617:15;;;;;;;;;;;596:18;;:36;;;;;;;;;;;;;;;;;;561:83;672:2;658:10;:16;654:85;;;711:16;;;;;;;;;;690:18;;:37;;;;;;;;;;;;;;;;;;654:85;521:225;128:740;;;;;;",
   "deployedSourceMap": "128:740:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;754:109;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;809:7;836:18;;;;;;;;;;;828:27;;754:109;:::o",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.0;\r\n\r\n//@title Manages investments on Aave\r\n//@creator Daniel Chilvers\r\n\r\ncontract InvestmentManager {\r\n    address internal kovanLendingPool = 0x9FE532197ad76c5a68961439604C037EB79681F0;\r\n    address internal mainLendingPool = 0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9;\r\n    address internal lendingPooladdress = 0x0000000000000000000000000000000000000000;\r\n\r\n    //@dev truffle will pass in the networkID when migrated, use this to select the correct address\r\n    constructor(uint _networkID) {\r\n        if (_networkID == 1){\r\n            lendingPooladdress = mainLendingPool;\r\n        }\r\n        if (_networkID == 42){\r\n            lendingPooladdress = kovanLendingPool;\r\n        }\r\n    }\r\n\r\n    function checkLendingPoolAddress() public view returns(address){\r\n        return (lendingPooladdress);\r\n    }\r\n\r\n}",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.0;\r\n\r\n//@title Manages investments on Aave\r\n//@creator Daniel Chilvers\r\n\r\ncontract InvestmentManager {\r\n    address internal kovanLendingPool = 0x9FE532197ad76c5a68961439604C037EB79681F0;\r\n    address internal mainLendingPool = 0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9;\r\n    address internal lendingPooladdress = 0x000000000000000000000000000000000000dEaD;\r\n\r\n    //@dev truffle will pass in the networkID when migrated, use this to select the correct address\r\n    constructor(uint _networkID) {\r\n        if (_networkID == 1){\r\n            lendingPooladdress = mainLendingPool;\r\n        }\r\n        if (_networkID == 42){\r\n            lendingPooladdress = kovanLendingPool;\r\n        }\r\n    }\r\n\r\n    function checkLendingPoolAddress() public view returns(address){\r\n        return (lendingPooladdress);\r\n    }\r\n\r\n}",
   "sourcePath": "C:/Users/anyth/Documents/GitHub/StakeYourName/contracts/InvestmentManager.sol",
   "ast": {
     "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/InvestmentManager.sol",
@@ -183,7 +184,7 @@
               }
             },
             "value": {
-              "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303030303030",
+              "hexValue": "307830303030303030303030303030303030303030303030303030303030303030303030303064456144",
               "id": 9,
               "isConstant": false,
               "isLValue": false,
@@ -196,7 +197,7 @@
                 "typeIdentifier": "t_address_payable",
                 "typeString": "address payable"
               },
-              "value": "0x0000000000000000000000000000000000000000"
+              "value": "0x000000000000000000000000000000000000dEaD"
             },
             "visibility": "internal"
           },
@@ -713,14 +714,14 @@
               },
               {
                 "attributes": {
-                  "hexvalue": "307830303030303030303030303030303030303030303030303030303030303030303030303030303030",
+                  "hexvalue": "307830303030303030303030303030303030303030303030303030303030303030303030303064456144",
                   "isConstant": false,
                   "isLValue": false,
                   "isPure": true,
                   "lValueRequested": false,
                   "token": "number",
                   "type": "address payable",
-                  "value": "0x0000000000000000000000000000000000000000"
+                  "value": "0x000000000000000000000000000000000000dEaD"
                 },
                 "id": 9,
                 "name": "Literal",
@@ -1147,9 +1148,23 @@
     "name": "solc",
     "version": "0.7.4+commit.3f05b770.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x81019383335a1Da3A248A62fc48A677AA1338449",
+      "transactionHash": "0xd1e71735e03aaf2ff7db8a8f3ce221dc562343d0aad5f4569eb664a97f39968c"
+    },
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x8D769faa64e0fb86D97F04abEB90356147d3398e",
+      "transactionHash": "0x9e469d29c9aa0fec57cffcea17fac75fdb13520c83a3472e1fd586db7511f23a"
+    }
+  },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-17T17:47:39.996Z",
+  "updatedAt": "2021-01-17T18:51:22.771Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
