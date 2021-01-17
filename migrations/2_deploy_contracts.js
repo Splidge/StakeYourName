@@ -1,5 +1,5 @@
-// Fetch the StakeYourName contract data from the StakeYourName.json file
-var StakeYourName = artifacts.require("./StakeYourName.sol");
+// Fetch the NameManager contract data from the NameManager.json file
+var NameManager = artifacts.require("./NameManager.sol");
 
 // JavaScript export
 module.exports = function(deployer) {
@@ -7,5 +7,5 @@ module.exports = function(deployer) {
     // contracts to the network
 
     // Deploy the contract to the network
-    deployer.deploy(StakeYourName);
+    deployer.deploy(NameManager);
 }
