@@ -8,7 +8,7 @@ module.exports = function(deployer) {
     console.log('deploying to:');
     console.log(deployer.network);
     // Deploy the contract to the network and pass in the network ID if possible
-    if (deployer.network == 'kovan'){
+    if (deployer.network == 'kovan' || deployer.network == 'kovan-fork'){
         deployer.deploy(InvestmentManager,42);
     } else if (deployer.network == 'live'){
         deployer.deploy(InvestmentManager,1);
