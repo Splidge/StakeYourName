@@ -13,10 +13,10 @@ contract InvestmentManager {
     constructor(uint _networkID) {
         if (_networkID == 1){
             lendingPooladdress = mainLendingPool;
-        }
-        if (_networkID == 42){
+        } else if (_networkID == 42){
             lendingPooladdress = kovanLendingPool;
-        }
+        } 
+        
     }
 
     function checkLendingPoolAddress() public view returns(address){
