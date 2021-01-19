@@ -28,6 +28,16 @@ contract InvestmentManager is Ownable {
 
     uint16 referralCode = 0;
 
+    /// @dev TO;DO change to saving the asset symbol instead 
+    /// @dev then this will be packed and we save gas
+    struct User {
+        address asset;
+        uint128 balance;
+    }
+
+    /// @dev map user addresses to our struct above
+    mapping (address => User[]) Users;
+
     IProtocolDataProvider.TokenData[] public aTokens;
 
     ILendingPool lendingPool;
@@ -48,8 +58,19 @@ contract InvestmentManager is Ownable {
 
     event debug(address _address);
 
-    function deposit(address reserve, address user, uint256 _amount) internal {
-        lendingPool.deposit(reserve, _amount, address(this) , referralCode);
+
+    function deposit(address _reserve, address _user, uint128 _amount) public {
+        uint _index = 0;
+        /// @dev check if the user already has some of this asset   
+        for (uint i; i <= Users[msg.sender].length ; i++) {
+            if (Users[msg.sender][i].asset == _reserve ){
+                _index = i;
+            } else {
+                Users[msg.sender].push();
+            }
+            lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
+            Users[msg.sender][_index].balance = Users[msg.sender][_index].balance + _amount;
+        }
     }
 
     /// @notice don't send me funds if this function still exists
