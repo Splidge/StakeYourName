@@ -33,6 +33,7 @@ contract InvestmentManager is Ownable {
     struct User {
         address asset;
         uint128 balance;
+        bool locked;
     }
 
     /// @dev map user addresses to our struct above
@@ -59,7 +60,7 @@ contract InvestmentManager is Ownable {
     event debug(address _address);
 
 
-    function deposit(address _reserve, address _user, uint128 _amount) public {
+    function deposit(address _reserve, uint128 _amount) public payable{
         uint _index = 0;
         /// @dev check if the user already has some of this asset   
         for (uint i; i <= Users[msg.sender].length ; i++) {
@@ -71,6 +72,21 @@ contract InvestmentManager is Ownable {
             lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
             Users[msg.sender][_index].balance = Users[msg.sender][_index].balance + _amount;
         }
+    }
+
+    function withdraw(address _reserve, uint128 _amount) public {
+        uint _index = 0;
+        bool _owned = false;
+        for (uint i; i <= Users[msg.sender].length ; i++) {
+            if (Users[msg.sender][i].asset == _reserve ){
+                _index = i;
+                _owned = true;
+            }
+        }
+        if (_owned = true || Users[msg.sender][_index].balance >= _amount){
+            lendingPool.withdraw(_reserve, _amount, msg.sender);
+        }
+        
     }
 
     /// @notice don't send me funds if this function still exists
