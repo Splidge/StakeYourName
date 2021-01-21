@@ -8,11 +8,11 @@ import "interfaces/ENS_BaseRegistrar.sol";
 import "interfaces/ENS_BulkRenewal.sol";
 
 
-// @title Renew names on the ENS when required
-// @author Daniel Chilvers
+/// @title Renew names on the ENS when required
+/// @author Daniel Chilvers
 
 contract NameManager is Ownable {
-    // @dev can probably remove ensRegistryAddress as it can be discovered from the Registrar
+    /// @dev can probably remove ensRegistryAddress as it can be discovered from the Registrar
     address internal ensRegistryAddress = 0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e;
     address internal baseRegistrarAddress = 0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85;
     address internal bulkRenewalAddress = 0xfF252725f6122A92551A5FA9a6b6bf10eb0Be035;
