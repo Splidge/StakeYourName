@@ -35,6 +35,7 @@ contract InvestmentManager is Ownable {
     address internal USDCContract = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
     uint16 referralCode = 0;
+    uint256 constant MAX_INT = 2**256 - 1;
 
     /// @dev TO;DO change to saving the asset symbol instead 
     /// @dev then this will be packed and we save gas
@@ -70,59 +71,73 @@ contract InvestmentManager is Ownable {
 
     event debug(address _address, uint256 state);
 
-    function approveLendingPool(address _asset, uint256 _amount) public {
-        bool _success;
+    function approveLendingPool(address _asset) public {
         ierc20 = IERC20(_asset);
-        _success = ierc20.approve( lendingPooladdress , _amount);
+        ierc20.approve(lendingPooladdress , MAX_INT);
     }
 
+    /// @notice just does a deposit, don't record to a users balance
     function depositTest(address _reserve, uint256 _amount) public {
         ierc20 = IERC20(_reserve);
         ierc20.transferFrom(msg.sender, address(this), _amount);
-        lendingPool.deposit(_reserve, _amount, msg.sender , referralCode);
+        lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
     }
 
+    /// @notice just does a withdrawl, doesn't record to a users balance
     function withdrawTest(address _reserve, uint256 _amount) public {
         lendingPool.withdraw(_reserve, _amount, msg.sender);
     }
 
+    /// @notice approves an _asset transfer for an _amount and records it
     function approveDeposit(uint128 _amount, address _asset) public returns(bool) {
-        uint256 _index = 0;
+        uint256 _index = MAX_INT;
         bool _success;
         ierc20 = IERC20(_asset);
         /// @dev check if the user already has some of this asset
         for (uint i; i <= Users[msg.sender].asset.length ; i++) {
             if (Users[msg.sender].asset[i] == _asset ){
                 _index = i;
-            }else {
-                /// @dev they don't own any yet, lets add a record
-                Users[msg.sender].asset.push();
-                Users[msg.sender].balance.push();
-                Users[msg.sender].allowance.push();
-                emit debug(msg.sender, 2);
-            }
+                break;
+            } 
         }
-        _success = ierc20.approve(msg.sender, _amount);
+        if (_index == MAX_INT) {      
+            /// @dev they don't own any yet, lets add a record
+            Users[msg.sender].asset.push();
+            Users[msg.sender].balance.push();
+            Users[msg.sender].allowance.push();
+            _index = 0; 
+        } 
+        /// @dev now lets approve for the amount
+        /// @dev it'd be prefered to increase or decrease approval but
+        /// @dev we can't guarentee contract compatibility
+        _success = ierc20.approve(address(this), _amount);
         Users[msg.sender].asset[_index] = _asset;
-        Users[msg.sender].allowance[_index] = safeAddUint128(Users[msg.sender].allowance[_index], _amount );
-        emit debug(msg.sender, 3);
+        Users[msg.sender].allowance[_index] =  _amount;
+    }
+
+    function checkApproval (address _asset) public view returns(uint128){
+        for (uint i; i <= Users[msg.sender].asset.length ; i++) {
+            if (Users[msg.sender].asset[i] == _asset ){
+                return Users[msg.sender].allowance[i];
+            } 
+        }
+    return 0;
     }
 
 
-
     function deposit(address _reserve, uint128 _amount) public {
-        uint256 _index = 0;
-
+        //require(checkApproval(_reserve) >=  )
+        uint256 _index = MAX_INT;
         for (uint i; i <= Users[msg.sender].asset.length ; i++) {
             if (Users[msg.sender].asset[i] == _reserve ){
                 _index = i;
-            } else {
-                /// @dev they must not have approved yet.
-                emit debug(msg.sender, 1);
+                break;
             }
-            lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
-            Users[msg.sender].balance[_index] = safeAddUint128(Users[msg.sender].balance[_index], _amount );
         }
+
+        lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
+        Users[msg.sender].balance[_index] = safeAddUint128(Users[msg.sender].balance[_index], _amount );
+        
     }
 
     function approveWithdraw(uint128 _amount, address _asset) public returns(bool) {
@@ -131,6 +146,7 @@ contract InvestmentManager is Ownable {
         address aToken;
         (aToken,,) = protocolDataProvider.getReserveTokensAddresses(_asset);
         ierc20 = IERC20(aToken);
+
         /// @dev check if the user has some of this asset to withdraw
         for (uint i; i <= Users[msg.sender].asset.length ; i++) {
             if (Users[msg.sender].asset[i] == _asset ){
