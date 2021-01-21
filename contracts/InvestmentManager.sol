@@ -37,13 +37,13 @@ contract InvestmentManager is Ownable {
     uint16 referralCode = 0;
     uint256 constant MAX_INT = 2**256 - 1;
 
-    /// @dev TO;DO change to saving the asset symbol instead 
+    /// @dev TO:DO change to saving the asset symbol instead 
     /// @dev then this will be packed and we save gas
+    /// @dev TO:DO change arrays to mappings to remove for loops 
     struct User {
-        address[] asset;
-        uint128[] balance;
-        uint128[] allowance;
-        bool locked;
+        mapping (address => uint128) balance;
+        mapping (address => uint128) allowance;
+        mapping (address => bool) locked;
     }
 
     /// @dev map user addresses to our struct above
@@ -77,112 +77,49 @@ contract InvestmentManager is Ownable {
     }
 
     /// @notice just does a deposit, don't record to a users balance
-    function depositTest(address _reserve, uint256 _amount) public {
-        ierc20 = IERC20(_reserve);
+    /// @dev just for testing, remove later
+    function depositTest(address _asset, uint256 _amount) public {
+        ierc20 = IERC20(_asset);
         ierc20.transferFrom(msg.sender, address(this), _amount);
-        lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
+        lendingPool.deposit(_asset, _amount, address(this) , referralCode);
     }
 
     /// @notice just does a withdrawl, doesn't record to a users balance
-    function withdrawTest(address _reserve, uint256 _amount) public {
-        lendingPool.withdraw(_reserve, _amount, msg.sender);
+    /// @dev just for testing, remove later
+    function withdrawTest(address _asset, uint256 _amount) public {
+        lendingPool.withdraw(_asset, _amount, msg.sender);
     }
 
     /// @notice approves an _asset transfer for an _amount and records it
-    function approveDeposit(uint128 _amount, address _asset) public returns(bool) {
-        uint256 _index = MAX_INT;
-        bool _success;
+    function approveDeposit(address _asset, uint128 _amount) public returns(bool) {
         ierc20 = IERC20(_asset);
-        /// @dev check if the user already has some of this asset
-        for (uint i; i <= Users[msg.sender].asset.length ; i++) {
-            if (Users[msg.sender].asset[i] == _asset ){
-                _index = i;
-                break;
-            } 
-        }
-        if (_index == MAX_INT) {      
-            /// @dev they don't own any yet, lets add a record
-            Users[msg.sender].asset.push();
-            Users[msg.sender].balance.push();
-            Users[msg.sender].allowance.push();
-            _index = 0; 
-        } 
-        /// @dev now lets approve for the amount
-        /// @dev it'd be prefered to increase or decrease approval but
-        /// @dev we can't guarentee contract compatibility
-        _success = ierc20.approve(address(this), _amount);
-        Users[msg.sender].asset[_index] = _asset;
-        Users[msg.sender].allowance[_index] =  _amount;
-    }
-
-    function checkApproval (address _asset) public view returns(uint128){
-        for (uint i; i <= Users[msg.sender].asset.length ; i++) {
-            if (Users[msg.sender].asset[i] == _asset ){
-                return Users[msg.sender].allowance[i];
-            } 
-        }
-    return 0;
+        ierc20.approve(address(this), _amount);
+        Users[msg.sender].allowance[msg.sender] =  _amount;
     }
 
 
-    function deposit(address _reserve, uint128 _amount) public {
-        //require(checkApproval(_reserve) >=  )
-        uint256 _index = MAX_INT;
-        for (uint i; i <= Users[msg.sender].asset.length ; i++) {
-            if (Users[msg.sender].asset[i] == _reserve ){
-                _index = i;
-                break;
-            }
-        }
-
-        lendingPool.deposit(_reserve, _amount, address(this) , referralCode);
-        Users[msg.sender].balance[_index] = safeAddUint128(Users[msg.sender].balance[_index], _amount );
-        
+    function checkAllowance (address _asset) public view returns(uint128){
+        return Users[msg.sender].allowance[_asset];
     }
 
-    function approveWithdraw(uint128 _amount, address _asset) public returns(bool) {
-        uint256 _index = 0;
-        bool _success;
-        address aToken;
-        (aToken,,) = protocolDataProvider.getReserveTokensAddresses(_asset);
-        ierc20 = IERC20(aToken);
-
-        /// @dev check if the user has some of this asset to withdraw
-        for (uint i; i <= Users[msg.sender].asset.length ; i++) {
-            if (Users[msg.sender].asset[i] == _asset ){
-                _index = i;
-            }else {
-                /// @dev they don't own any
-                //Users[msg.sender].asset.push();
-                //Users[msg.sender].balance.push();
-                //Users[msg.sender].allowance.push();
-                emit debug(msg.sender, 4);
-                _success = false;
-                return (_success);
-            }
-        }
-        Users[msg.sender].asset[_index] = _asset;
-        Users[msg.sender].allowance[_index] = safeSubUint128(Users[msg.sender].allowance[_index], _amount );
-        _success = ierc20.approve(msg.sender, _amount);
-        emit debug(msg.sender, 5);
-        return(_success);
+    /// @dev can we make the deposit a require? to save gas.
+    function deposit(address _asset, uint128 _amount) public {
+        require(checkAllowance(_asset) >= Users[msg.sender].balance[_asset], "User not approved to send this amount");
+        lendingPool.deposit(_asset, _amount, address(this) , referralCode);
+        Users[msg.sender].balance[_asset] = safeAddUint128(Users[msg.sender].balance[_asset], _amount );
     }
 
-    function withdraw(address _reserve, uint128 _amount) public {
-        uint _index = 0;
-        bool _owned = false;
-        for (uint i; i <= Users[msg.sender].asset.length ; i++) {
-            if (Users[msg.sender].asset[i] == _reserve ){
-                _index = i;
-                _owned = true;
-            }
-        }
-        if (_owned = true && Users[msg.sender].balance[_index] >= _amount){
-            lendingPool.withdraw(_reserve, _amount, msg.sender);
-        } else {
-            emit debug(msg.sender, 6);
-        }
-        
+    /// @notice allow the lendingPool to burn _amount of aTokens in order to withdraw _asset
+    function approveATokenBurn(uint128 _amount, address _asset) public {
+        ierc20 = IERC20(_asset);
+        ierc20.approve(lendingPooladdress , _amount);
+    }
+
+    ///@dev this needs updating so users can withdraw interest also
+    function withdraw(address _asset, uint128 _amount) public {
+        require(Users[msg.sender].balance[_asset] >= _amount, "Attempting to withdraw too much");
+        lendingPool.withdraw(_asset, _amount, msg.sender);
+        Users[msg.sender].balance[_asset] = safeSubUint128(Users[msg.sender].balance[_asset], _amount);
     }
 
     /// @notice uses the SafeMath and SafeCast libraries to safely add uint128s together
