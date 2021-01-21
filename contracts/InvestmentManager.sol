@@ -7,6 +7,7 @@ import "interfaces/IProtocolDataProvider.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 //import "@openzeppelin/contracts/drafts/ERC20Permit.sol"; 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+//import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/SafeCast.sol";
 
@@ -52,7 +53,7 @@ contract InvestmentManager is Ownable {
     ILendingPool lendingPool;
     ILendingPoolAddressesProvider lendingPoolAddressesProvider;
     IProtocolDataProvider protocolDataProvider;
-    IERC20 erc20;
+    IERC20 ierc20;
 
     constructor(uint _networkID) {
         /// @dev truffle will pass in the networkID when migrated, use this to select the correct address
@@ -64,14 +65,31 @@ contract InvestmentManager is Ownable {
         lendingPoolAddressesProvider = ILendingPoolAddressesProvider(lendingPoolAddressProviderAddress);
         lendingPooladdress =  lendingPoolAddressesProvider.getLendingPool();
         protocolDataProvider = IProtocolDataProvider(lendingPoolAddressesProvider.getAddress(bytes32('0x1')));
+        lendingPool = ILendingPool(lendingPooladdress);
     }
 
     event debug(address _address, uint256 state);
 
+    function approveLendingPool(address _asset, uint256 _amount) public {
+        bool _success;
+        ierc20 = IERC20(_asset);
+        _success = ierc20.approve( lendingPooladdress , _amount);
+    }
+
+    function depositTest(address _reserve, uint256 _amount) public {
+        ierc20 = IERC20(_reserve);
+        ierc20.transferFrom(msg.sender, address(this), _amount);
+        lendingPool.deposit(_reserve, _amount, msg.sender , referralCode);
+    }
+
+    function withdrawTest(address _reserve, uint256 _amount) public {
+        lendingPool.withdraw(_reserve, _amount, msg.sender);
+    }
+
     function approveDeposit(uint128 _amount, address _asset) public returns(bool) {
         uint256 _index = 0;
         bool _success;
-        erc20 = IERC20(_asset);
+        ierc20 = IERC20(_asset);
         /// @dev check if the user already has some of this asset
         for (uint i; i <= Users[msg.sender].asset.length ; i++) {
             if (Users[msg.sender].asset[i] == _asset ){
@@ -84,7 +102,7 @@ contract InvestmentManager is Ownable {
                 emit debug(msg.sender, 2);
             }
         }
-        _success = erc20.approve(msg.sender, _amount);
+        _success = ierc20.approve(msg.sender, _amount);
         Users[msg.sender].asset[_index] = _asset;
         Users[msg.sender].allowance[_index] = safeAddUint128(Users[msg.sender].allowance[_index], _amount );
         emit debug(msg.sender, 3);
@@ -112,7 +130,7 @@ contract InvestmentManager is Ownable {
         bool _success;
         address aToken;
         (aToken,,) = protocolDataProvider.getReserveTokensAddresses(_asset);
-        erc20 = IERC20(aToken);
+        ierc20 = IERC20(aToken);
         /// @dev check if the user has some of this asset to withdraw
         for (uint i; i <= Users[msg.sender].asset.length ; i++) {
             if (Users[msg.sender].asset[i] == _asset ){
@@ -129,7 +147,7 @@ contract InvestmentManager is Ownable {
         }
         Users[msg.sender].asset[_index] = _asset;
         Users[msg.sender].allowance[_index] = safeSubUint128(Users[msg.sender].allowance[_index], _amount );
-        _success = erc20.approve(msg.sender, _amount);
+        _success = ierc20.approve(msg.sender, _amount);
         emit debug(msg.sender, 5);
         return(_success);
     }
@@ -184,6 +202,7 @@ contract InvestmentManager is Ownable {
     /// @notice update the lending pool address from the address provider
     function updateLendingPoolAddress() public onlyOwner returns(address){
         lendingPooladdress = lendingPoolAddressesProvider.getLendingPool();
+        lendingPool = ILendingPool(lendingPooladdress);
         emit debug(lendingPooladdress, 10);
         return (lendingPooladdress);
     }
