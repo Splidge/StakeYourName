@@ -123,10 +123,12 @@ contract InvestmentManager is Ownable {
         uint256 _interestSplit = _interest.div(assets[_asset].userList.length);
         /// @dev we want to leave any dust behind, so mod the _interest before updating the asset interest balance
         /// @dev this is fine because the dust will be collected the next time interest is calculated
-        _interest = _interest.mod(assets[_asset].userList.length);
+        _interest = _interest.sub(_interest.mod(assets[_asset].userList.length));
         assets[_asset].interest = assets[_asset].interest.add(_interest);
         for (uint i; i < assets[_asset].userList.length; i++){
-            Users[address(assets[_asset].userList[i])].interest[_asset] = SafeCast.toUint128(uint256(Users[address(assets[_asset].userList[i])].interest[_asset]).add(_interestSplit));
+            Users[address(assets[_asset].userList[i])].interest[_asset] = 
+            SafeCast.toUint128(uint256(Users[address(assets[_asset].
+            userList[i])].interest[_asset]).add(_interestSplit));
         }
     }
 
@@ -229,20 +231,28 @@ contract InvestmentManager is Ownable {
         calculateInterest(_asset);
         uint128 _maxWithdrawl = safeAddUint128(Users[msg.sender].balance[_asset],Users[msg.sender].interest[_asset]);
         uint128 _withdrawl = 0;
+        uint128 _balanceReduction = 0;
+        uint128 _interestReduction = 0;
         if (_amount > _maxWithdrawl) {
+            _balanceReduction = Users[msg.sender].balance[_asset];
+            _interestReduction = Users[msg.sender].interest[_asset];
             Users[msg.sender].balance[_asset] = 0;
             Users[msg.sender].interest[_asset] = 0;
             _withdrawl = _maxWithdrawl;
         } else if (_amount > Users[msg.sender].balance[_asset]) {
+            _balanceReduction = Users[msg.sender].balance[_asset];
+            _interestReduction = safeSubUint128(_amount, Users[msg.sender].balance[_asset]);           
             Users[msg.sender].interest[_asset] = safeSubUint128(Users[msg.sender].interest[_asset],safeSubUint128(_amount, Users[msg.sender].balance[_asset]));
             Users[msg.sender].balance[_asset] = 0;
             _withdrawl = _amount;
         } else {
+            _balanceReduction = _amount;
             Users[msg.sender].balance[_asset] = safeSubUint128(Users[msg.sender].balance[_asset], _amount);
             _withdrawl = _amount;
         }
         lendingPool.withdraw(_asset, _withdrawl, msg.sender);
-        assets[_asset].balance = assets[_asset].balance.sub(_amount);
+        assets[_asset].balance = assets[_asset].balance.sub(_balanceReduction);
+        assets[_asset].interest = assets[_asset].interest.sub(_interestReduction);
     }
 
     function convertInterestToBalance(address _asset, uint128 _amount) public {
@@ -251,11 +261,15 @@ contract InvestmentManager is Ownable {
         calculateInterest(_asset);
         uint128 _check = userTotal(_asset);
         if (_amount > Users[msg.sender].interest[_asset]){
+            assets[_asset].balance = assets[_asset].balance.add(Users[msg.sender].interest[_asset]);
+            assets[_asset].interest = assets[_asset].interest.sub(Users[msg.sender].interest[_asset]);
             Users[msg.sender].balance[_asset] = safeAddUint128(Users[msg.sender].balance[_asset], Users[msg.sender].interest[_asset]);
             Users[msg.sender].interest[_asset] = 0;    
         } else {
             Users[msg.sender].interest[_asset] = safeSubUint128(Users[msg.sender].interest[_asset], _amount);
             Users[msg.sender].balance[_asset] = safeAddUint128(Users[msg.sender].balance[_asset], _amount);
+            assets[_asset].balance = assets[_asset].balance.add(_amount);
+            assets[_asset].interest = assets[_asset].interest.sub(_amount);   
         }
         assert(_check == userTotal(_asset));
     }
