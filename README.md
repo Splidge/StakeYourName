@@ -22,9 +22,10 @@ Choose how long you want to renew your name for down to the minimum renewal time
 The option to lock in your original deposit, by doing this the contract will not be able to spend any of your original deposit leaving it availiable to withdraw at any time.
 
 ## The Future of StakeYourName.
-- [ ] **Phase 1** - Using interest earned from depositing tokens to Aave
-- [ ] **Phase 2** - Add the option to use staking rewards from ETH2.0
-- [ ] **Phase 3** - Integrate other subscription models to allow the users to pay for other services with interest/staking rewards
+- [ ] **Phase 1.0** - Using interest earned from depositing tokens to Aave
+- [ ] **Phase 1.5** - Add support for domains other than .eth
+- [ ] **Phase 2.0** - Add the option to use staking rewards from ETH2.0
+- [ ] **Phase 3.0** - Integrate other subscription models to allow the users to pay for other services with interest/staking rewards
 
 
 `A name not renewed may be lost forever` - _Abraham Lincoln_
