@@ -26,6 +26,10 @@ The option to lock in your original deposit, by doing this the contract will not
 - [ ] **Phase 2** - Add the option to use staking rewards from ETH2.0
 - [ ] **Phase 3** - Integrate other subscription models to allow the users to pay for other services with interest/staking rewards
 
+
+`A name not renewed may be lost forever` - _Abraham Lincoln_
+
+
 _Created by **Daniel Chilvers.**_
 
 ¹Staking not yet implemented
