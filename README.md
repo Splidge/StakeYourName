@@ -32,6 +32,6 @@ The option to lock in your original deposit, by doing this the contract will not
 
 _Created by **Daniel Chilvers.**_
 
--<sub>¹Staking not yet implemented<sub> 
--<sub>²Automatic renewal only works if the user has deposited enough funds to pay for the renewal, or if they've locked the funds that there's enough interest earned at the time of renewal. A warning message is displayed to the user at the time of registration if this is likely to happen given the funds they are depositing.<sub>
--<sub>³ETH/USD prices may fluctuate, we can't gaurentee the best price every time. Given current ETH/USD price history shorter renewals would have been the cheapest way to renew over time. If a user thinks the ETH/USD price has peaked they may submit a manual renewal to lock in their desired price.<sub>
+<sub>¹Staking not yet implemented<sub>\
+<sub>²Automatic renewal only works if the user has deposited enough funds to pay for the renewal, or if they've locked the funds that there's enough interest earned at the time of renewal. A warning message is displayed to the user at the time of registration if this is likely to happen given the funds they are depositing.<sub>\
+<sub>³ETH/USD prices may fluctuate, we can't gaurentee the best price every time. Given current ETH/USD price history shorter renewals would have been the cheapest way to renew over time. If a user thinks the ETH/USD price has peaked they may submit a manual renewal to lock in their desired price.<sub>
