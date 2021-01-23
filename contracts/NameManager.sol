@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.4;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -7,8 +7,9 @@ import "interfaces/ENS_Registry.sol";
 import "interfaces/ENS_BaseRegistrar.sol";
 import "interfaces/ENS_BulkRenewal.sol";
 
-
-/// @title Renew names on the ENS when required
+/// @title StakeYourName - NameManager
+/// @notice Maintains a list of users and names they want to keep renewed
+/// @notice Can check for name expiry and pay for renewals
 /// @author Daniel Chilvers
 
 contract NameManager is Ownable {
@@ -22,12 +23,153 @@ contract NameManager is Ownable {
     ENS ens;
     BulkRenewal ensBulkRenewal;
 
+    /// @dev map user address to arrays of their names and expiry times
+    mapping (address => uint256[]) names;
+
+    /// @dev map names to the users that are funding them
+    mapping (uint256 => address[]) users;
+
+    mapping (uint256 => uint256[]) testArray;
+
+    uint256[] nameList;
+
     constructor() {
         ensReg = BaseRegistrar(baseRegistrarAddress);
         //ens = ENS(ensReg.ens());
         ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
         
     }
+
+    function checkForRenewals() public view returns(uint256[] memory){
+        uint _count = countRenewals();
+        uint256[] memory _names = new uint256[](_count);
+        uint256 j;
+        for (uint i; i < nameList.length; i++) {
+            if(renewalDue(nameList[i])) {
+                _names[j] = nameList[i];
+                j++;
+            }
+        }
+        return (_names);
+    }
+
+    function countRenewals() internal view returns (uint256){
+        uint256 _count;
+        for (uint i; i < nameList.length; i++) {
+            if(renewalDue(nameList[i])) {
+                _count++;
+            }
+        }
+        return (_count);
+    }
+
+
+    /*
+    *
+    *   User and name related functions
+    *
+    */
+
+    /// @dev records msg.sender as a funder of _name
+    /// @dev and records _name as funded by msg.sender
+    /// @dev adds to the list of names we're overseing
+    function addRecord(uint256 _name) public {
+        bool _exists;
+        uint256 _index;
+        (_exists, _index) = checkForUser(_name);
+        if (_exists == false) {
+            users[_name].push(msg.sender);
+        }
+
+        (_exists, _index) = checkForName(_name);
+        if (_exists == false) {
+            names[msg.sender].push(_name);
+            //names[msg.sender].expiry.push();
+        }
+        bool _found = false;
+        for (uint i; i < nameList.length; i++){
+            if(nameList[i] == _name){
+                _found = true;
+                break;
+            }
+        }
+        if (_found = false) {
+            nameList.push(_name);
+        }
+
+    }
+
+    /// @dev Removes from users the record matching _name
+    /// @dev Removes from names the record matching msg.sender
+    /// @dev Removes from list of names we're overseing IF nobody else is funding it
+    function removeRecord(uint256 _name) public {
+        bool _exists = false;
+        uint256 _index;
+        (_exists, _index) = checkForUser(_name);
+        if (_exists == true) {
+            users[_name][_index] = users[_name][users[_name].length-1];
+            users[_name].pop();
+        }
+
+        (_exists, _index) = checkForName(_name);
+        if (_exists == true) {
+            names[msg.sender][_index] = names[msg.sender][names[msg.sender].length-1];
+            names[msg.sender].pop();
+        }
+
+        if(users[_name].length == 0){
+            for (uint i; i < nameList.length; i++){
+                if (nameList[i] == _name) {
+                    nameList[i] = nameList[nameList.length-1];
+                    nameList.pop();
+                    break;
+                }
+            }
+        }
+    }
+
+    /// @dev check if msg.sender is already funding _name
+    function checkForName(uint256 _name) public view returns(bool, uint256) {
+        bool _found = false;
+        uint256 _index = 0;
+        for (uint i; i < names[msg.sender].length; i++){
+            if(names[msg.sender][i] == _name){
+                _index = i;
+                _found = true;
+                break;
+            }
+        }
+        return (_found, _index);
+    }   
+
+    /// @notice returns the number of users funding _name
+    function countFunders(uint256 _name) public view returns(uint256){
+        return users[_name].length;
+    }
+
+    function countNames() public view returns(uint256){
+        return nameList.length;
+    }
+
+    /// @dev checks if msg.sender is already funding _name
+    function checkForUser(uint256 _name) public view returns(bool, uint256) {
+        bool _found = false;
+        uint256 _index = 0;
+        for (uint i; i < users[_name].length; i++){
+            if(users[_name][i] == msg.sender){
+                _index = i;
+                _found = true;
+                break;
+            }
+        }
+        return (_found, _index);
+    }
+
+    /*
+    *
+    *   ENS Related Functions
+    *
+    */
 
     function renewalDue(uint256 _labelhash) public view returns(bool) {
         return (getNameExpiry(_labelhash) <= block.timestamp - renewalPeriod);
