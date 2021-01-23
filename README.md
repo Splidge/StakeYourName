@@ -26,7 +26,7 @@ The option to lock in your original deposit, by doing this the contract will not
 - [ ] **Phase 2** - Add the option to use staking rewards from ETH2.0
 - [ ] **Phase 3** - Integrate other subscription models to allow the users to pay for other services with interest/staking rewards
 
-_Created by **Daniel Chilvers.** _
+_Created by **Daniel Chilvers.**_
 
 ¹Staking not yet implemented
 ²Automatic renewal only works if the user has deposited enough funds to pay for the renewal, or if they've locked the funds that there's enough interest earned at the time of renewal. A warning message is displayed to the user at the time of registration if this is likely to happen given the funds they are depositing.
