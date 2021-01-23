@@ -21,7 +21,7 @@ Choose how long you want to renew your name for down to the minimum renewal time
 ### Deposited funds can be retrieved anytime.
 The option to lock in your original deposit, by doing this the contract will not be able to spend any of your original deposit leaving it availiable to withdraw at any time.
 
-##The Future of StakeYourName.
+## The Future of StakeYourName.
 **Phase 1** - Using interest earned from depositing tokens to Aave
 **Phase 2** - Add the option to use staking rewards from ETH2.0
 **Phase 3** - Integrate other subscription models to allow the users to pay for other services with interest/staking rewards
