@@ -1,4 +1,5 @@
-pragma solidity ^0.5.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.7.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -103,7 +104,16 @@ contract IOneSplitConsts {
 }
 
 
-contract IOneSplit is IOneSplitConsts {
+interface IOneSplit {
+
+    /// @notice Calculate expected returning amount of `destToken`
+    /// @param fromToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param destToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param parts (uint256) Number of pieces source volume could be splitted,
+    /// works like granularity, higly affects gas usage. Should be called offchain,
+    /// but could be called onchain if user swaps not his own funds, but this is still considered as not safe.
+    /// @param flags (uint256) Flags for enabling and disabling some features, default 0
     function getExpectedReturn(
         IERC20 fromToken,
         IERC20 destToken,
@@ -111,13 +121,22 @@ contract IOneSplit is IOneSplitConsts {
         uint256 parts,
         uint256 flags // See constants in IOneSplit.sol
     )
-        public
+        external
         view
         returns(
             uint256 returnAmount,
             uint256[] memory distribution
         );
 
+    /// @notice Calculate expected returning amount of `destToken`
+    /// @param fromToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param destToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param parts (uint256) Number of pieces source volume could be splitted,
+    /// works like granularity, higly affects gas usage. Should be called offchain,
+    /// but could be called onchain if user swaps not his own funds, but this is still considered as not safe.
+    /// @param flags (uint256) Flags for enabling and disabling some features, default 0
+    /// @param destTokenEthPriceTimesGasPrice (uint256) destToken price to ETH multiplied by gas price
     function getExpectedReturnWithGas(
         IERC20 fromToken,
         IERC20 destToken,
@@ -126,7 +145,7 @@ contract IOneSplit is IOneSplitConsts {
         uint256 flags, // See constants in IOneSplit.sol
         uint256 destTokenEthPriceTimesGasPrice
     )
-        public
+        external
         view
         returns(
             uint256 returnAmount,
@@ -134,6 +153,13 @@ contract IOneSplit is IOneSplitConsts {
             uint256[] memory distribution
         );
 
+    /// @notice Swap `amount` of `fromToken` to `destToken`
+    /// @param fromToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param destToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param minReturn (uint256) Minimum expected return, else revert
+    /// @param distribution (uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`
+    /// @param flags (uint256) Flags for enabling and disabling some features, default 0
     function swap(
         IERC20 fromToken,
         IERC20 destToken,
@@ -142,13 +168,42 @@ contract IOneSplit is IOneSplitConsts {
         uint256[] memory distribution,
         uint256 flags
     )
-        public
+        external
         payable
         returns(uint256 returnAmount);
+
+    /// @notice Swap `amount` of `fromToken` to `destToken`
+    /// param fromToken (IERC20) Address of token or `address(0)` for Ether
+    /// param destToken (IERC20) Address of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param minReturn (uint256) Minimum expected return, else revert
+    /// @param distribution (uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`
+    /// @param flags (uint256) Flags for enabling and disabling some features, default 0
+    /// @param referral (address) Address of referral
+    /// @param feePercent (uint256) Fees percents normalized to 1e18, limited to 0.03e18 (3%)
+    function swapWithReferral(
+        IERC20 fromToken,
+        IERC20 destToken,
+        uint256 amount,
+        uint256 minReturn,
+        uint256[] memory distribution,
+        uint256 flags, // See contants in IOneSplit.sol
+        address referral,
+        uint256 feePercent
+    ) external payable returns(uint256)        
 }
 
 
-contract IOneSplitMulti is IOneSplit {
+interface IOneSplitMulti is IOneSplit {
+
+    /// @notice Calculate expected returning amount of first `tokens` element to
+    /// last `tokens` element through ann the middle tokens with corresponding
+    /// `parts`, `flags` and `destTokenEthPriceTimesGasPrices` array values of each step
+    /// @param tokens (IERC20[]) Address of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param parts (uint256[]) Number of pieces source volume could be splitted
+    /// @param flags (uint256[]) Flags for enabling and disabling some features, default 0
+    /// @param destTokenEthPriceTimesGasPrices (uint256[]) destToken price to ETH multiplied by gas price
     function getExpectedReturnWithGasMulti(
         IERC20[] memory tokens,
         uint256 amount,
@@ -156,7 +211,7 @@ contract IOneSplitMulti is IOneSplit {
         uint256[] memory flags,
         uint256[] memory destTokenEthPriceTimesGasPrices
     )
-        public
+        external
         view
         returns(
             uint256[] memory returnAmounts,
@@ -164,6 +219,12 @@ contract IOneSplitMulti is IOneSplit {
             uint256[] memory distribution
         );
 
+    /// @notice Swap `amount` of first element of `tokens` to the latest element of `destToken`
+    /// @param tokens (IERC20[]) Addresses of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param minReturn (uint256) Minimum expected return, else revert
+    /// @param distribution (uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`
+    /// @param flags (uint256[]) Flags for enabling and disabling some features, default 0
     function swapMulti(
         IERC20[] memory tokens,
         uint256 amount,
@@ -171,7 +232,25 @@ contract IOneSplitMulti is IOneSplit {
         uint256[] memory distribution,
         uint256[] memory flags
     )
-        public
+        external
         payable
         returns(uint256 returnAmount);
+
+    /// @notice Swap `amount` of first element of `tokens` to the latest element of `destToken`
+    /// @param tokens (IERC20[]) Addresses of token or `address(0)` for Ether
+    /// @param amount (uint256) Amount for `fromToken`
+    /// @param minReturn (uint256) Minimum expected return, else revert
+    /// @param distribution (uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`
+    /// @param flags (uint256[]) Flags for enabling and disabling some features, default 0
+    /// @param referral (address) Address of referral
+    /// @param feePercent (uint256) Fees percents normalized to 1e18, limited to 0.03e18 (3%)
+    function swapWithReferralMulti(
+        IERC20[] memory tokens,
+        uint256 amount,
+        uint256 minReturn,
+        uint256[] memory distribution,
+        uint256[] memory flags,
+        address referral,
+        uint256 feePercent
+    ) external payable returns(uint256 returnAmount)
 }
