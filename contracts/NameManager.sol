@@ -1,11 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.4;
+pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "interfaces/ENS_Registry.sol";
 import "interfaces/ENS_BaseRegistrar.sol";
 import "interfaces/ENS_BulkRenewal.sol";
+import "interfaces/ENS_Resolver.sol";
 
 /// @title StakeYourName - NameManager
 /// @notice Maintains a list of users and names they want to keep renewed
@@ -22,6 +24,7 @@ contract NameManager is Ownable {
     BaseRegistrar ensReg;
     ENS ens;
     BulkRenewal ensBulkRenewal;
+    ENSResolver ensResolver;
 
     /// @dev map user address to arrays of their names and expiry times
     mapping (address => uint256[]) names;
@@ -29,28 +32,56 @@ contract NameManager is Ownable {
     /// @dev map names to the users that are funding them
     mapping (uint256 => address[]) users;
 
-    mapping (uint256 => uint256[]) testArray;
-
     uint256[] nameList;
 
     constructor() {
         ensReg = BaseRegistrar(baseRegistrarAddress);
-        //ens = ENS(ensReg.ens());
+        ens = ENS(ensReg.ens());
         ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
         
     }
 
-    function checkForRenewals() public view returns(uint256[] memory){
-        uint _count = countRenewals();
+    function checkPrice(string[] memory _names, uint256 _duration) public view returns(uint256) {
+        return (ensBulkRenewal.rentPrice(_names, _duration));
+    }
+
+    function uintArrayToStringsArray(uint256[] memory _ints) public pure returns(string[] memory){
+        string[] memory _strings = new string[](_ints.length);    
+        for (uint i; i < _ints.length; i++){
+            uint256 _i = _ints[i];
+            if (_i == 0) {
+                _strings[i] = "0";
+            }
+            uint j = _i;
+            uint len;
+            while (j != 0) {
+                len++;
+                j /= 10;
+            }
+            bytes memory bstr = new bytes(len);
+            uint k = len - 1;
+            while (_i != 0) {
+                bstr[k--] = byte(uint8(48 + _i % 10));
+                _i /= 10;
+            }
+            _strings[i] = string(bstr);
+        }
+        return _strings;
+    }
+
+    function checkForRenewals() public view returns(uint256[] memory, uint256){
+        uint256 _count = countRenewals();
+        uint256 _price;
         uint256[] memory _names = new uint256[](_count);
-        uint256 j;
+        uint256 _j;
         for (uint i; i < nameList.length; i++) {
             if(renewalDue(nameList[i])) {
-                _names[j] = nameList[i];
-                j++;
+                _names[_j] = nameList[i];
+                _j++;
             }
         }
-        return (_names);
+        checkPrice(uintArrayToStringsArray(_names), renewalPeriod);
+        return (_names, _price);
     }
 
     function countRenewals() internal view returns (uint256){
@@ -171,6 +202,15 @@ contract NameManager is Ownable {
     *
     */
 
+    /// @notice pass in either the _name or _nameHash to resolve an address
+    function resolveName(string calldata _name, bytes32 _nameHash) public returns(address){
+        if (_nameHash == 0){
+            _nameHash = computeNamehash(_name);
+        }
+        ensResolver =  ENSResolver(ens.resolver(_nameHash));
+        return(ensResolver.addr(_nameHash));
+    }
+
     function renewalDue(uint256 _labelhash) public view returns(bool) {
         return (getNameExpiry(_labelhash) <= block.timestamp - renewalPeriod);
     }
@@ -203,12 +243,12 @@ contract NameManager is Ownable {
     function returnBulkRenewalAddress() public view returns(address){
         return address(ensBulkRenewal);
     }
-    // @devs always fails on testnet because they didn't impletment bulk renewal there
+    /// @dev always fails on testnet because they didn't impletment bulk renewal there
     function checkRegistryMatches() public view returns(bool){
         return (ensReg.ens() == ensBulkRenewal.ens());
     }
 
-    // @notice funtions to help out with ENS integration
+    /// @notice funtions to help out with ENS integration
     function convertBytesToUint(bytes32 _bytes) public pure returns(uint256){
         uint256 _uint = uint256(_bytes);
         return (_uint);

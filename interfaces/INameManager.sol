@@ -9,7 +9,7 @@ interface NameManager {
     function countFunders(uint256 _name) external view returns(uint256);
     function checkForUser(uint256 _name) external view returns(bool, uint256);
     
-    
+    function resolveName(string calldata _name, bytes32 _nameHash) external returns(address);
     function updateBulkRenewal(address _address) external; //only owner
     function updateRegistrar(address _address) external; //only owner
     function getNameExpiry(uint256 _name) external view returns(uint256);
