@@ -22,12 +22,12 @@ contract InvestmentManager is Ownable {
 
     //address internal kovanLendingPool = 0x9FE532197ad76c5a68961439604C037EB79681F0;
     //address internal mainLendingPool = 0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9;
-    address internal deadAddress = 0x000000000000000000000000000000000000dEaD;
-    address internal lendingPooladdress = deadAddress;
+    address internal zeroAddress = address(0);
+    address internal lendingPooladdress = zeroAddress;
     address internal kovanLendingPoolAddressProviderAddress = 0x88757f2f99175387aB4C6a4b3067c77A695b0349;
     address internal mainLendingPoolAddressProviderAddress = 0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5;
-    address internal lendingPoolAddressProviderAddress = deadAddress;
-    address internal ProtocolDataProviderAddress = deadAddress;
+    address internal lendingPoolAddressProviderAddress = zeroAddress;
+    address internal ProtocolDataProviderAddress = zeroAddress;
 
     /// @dev addresses saved here for testing, in final version the
     /// @dev addresses will be passed in from the front end.
