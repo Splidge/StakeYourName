@@ -108,6 +108,17 @@ contract InvestmentManager is Ownable {
         return(Users[msg.sender].interest[_asset]);
     }
 
+    function getAToken(address _asset) public view returns(address){
+        address _aTokenAddress;
+        (_aTokenAddress,,) = protocolDataProvider.getReserveTokensAddresses(_asset);
+        return _aTokenAddress;
+    }
+
+    function getATokenBalance(address _asset) public returns(uint256){
+        ierc20 = IERC20(getAToken(_asset));
+        return ierc20.balanceOf(address(this));
+    }
+
     /// @notice calculates how many extra aTokens we have i.e. interest
     /// @notice divides and adds result to users balances
     /// @dev do we need to collect the dust and distribute that later?
