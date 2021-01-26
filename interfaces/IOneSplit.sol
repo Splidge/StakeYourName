@@ -190,7 +190,7 @@ interface IOneSplit {
         uint256 flags, // See contants in IOneSplit.sol
         address referral,
         uint256 feePercent
-    ) external payable returns(uint256)        
+    ) external payable returns(uint256);        
 }
 
 
@@ -252,5 +252,5 @@ interface IOneSplitMulti is IOneSplit {
         uint256[] memory flags,
         address referral,
         uint256 feePercent
-    ) external payable returns(uint256 returnAmount)
+    ) external payable returns(uint256 returnAmount);
 }

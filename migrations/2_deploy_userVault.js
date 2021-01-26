@@ -1,5 +1,5 @@
-// Fetch the NameManager contract data from the NameManager.json file
-var NameManager = artifacts.require("NameManager");
+// Fetch the UserVault contract data from the UserVault.json file
+var UserVault = artifacts.require("UserVault");
 
 // JavaScript export
 module.exports = function(deployer) {
@@ -7,5 +7,5 @@ module.exports = function(deployer) {
     // contracts to the network
 
     // Deploy the contract to the network
-    deployer.deploy(NameManager);
+    deployer.deploy(UserVault);
 }

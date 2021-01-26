@@ -10,7 +10,7 @@ interface InvestmentManager {
 
     function getAToken(address _asset) external view returns(address);
 
-    function getATokenBalance(address _asset) external returns(uint256);
+    function getATokenBalance(address _asset, address _userVault) external view returns(uint256);
     function calculateInterest(address _asset) external ;
 
     function depositTest(address _asset, uint256 _amount) external ;

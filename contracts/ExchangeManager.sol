@@ -24,6 +24,7 @@ contract ExchangeManager is Ownable {
     IOneSplit oneSplit;
     IOneSplitMulti oneSplitMulti;
     IOneSplitConsts oneSplitConsts;
+    IERC20 erc20;
 
     uint256 exchangeParts = 20;
     uint256 exchangeFlags = 0;
@@ -36,7 +37,7 @@ contract ExchangeManager is Ownable {
     /// @dev use our NameManager to grab the 1Inch contract address
     function get1InchAddress() public onlyOwner {
         bytes32 _nameHash = 0;
-        string _name = "1split";
+        string memory _name = "1split";
         oneInch = nameManager.resolveName(_name, _nameHash);
         oneSplit = IOneSplit(oneInch);
     }
@@ -44,7 +45,11 @@ contract ExchangeManager is Ownable {
     
 
     function getExchangePrice(uint256 _inputValue, address _inputToken, uint256 _outputValue, address _outputToken) public view returns(uint256, uint256[] memory) {
-        return oneSplit.getExpectedReturn(_inputToken, _outputToken, _inputValue, exchangeParts, exchangeFlags);
+        IERC20 _inputERC20;
+        _inputERC20 = IERC20(_inputToken);
+        IERC20 _outputERC20;
+        _outputERC20 = IERC20(_outputToken);
+        return oneSplit.getExpectedReturn(_inputERC20, _outputERC20, _inputValue, exchangeParts, exchangeFlags);
     }
 
     function swap(
