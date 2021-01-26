@@ -12,5 +12,6 @@ interface UserVault{
     function initialize() external;
     function owner() external view returns(address);
     function balance(address _asset) external view returns(uint256);
-    function setBalance(address _asset, uint256 _balance) external  returns(uint256);
+    function setBalance(address _asset, uint256 _balance) external returns(uint256);
+    function approve(address _asset) external;
 }

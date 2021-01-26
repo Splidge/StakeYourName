@@ -35,6 +35,7 @@ contract StakeYourName is Ownable {
     address internal masterVault;
     mapping (address => address) internal vault;
     uint256 public referralCode = 0;
+    uint256 constant MAX_INT = type(uint256).max;
 
     modifier onlyUser() {
         require(vault[msg.sender] != address(0), "User not found");
@@ -47,20 +48,57 @@ contract StakeYourName is Ownable {
     *                                           *
     ********************************************/
 
-    function deposit(address _asset, uint256 _amount) public {
-        require(_amount > 0, "Deposit amount must be more than 0");
-        require(investmentManager.checkAllowance(_asset) >= _amount, "User not approved to send this amount");
+    /// @notice approves transfering tokens from the userVault
+    /// @notice to the Aave LendingPool contract
+    /// @notice will deploy a new vault if one doesn't exist
+    /// @param _asset the contract address of the token to approve
+    /// @param _amount the amount to approve in wei
+    /// @param _max set to true to ignore amount and approve the max
+    function approve(address _asset, uint256 _amount, bool _max) external {
+        require(_asset != address(0), "Asset contract can't be the zero address");
         if (vault[msg.sender] == address(0)){
             deployVault();
         }
-        IERC20 _erc20 = IERC20(_asset);
-        _erc20.transferFrom(msg.sender, address(this), _amount);
-        lendingPool.deposit(_asset, _amount, vault[msg.sender], referralCode);
+        investmentManager.approveLendingPool(_asset, vault[msg.sender], _amount, _max);
+        approveInvestmentManager(_asset);
+        approveVault(_asset);
     }
 
+    /// @notice deposits tokens to the Aave LendingPool contract
+    /// @notice updates vault with new balance
+    /// @param _asset the contract address of the token to deposit
+    /// @param _amount the amount to deposit in wei
+    function deposit(address _asset, uint256 _amount) external {
+        require(_asset != address(0), "Asset contract can't be the zero address");
+        require(_amount > 0, "Amount must be more than 0");
+        //require(investmentManager.checkAllowance(_asset) >= _amount, "User not approved to send this amount");
+        setBalance(_asset, getBalance(_asset).add(_amount));
+        IERC20 _erc20 = IERC20(_asset);
+        _erc20.transferFrom(msg.sender, address(this), _amount);
+        investmentManager.deposit(_asset, vault[msg.sender], _amount, address(this));
+    }
 
-
-
+    /// @notice withdraw tokens from the Aave LendingPool contract
+    /// @notice updates vault with new balance
+    /// @param _asset the contract address of the token to deposit
+    /// @param _amount the amount to deposit in wei
+    function withdraw(address _asset, uint256 _amount) external {
+        require(_asset != address(0));
+        require(_amount > 0, "Amount must be more than 0");
+        require(getTotal(_asset) > 0, "No balance left to withdraw");
+        uint256 _balance = getTotal(_asset);
+        if (_amount >= _balance) {
+            _amount = MAX_INT;
+            _balance = 0;
+            setBalance(_asset, _balance);
+        } else {
+            setBalance(_asset, _balance.sub(_amount));
+        }
+        IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
+        _erc20.transferFrom(vault[msg.sender], address(investmentManager), _amount);
+        //_erc20.transferFrom(address(this), address(investmentManager), _amount);
+        investmentManager.withdraw(_asset, _amount, msg.sender);
+    }
 
     /******************************************** 
     *                                           *
@@ -95,11 +133,28 @@ contract StakeYourName is Ownable {
     function getTotal(address _asset) public view onlyUser returns(uint256){
         return (getBalance(_asset).add(getInterest(_asset)));
     }
+    function findVault(address _vault) public view returns(address){
+        return vault[_vault];
+    }
+    function approveVault(address _asset) public {
+        UserVault _userVault = UserVault(vault[msg.sender]);
+        _userVault.approve(investmentManager.getAToken(_asset));
+    }
 
     /// @dev this is stupid, it'll always return msg.sender (hopefully)
     function getOwner() public view onlyUser returns(address){
         UserVault _userVault = UserVault(vault[msg.sender]);
         return _userVault.owner();
+    }
+
+    /******************************************** 
+    *                                           *
+    *   Admin functions                         *
+    *                                           *
+    ********************************************/
+
+    function updateReferral(uint256 _ref) external onlyOwner {
+        referralCode = _ref;
     }
 
 
@@ -109,14 +164,18 @@ contract StakeYourName is Ownable {
     *                                           *
     ********************************************/
 
-    function setNameManager(address _address) public onlyOwner {
+    function setNameManager(address _address) external onlyOwner {
         nameManager = NameManager(_address);
     }
-    function setExchangeManager(address _address) public onlyOwner {
+    function setExchangeManager(address _address) external onlyOwner {
         exchangeManager = ExchangeManager(_address);
     }
-    function setInvestmentManager(address _address) public onlyOwner {
+    function setInvestmentManager(address _address) external onlyOwner {
         investmentManager = InvestmentManager(_address);
+    }
+    function approveInvestmentManager(address _asset) public onlyOwner {
+        IERC20 _erc20 = IERC20(_asset);
+        _erc20.approve(address(investmentManager), MAX_INT);
     }
 
 }
