@@ -72,7 +72,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -85,7 +86,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -152,7 +154,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -176,7 +179,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -223,7 +227,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -15430,8 +15435,8 @@
         }
       },
       "links": {},
-      "address": "0x7Ea3B6F182f29924F2D5Af947303F5722B9244f6",
-      "transactionHash": "0x35da5651a324f3404d2606d7f30ebac8fd21c857addb7d01961fceb640554c87"
+      "address": "0xF3271D87140aa68b9677d47a902603da3981926c",
+      "transactionHash": "0x0f0b0b21063ade5c16b760eb486fa05e34a231b67509917cae20f7010c34a983"
     },
     "5777": {
       "events": {},
@@ -15441,7 +15446,8 @@
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-26T22:00:03.797Z",
+  "updatedAt": "2021-01-26T22:00:53.192Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Daniel Chilvers*",
     "kind": "dev",

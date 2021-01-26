@@ -87,7 +87,7 @@ contract StakeYourName is Ownable {
         require(_amount > 0, "Amount must be more than 0");
         require(getTotal(_asset) > 0, "No balance left to withdraw");
         uint256 _balance = getTotal(_asset);
-        if (_amount >= _balance) {
+        if (_amount > _balance) {
             _amount = MAX_INT;
             _balance = 0;
             setBalance(_asset, _balance);
@@ -126,12 +126,12 @@ contract StakeYourName is Ownable {
         return _userVault.balance(_asset);
     }
     function getInterest(address _asset) public view onlyUser returns(uint256) {
-        UserVault _userVault = UserVault(vault[msg.sender]);
         uint256 _tokenBalance = investmentManager.getATokenBalance(_asset, vault[msg.sender]);
-        return _tokenBalance.sub(_userVault.balance(_asset));
+        return _tokenBalance.sub(getBalance(_asset));
     }
     function getTotal(address _asset) public view onlyUser returns(uint256){
-        return (getBalance(_asset).add(getInterest(_asset)));
+        uint256 _tokenBalance = investmentManager.getATokenBalance(_asset, vault[msg.sender]);
+        return _tokenBalance;
     }
     function findVault(address _vault) public view returns(address){
         return vault[_vault];
