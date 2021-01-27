@@ -8,6 +8,7 @@ import "interfaces/ENS_Registry.sol";
 import "interfaces/ENS_BaseRegistrar.sol";
 import "interfaces/ENS_BulkRenewal.sol";
 import "interfaces/ENS_Resolver.sol";
+import "interfaces/ENS_RegistrarController.sol";
 
 /// @title StakeYourName - NameManager
 /// @notice Maintains a list of users and names they want to keep renewed
@@ -19,18 +20,20 @@ contract NameManager is Ownable {
     address internal ensRegistryAddress = 0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e;
     address internal baseRegistrarAddress = 0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85;
     address internal bulkRenewalAddress = 0xfF252725f6122A92551A5FA9a6b6bf10eb0Be035;
+    address internal RegistrarControllerAddress = 0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5;
     uint256 internal renewalPeriod = 28 days; 
 
     BaseRegistrar ensReg;
     ENS ens;
+    ENSRegistrarController ensRegController;
     BulkRenewal ensBulkRenewal;
     ENSResolver ensResolver;
 
     /// @dev map user address to arrays of their names and expiry times
-    mapping (address => uint256[]) names;
+    //mapping (address => uint256[]) names;
 
     /// @dev map names to the users that are funding them
-    mapping (uint256 => address[]) users;
+    //mapping (uint256 => address[]) users;
 
     uint256[] nameList;
 
@@ -38,11 +41,16 @@ contract NameManager is Ownable {
         ensReg = BaseRegistrar(baseRegistrarAddress);
         ens = ENS(ensReg.ens());
         ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
+        ensRegController = ENSRegistrarController(RegistrarControllerAddress);
         
     }
 
-    function checkPrice(string[] memory _names, uint256 _duration) public view returns(uint256) {
-        return (ensBulkRenewal.rentPrice(_names, _duration));
+    function checkBulkPrice(string[] memory _names, uint256 _duration) public view returns(uint256) {
+        return ensBulkRenewal.rentPrice(_names, _duration);
+    }
+
+    function checkPrice(string memory _name, uint256 _duration) public view returns(uint256) {
+        return ensRegController.rentPrice(_name, _duration);
     }
 
     function uintArrayToStringsArray(uint256[] memory _ints) public pure returns(string[] memory){
@@ -69,133 +77,40 @@ contract NameManager is Ownable {
         return _strings;
     }
 
-    function checkForRenewals() public view returns(uint256[] memory, uint256){
-        uint256 _count = countRenewals();
+    function checkForRenewals(uint256[] memory _nameList) public view returns(uint256[] memory, uint256){
+        uint256 _count = countRenewals(_nameList);
         uint256 _price;
         uint256[] memory _names = new uint256[](_count);
         uint256 _j;
-        for (uint i; i < nameList.length; i++) {
-            if(renewalDue(nameList[i])) {
-                _names[_j] = nameList[i];
+        for (uint i; i < _nameList.length; i++) {
+            if(renewalDue(_nameList[i])) {
+                _names[_j] = _nameList[i];
                 _j++;
             }
         }
-        checkPrice(uintArrayToStringsArray(_names), renewalPeriod);
+        string memory _name;
+        string[] memory _strNames = new string[](_count);
+        _strNames = uintArrayToStringsArray(_names);
+        if(_count == 1){
+            _name = _strNames[0];
+            _price = checkPrice(_name, renewalPeriod);
+        } else {
+            _price = checkBulkPrice(_strNames, renewalPeriod); 
+        }
         return (_names, _price);
     }
 
-    function countRenewals() internal view returns (uint256){
+    function countRenewals(uint256[] memory _nameList) internal view returns (uint256){
         uint256 _count;
-        for (uint i; i < nameList.length; i++) {
-            if(renewalDue(nameList[i])) {
+        for (uint i; i < _nameList.length; i++) {
+            if(renewalDue(_nameList[i])) {
                 _count++;
             }
         }
         return (_count);
     }
 
-
-    /*
-    *
-    *   User and name related functions
-    *
-    */
-
-    /// @dev records msg.sender as a funder of _name
-    /// @dev and records _name as funded by msg.sender
-    /// @dev adds to the list of names we're overseing
-    function addRecord(uint256 _name) public {
-        bool _exists;
-        uint256 _index;
-        (_exists, _index) = checkForUser(_name);
-        if (_exists == false) {
-            users[_name].push(msg.sender);
-        }
-
-        (_exists, _index) = checkForName(_name);
-        if (_exists == false) {
-            names[msg.sender].push(_name);
-            //names[msg.sender].expiry.push();
-        }
-        bool _found = false;
-        for (uint i; i < nameList.length; i++){
-            if(nameList[i] == _name){
-                _found = true;
-                break;
-            }
-        }
-        if (_found = false) {
-            nameList.push(_name);
-        }
-
-    }
-
-    /// @dev Removes from users the record matching _name
-    /// @dev Removes from names the record matching msg.sender
-    /// @dev Removes from list of names we're overseing IF nobody else is funding it
-    function removeRecord(uint256 _name) public {
-        bool _exists = false;
-        uint256 _index;
-        (_exists, _index) = checkForUser(_name);
-        if (_exists == true) {
-            users[_name][_index] = users[_name][users[_name].length-1];
-            users[_name].pop();
-        }
-
-        (_exists, _index) = checkForName(_name);
-        if (_exists == true) {
-            names[msg.sender][_index] = names[msg.sender][names[msg.sender].length-1];
-            names[msg.sender].pop();
-        }
-
-        if(users[_name].length == 0){
-            for (uint i; i < nameList.length; i++){
-                if (nameList[i] == _name) {
-                    nameList[i] = nameList[nameList.length-1];
-                    nameList.pop();
-                    break;
-                }
-            }
-        }
-    }
-
-    /// @dev check if msg.sender is already funding _name
-    function checkForName(uint256 _name) public view returns(bool, uint256) {
-        bool _found = false;
-        uint256 _index = 0;
-        for (uint i; i < names[msg.sender].length; i++){
-            if(names[msg.sender][i] == _name){
-                _index = i;
-                _found = true;
-                break;
-            }
-        }
-        return (_found, _index);
-    }   
-
-    /// @notice returns the number of users funding _name
-    function countFunders(uint256 _name) public view returns(uint256){
-        return users[_name].length;
-    }
-
-    function countNames() public view returns(uint256){
-        return nameList.length;
-    }
-
-    /// @dev checks if msg.sender is already funding _name
-    function checkForUser(uint256 _name) public view returns(bool, uint256) {
-        bool _found = false;
-        uint256 _index = 0;
-        for (uint i; i < users[_name].length; i++){
-            if(users[_name][i] == msg.sender){
-                _index = i;
-                _found = true;
-                break;
-            }
-        }
-        return (_found, _index);
-    }
-
+ 
     /*
     *
     *   ENS Related Functions
