@@ -15,7 +15,8 @@ contract UserVault is Initializable{
 
     address public owner;
     mapping (address => uint256) public balance;
-    uint256 total;
+    uint256[] public names;
+    address[] public assets;
     
     modifier onlyOwner() {
         require(owner == msg.sender, "Ownable: caller is not the owner");
@@ -34,5 +35,53 @@ contract UserVault is Initializable{
 
     function setBalance(address _asset, uint256 _balance) external onlyOwner returns(uint256){
          return balance[_asset] = _balance;
+    }
+
+    function addName(uint256 _name) public onlyOwner {
+        names.push(_name);
+    }
+
+    function addMultipleNames(uint256[] calldata _names) external onlyOwner {
+        for (uint256 i; i < _names.length; i++){
+            addName(_names[i]);
+        }
+    }
+
+    function removeName(uint256 _name) public onlyOwner {
+        for (uint256 i; i < names.length; i++){
+            if (names[i] == _name){
+                names[i] = names[names.length-1];
+                names.pop();
+            }
+        }
+    }
+
+    function removeMultipleNames(uint256[] calldata _names) external onlyOwner {
+        for (uint256 i; i < _names.length; i++){
+            removeName(_names[i]);
+        }
+    }
+
+    function addAsset(address _asset) external onlyOwner{
+        bool _found = false;
+        for(uint256 i; i < assets.length; i++){
+            if(assets[i] == _asset){
+                _found = true;
+            }
+        }
+        if(_found == false){
+            assets.push(_asset);
+        }
+    }
+
+    function removeAsset(address _asset) external onlyOwner{
+    if(balance[_asset] == 0){
+        for(uint256 i; i < assets.length; i++){
+                if(assets[i] == _asset){
+                    assets[i] = assets[assets.length-1];
+                    assets.pop();
+                }
+            }  
+        }
     }
 }

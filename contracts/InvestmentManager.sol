@@ -61,16 +61,12 @@ contract InvestmentManager is Ownable {
     /// @notice Approves sending _asset ERC20 tokens to the lendingPool
     /// @param _asset the address of asset contract
     /// @param _userVault the address of the user vault
-    /// @param _amount the amount to approve
-    /// @param _max if true ignore _amount and approve for a large amount
     /// @dev this needs to be called for each new asset purchased
-    function approveLendingPool(address _asset, address _userVault, uint256 _amount, bool _max) external {
+    function approveLendingPool(address _asset, address _userVault) external {
         IERC20 _erc20 = IERC20(_asset);
-        if (_max == true && _erc20.allowance(_userVault, lendingPooladdress) <= MIN_APPROVAL){
+        if (_erc20.allowance(_userVault, lendingPooladdress) <= MIN_APPROVAL){
             _erc20.approve(lendingPooladdress, MAX_INT);
-        } else {
-        _erc20.approve(lendingPooladdress, _amount);
-        }
+        } 
     }
 
     function getAToken(address _asset) public view returns(address){
@@ -85,9 +81,7 @@ contract InvestmentManager is Ownable {
     }
 
     /// @dev User must have approved this contract before this is called
-    function deposit(address _asset, address _userVault, uint256 _amount, address _from) external {
-        IERC20 _erc20 = IERC20(_asset);
-        _erc20.transferFrom(_from, address(this), _amount);
+    function deposit(address _asset, address _userVault, uint256 _amount) external {
         lendingPool.deposit(_asset, _amount, _userVault, referralCode);
     }
 

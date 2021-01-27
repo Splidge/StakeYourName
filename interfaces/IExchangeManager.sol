@@ -7,7 +7,6 @@ interface ExchangeManager {
     function get1InchAddress() external ;
     
     function getExchangePrice(
-        uint256 _inputValue, 
         address _inputToken, 
         uint256 _outputValue, 
         address _outputToken
@@ -28,8 +27,10 @@ interface ExchangeManager {
         payable
         returns(uint256 returnAmount);
 
-    function updateExchangeParts(uint256 _newParts) external ;
-    function updateExchangeFlags(uint256 _newFlags) external ;
-
+    function updateExchangeParts(uint256 _newParts) external;
+    function updateExchangeFlags(uint256 _newFlags) external;
+    function updatePercentageIncrease(uint256 _newPercent) external;
+    function updateIterations(uint256 _newIterations) external;
+    function updateNameManagerAddress(address _nameManager) external;
 
 }

@@ -2,7 +2,7 @@
 pragma solidity ^0.7.0;
 
 interface NameManager {
-    function checkForRenewals() external view returns(uint256[] memory);
+    function checkForRenewals(uint256[] memory _nameList) external view returns(uint256[] memory, uint256);
     function addRecord(uint256 _name) external;
     function removeRecord(uint256 _name) external;
     function checkForName(uint256 _name) external view returns(bool, uint256);
