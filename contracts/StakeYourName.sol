@@ -87,16 +87,17 @@ contract StakeYourName is Ownable {
         require(_amount > 0, "Amount must be more than 0");
         require(getTotal(_asset) > 0, "No balance left to withdraw");
         uint256 _balance = getTotal(_asset);
+        uint256 _transfer = 0;
         if (_amount > _balance) {
-            _amount = MAX_INT;
+            _transfer = MAX_INT;
             _balance = 0;
             setBalance(_asset, _balance);
         } else {
+            _transfer = _amount;
             setBalance(_asset, _balance.sub(_amount));
         }
         IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
-        _erc20.transferFrom(vault[msg.sender], address(investmentManager), _amount);
-        //_erc20.transferFrom(address(this), address(investmentManager), _amount);
+        _erc20.transferFrom(vault[msg.sender], address(investmentManager), _transfer);
         investmentManager.withdraw(_asset, _amount, msg.sender);
     }
 
