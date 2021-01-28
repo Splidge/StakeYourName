@@ -118,12 +118,14 @@ contract NameManager is Ownable {
     */
 
     /// @notice pass in either the _name or _nameHash to resolve an address
-    function resolveName(string calldata _name, bytes32 _nameHash) public returns(address){
-        if (_nameHash == 0){
-            _nameHash = computeNamehash(_name);
+    function resolveName(string[] calldata _name) public view returns(address){
+        bytes32 _nameHash;
+        _nameHash = computeHash(_name[0], _nameHash);
+        for (uint256 i = 1; i < _name.length; i++){
+            _nameHash = computeHash(_name[i], _nameHash); 
         }
-        ensResolver =  ENSResolver(ens.resolver(_nameHash));
-        return(ensResolver.addr(_nameHash));
+        ENSResolver _ensResolver =  ENSResolver(ens.resolver(_nameHash));
+        return(_ensResolver.addr(_nameHash));
     }
 
     function renewalDue(uint256 _labelhash) public view returns(bool) {
@@ -172,14 +174,10 @@ contract NameManager is Ownable {
         bytes32 _bytes = bytes32(_uint);
         return (_bytes);
     }
+
     // @dev this could be expensive, lets do this off-chain where possible
-    function computeNamehash(string calldata _name) public pure returns (bytes32 namehash) {
-        namehash = 0x0000000000000000000000000000000000000000000000000000000000000000;
-        namehash = keccak256(abi.encodePacked(namehash, keccak256(abi.encodePacked('eth'))));
-        namehash = keccak256(abi.encodePacked(namehash, keccak256(abi.encodePacked(_name))));
-    }
-    function computeLabelhash(string calldata _name) public pure returns (bytes32 namehash) {
-        namehash = keccak256(abi.encodePacked(_name));
+    function computeHash(string calldata _subdomain, bytes32 _name) public pure returns (bytes32 namehash) {
+        namehash = keccak256(abi.encodePacked(_name, keccak256(abi.encodePacked(_subdomain))));
     }
 
 }

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
+pragma experimental ABIEncoderV2;
 
 interface NameManager {
     function checkForRenewals(uint256[] memory _nameList) external view returns(uint256[] memory, uint256);
@@ -9,7 +10,7 @@ interface NameManager {
     function countFunders(uint256 _name) external view returns(uint256);
     function checkForUser(uint256 _name) external view returns(bool, uint256);
     
-    function resolveName(string calldata _name, bytes32 _nameHash) external returns(address);
+    function resolveName(string[] calldata _name) external view returns(address);
     function updateBulkRenewal(address _address) external; //only owner
     function updateRegistrar(address _address) external; //only owner
     function getNameExpiry(uint256 _name) external view returns(uint256);

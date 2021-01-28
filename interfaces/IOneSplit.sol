@@ -115,8 +115,8 @@ interface IOneSplit {
     /// but could be called onchain if user swaps not his own funds, but this is still considered as not safe.
     /// @param flags (uint256) Flags for enabling and disabling some features, default 0
     function getExpectedReturn(
-        IERC20 fromToken,
-        IERC20 destToken,
+        address fromToken,
+        address destToken,
         uint256 amount,
         uint256 parts,
         uint256 flags // See constants in IOneSplit.sol
@@ -138,8 +138,8 @@ interface IOneSplit {
     /// @param flags (uint256) Flags for enabling and disabling some features, default 0
     /// @param destTokenEthPriceTimesGasPrice (uint256) destToken price to ETH multiplied by gas price
     function getExpectedReturnWithGas(
-        IERC20 fromToken,
-        IERC20 destToken,
+        address fromToken,
+        address destToken,
         uint256 amount,
         uint256 parts,
         uint256 flags, // See constants in IOneSplit.sol
@@ -161,8 +161,8 @@ interface IOneSplit {
     /// @param distribution (uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`
     /// @param flags (uint256) Flags for enabling and disabling some features, default 0
     function swap(
-        IERC20 fromToken,
-        IERC20 destToken,
+        address fromToken,
+        address destToken,
         uint256 amount,
         uint256 minReturn,
         uint256[] memory distribution,
@@ -182,8 +182,8 @@ interface IOneSplit {
     /// @param referral (address) Address of referral
     /// @param feePercent (uint256) Fees percents normalized to 1e18, limited to 0.03e18 (3%)
     function swapWithReferral(
-        IERC20 fromToken,
-        IERC20 destToken,
+        address fromToken,
+        address destToken,
         uint256 amount,
         uint256 minReturn,
         uint256[] memory distribution,
@@ -205,7 +205,7 @@ interface IOneSplitMulti is IOneSplit {
     /// @param flags (uint256[]) Flags for enabling and disabling some features, default 0
     /// @param destTokenEthPriceTimesGasPrices (uint256[]) destToken price to ETH multiplied by gas price
     function getExpectedReturnWithGasMulti(
-        IERC20[] memory tokens,
+        address[] memory tokens,
         uint256 amount,
         uint256[] memory parts,
         uint256[] memory flags,
@@ -226,7 +226,7 @@ interface IOneSplitMulti is IOneSplit {
     /// @param distribution (uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`
     /// @param flags (uint256[]) Flags for enabling and disabling some features, default 0
     function swapMulti(
-        IERC20[] memory tokens,
+        address[] memory tokens,
         uint256 amount,
         uint256 minReturn,
         uint256[] memory distribution,
@@ -245,7 +245,7 @@ interface IOneSplitMulti is IOneSplit {
     /// @param referral (address) Address of referral
     /// @param feePercent (uint256) Fees percents normalized to 1e18, limited to 0.03e18 (3%)
     function swapWithReferralMulti(
-        IERC20[] memory tokens,
+        address[] memory tokens,
         uint256 amount,
         uint256 minReturn,
         uint256[] memory distribution,

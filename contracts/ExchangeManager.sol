@@ -5,9 +5,10 @@ pragma experimental ABIEncoderV2;
 import "@openzeppelin/contracts/access/Ownable.sol"; 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
-//import "@openzeppelin/contracts/utils/SafeCast.sol";
+import "@openzeppelin/contracts/utils/SafeCast.sol";
 import "interfaces/IOneSplit.sol";
 import "interfaces/INameManager.sol";
+import "@chainlink/contracts/v0.7/interfaces/AggregatorV3Interface.sol";
 
   /**
    * @title Manages exchanging tokens and ETH
@@ -33,55 +34,114 @@ contract ExchangeManager is Ownable {
     uint256 exchangeFlags = 0;
     uint256 iterations = 5;
     uint256 percentIncrease = 101;
+    uint256 ChainID;
+    uint256 fresh = 2 hours;
+    uint256 margin = 105;
+    uint256 slippage = 95;
 
-    constructor() {
+    constructor(uint _networkID) {
+        ChainID =_networkID;
         nameManager = NameManager(nameManagerAddress);
         oneSplit = IOneSplit(oneInch);
     }
 
+    function getPrice(address _from, address _to) public view returns(uint256 _price, uint256 _decimals){
+        uint256 _time;
+        int256 _intPrice;
+        address _address = getOracleAddress(assembleTokenEthPair(_from, _to));
+        AggregatorV3Interface _aggregator = AggregatorV3Interface(_address);
+        (,_intPrice,,_time,) = _aggregator.latestRoundData();
+        require(block.timestamp - _time > fresh);
+        _decimals = _aggregator.decimals();
+        _price = SafeCast.toUint256(_intPrice);
+    }
+
+    function getOracleAddress(string memory _pair) public view returns(address) {
+        if (ChainID == 1){
+            string[] memory _name = new string[](3);
+            _name[0] = "eth";
+            _name[1] = "data";
+            _name[3] = _pair;
+            return nameManager.resolveName(_name);
+        } else {
+            return 0x122eb74f9d0F1a5ed587F43D120C1c2BbDb9360B;
+        }
+    }
+
+    function assembleTokenEthPair(address _from, address _to) public view returns(string memory){
+        string memory _fromSymbol;
+        string memory _toSymbol;
+        _fromSymbol = toLower(getTokenSymbol(_from));
+        if(_to == zeroAddress){
+            _toSymbol = "eth";
+        } else {
+            _toSymbol = toLower(getTokenSymbol(_to));
+        }
+        return string(abi.encodePacked(_fromSymbol,"-",_toSymbol));
+    }
+
+    function getTokenSymbol(address _asset) internal view returns (string memory){
+        IERC20 _erc20 = IERC20(_asset);
+        string memory _symbol = _erc20.symbol();
+        return _symbol;
+    }
+
+    function toLower(string memory str) internal pure returns (string memory) {
+		bytes memory bStr = bytes(str);
+		bytes memory bLower = new bytes(bStr.length);
+		for (uint i = 0; i < bStr.length; i++) {
+			// Uppercase character...
+			if ((uint8(bStr[i]) >= 65) && (uint8(bStr[i]) <= 90)) {
+				// So we add 32 to make it lowercase
+				bLower[i] = bytes1(uint8(bStr[i]) + 32);
+			} else {
+				bLower[i] = bStr[i];
+			}
+		}
+		return string(bLower);
+	}
+
+
     /// @dev use our NameManager to grab the 1Inch contract address
     function get1InchAddress() public onlyOwner {
-        bytes32 _nameHash = 0;
-        string memory _name = "1split";
-        oneInch = nameManager.resolveName(_name, _nameHash);
+        string[] memory _name = new string[](2);
+        _name[0] = "eth";
+        _name[1] = "1split";
+        oneInch = nameManager.resolveName(_name);
         oneSplit = IOneSplit(oneInch);
     }
 
     /// @notice currently there's no option on 1inch to select an output value and calculate the input
-    /// @notice so we do a test evaluation and use that to figure out the current exchange rate
-    /// @notice this usually works but sometimes a different value gives a different exchange rate
-    /// @notice so we can try increasing the value by PercentageIncrease a couple of times.
-    function getExchangePrice(address _inputToken, uint256 _outputValue, address _outputToken) public view returns(uint256, uint256[] memory){
-        IERC20 _inputERC20;
-        _inputERC20 = IERC20(_inputToken);
-        IERC20 _outputERC20;
-        _outputERC20 = IERC20(_outputToken);
-        uint256 _unitValue = 10**18;
-        uint256 _return;
-        (_return,) = oneSplit.getExpectedReturn(_inputERC20, _outputERC20, _unitValue, exchangeParts, exchangeFlags);
-        uint256 _inputValue;
-        _inputValue = _outputValue.mul(_unitValue);
-        _inputValue = _inputValue.div(_return);
-        (_return,) = oneSplit.getExpectedReturn(_inputERC20, _outputERC20, _inputValue, exchangeParts, exchangeFlags);
-        for(uint256 i; i < iterations; i++){
-            if(_outputValue < _return){
-                break;
-            } else {
-                _inputValue = (_inputValue.mul(percentIncrease)).div(100);
-                (_return,) = oneSplit.getExpectedReturn(_inputERC20, _outputERC20, _inputValue, exchangeParts, exchangeFlags);
+    /// @notice so we use chainlink to give us a good estimate, we can then adjust that value to seek
+    /// @notice the output value we want. Only allowing the value to creep a set amount to make sure
+    /// @notice we are getting a reasonable price.
+    function getExchangePrice(address _inputToken, uint256 _outputValue, address _outputToken) public view returns(uint256 _return, uint256[] memory _distribution){
+        (uint256 _oraclePrice, uint256 _decimals) = getPrice(_inputToken, _outputToken);
+        uint256 _adjOutputValue = _outputValue.div(10**_decimals);
+        uint256 _estimatedInput = _oraclePrice.mul(_adjOutputValue);
+        (_return, _distribution) = oneSplit.getExpectedReturn(_inputToken, _outputToken, _estimatedInput, exchangeParts, exchangeFlags);
+        uint256 _difference = (_return.mul(100)).div(_outputValue);
+        require(_difference < margin, 'Possible oracle error, too much return on exchange');
+        require(_difference > slippage, 'Exchange rate unfavourable');
+        if (_difference < 100){
+            /// @dev we're not getting enough return, but it's close so lets try again.
+            _estimatedInput = (_estimatedInput.mul(_difference)).div(100);
+            (_return, _distribution) = oneSplit.getExpectedReturn(_inputToken, _outputToken, _estimatedInput, exchangeParts, exchangeFlags);
+            _difference = (_return.mul(100)).div(_outputValue);
+            require(_difference < margin, 'Exchange error, too much return on exchange');
+            if (_return > _outputValue){
+                return (_return, _distribution);
             }
-        }
-        if(_outputValue < _return){
-            return oneSplit.getExpectedReturn(_inputERC20, _outputERC20, _inputValue, exchangeParts, exchangeFlags);
+            require(true, 'Exchange failed after second attempt');
         } else {
-            uint256[] memory fail = new uint256[](1);
-            return (0,fail);
+            /// @dev Goldilocks, not too much, not too little.
+            return (_return, _distribution);
         }
     }
 
     function swap(
-        IERC20 fromToken,
-        IERC20 destToken,
+        address fromToken,
+        address destToken,
         uint256 amount,
         uint256 minReturn,
         uint256[] memory distribution,
@@ -94,20 +154,33 @@ contract ExchangeManager is Ownable {
 
         }
 
-    function updateExchangeParts(uint256 _newParts) public onlyOwner {
+    function updateExchangeParts(uint256 _newParts) external onlyOwner {
         exchangeParts = _newParts;
     }
-    function updateExchangeFlags(uint256 _newFlags) public onlyOwner {
+    function updateExchangeFlags(uint256 _newFlags) external onlyOwner {
         exchangeFlags = _newFlags;
     }
-    function updatePercentageIncrease(uint256 _newPercent) public onlyOwner {
+    function updatePercentageIncrease(uint256 _newPercent) external onlyOwner {
         percentIncrease = _newPercent;
     }
-    function updateIterations(uint256 _newIterations) public onlyOwner {
+    function updateIterations(uint256 _newIterations) external onlyOwner {
         iterations = _newIterations;
     }
-    function updateNameManagerAddress(address _nameManager) public onlyOwner {
+    function updateNameManagerAddress(address _nameManager) external onlyOwner {
         nameManager = NameManager(_nameManager);
     }
+    function updateFresh(uint256 _fresh) external onlyOwner {
+        fresh = _fresh;
+    }
+    function updateMargin(uint256 _margin) external onlyOwner {
+        margin = _margin;
+    }
+    function updateSlippage(uint256 _slippage) external onlyOwner {
+        slippage = _slippage;
+    }
 
+    /// @dev for quick testing, later use truffle to pass this in.
+    function updateChainID(uint256 _chainID) external onlyOwner {
+        ChainID = _chainID;
+    }
 }
