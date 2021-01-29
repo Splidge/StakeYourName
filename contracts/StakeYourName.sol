@@ -198,8 +198,11 @@ contract StakeYourName is Ownable {
                 } else {
                     for(uint256 j; j < _userVault.assets().length; j++){
                         if (_userVault.assets()[i] == _asset){
+                            uint256 _addCost;
+                            uint256[] memory _addNames = new uint256[](_userVault.names().length);
+                            (_addNames,_addCost) = nameManager.checkForRenewals(_userVault.names());
+                             exchangeManager.estimateSpecificAssetFunds(_addCost,users[i],_asset);
 
-                            (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
                         }
                     }
                 }

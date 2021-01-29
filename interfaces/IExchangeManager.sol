@@ -40,6 +40,7 @@ interface ExchangeManager {
     );
 
     function estimateFunds(uint256 _cost, address _vault) external view returns(bool _accept, address _token);
+    function estimateSpecificAssetFunds(uint256 _cost, address _vault, address _asset) external view returns(bool _accept);
     function updateExchangeParts(uint256 _newParts) external;
     function updateExchangeFlags(uint256 _newFlags) external;
     function updatePercentageIncrease(uint256 _newPercent) external;

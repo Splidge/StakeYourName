@@ -128,7 +128,7 @@ contract ExchangeManager is Ownable {
         return (false, zeroAddress, _distributionArray);
     }
 
-    /// @dev estimate if the vault will have enough funds to complete the purshase
+    /// @dev estimate if the vault will have enough of any funds to complete the purshase
     function estimateFunds(uint256 _cost, address _vault) public view returns(bool _accept, address _token){
         UserVault _userVault = UserVault(_vault);
         for (uint256 i; i < _userVault.assets().length; i++){
@@ -142,6 +142,23 @@ contract ExchangeManager is Ownable {
         }
         return(false,zeroAddress);
     }
+
+    function estimateSpecificAssetFunds(uint256 _cost, address _vault, address _asset) public view returns(bool _accept){
+        UserVault _userVault = UserVault(_vault);
+        for (uint256 i; i < _userVault.assets().length; i++){
+            if(_userVault.assets()[i] == _asset){
+                (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets()[i], zeroAddress );
+                uint256 _estimatedInput = _oraclePrice.mul(_cost);
+                _estimatedInput = (_estimatedInput.mul( estimateSlippage )).div(100);
+                _estimatedInput = _estimatedInput.div(10**_decimals);
+                if (_estimatedInput > investmentManager.getInterest(_userVault.assets()[i], _vault)){
+                    return(true);
+                }
+            }
+        }
+        return(false);
+    }
+
 
     /// @notice currently there's no option on 1inch to select an output value and calculate the input
     /// @notice so we use chainlink to give us a good estimate, we can then adjust that value to seek
