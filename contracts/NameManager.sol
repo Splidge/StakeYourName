@@ -89,12 +89,10 @@ contract NameManager is Ownable {
                 _j++;
             }
         }
-        string memory _name;
         string[] memory _strNames = new string[](_count);
         _strNames = uintArrayToStringsArray(_names);
         if(_count == 1){
-            _name = _strNames[0];
-            _price = checkPrice(_name, renewalPeriod);
+            _price = checkPrice(_strNames[0], renewalPeriod);
         } else {
             _price = checkBulkPrice(_strNames, renewalPeriod); 
         }
