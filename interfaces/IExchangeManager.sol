@@ -27,6 +27,19 @@ interface ExchangeManager {
         payable
         returns(uint256 returnAmount);
 
+    function checkAvailiableFunds(
+            uint256 _cost, 
+            address _vault
+        ) 
+        external 
+        view 
+        returns(
+            bool _accept, 
+            address _token, 
+            uint256[] memory _distribution
+    );
+
+    function estimateFunds(uint256 _cost, address _vault) external view returns(bool _accept, address _token);
     function updateExchangeParts(uint256 _newParts) external;
     function updateExchangeFlags(uint256 _newFlags) external;
     function updatePercentageIncrease(uint256 _newPercent) external;

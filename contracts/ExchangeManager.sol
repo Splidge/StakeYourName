@@ -7,7 +7,9 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/SafeCast.sol";
 import "interfaces/IOneSplit.sol";
+import "interfaces/IUserVault.sol";
 import "interfaces/INameManager.sol";
+import "interfaces/IInvestmentManager.sol";
 import "@chainlink/contracts/v0.7/interfaces/AggregatorV3Interface.sol";
 
   /**
@@ -25,6 +27,7 @@ contract ExchangeManager is Ownable {
     address internal nameManagerAddress = 0xbC86029dbC214939a3c5d383d0C245d5B75538C0;
 
     NameManager nameManager;
+    InvestmentManager investmentManager;
     IOneSplit oneSplit;
     IOneSplitMulti oneSplitMulti;
     IOneSplitConsts oneSplitConsts;
@@ -38,6 +41,7 @@ contract ExchangeManager is Ownable {
     uint256 fresh = 2 hours;
     uint256 margin = 105;
     uint256 slippage = 95;
+    uint256 estimateSlippage = 105;
 
     constructor(uint _networkID) {
         ChainID =_networkID;
@@ -111,6 +115,34 @@ contract ExchangeManager is Ownable {
         oneSplit = IOneSplit(oneInch);
     }
 
+    function checkAvailiableFunds(uint256 _cost, address _vault) public view returns(bool _accept, address _token, uint256[] memory _distribution){
+        UserVault _userVault = UserVault(_vault);
+        uint256[] memory _distributionArray = new uint256[](22);
+        uint256 _price;
+        for (uint256 i; i < _userVault.assets().length; i++){
+            (_price, _distributionArray) = getExchangePrice(_userVault.assets()[i] , _cost, zeroAddress);
+            if(_price != 0){
+                return (true, _userVault.assets()[i], _distributionArray);
+            }
+        }
+        return (false, zeroAddress, _distributionArray);
+    }
+
+    /// @dev estimate if the vault will have enough funds to complete the purshase
+    function estimateFunds(uint256 _cost, address _vault) public view returns(bool _accept, address _token){
+        UserVault _userVault = UserVault(_vault);
+        for (uint256 i; i < _userVault.assets().length; i++){
+            (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets()[i], zeroAddress );
+            uint256 _estimatedInput = _oraclePrice.mul(_cost);
+            _estimatedInput = (_estimatedInput.mul( estimateSlippage )).div(100);
+            _estimatedInput = _estimatedInput.div(10**_decimals);
+            if (_estimatedInput > investmentManager.getInterest(_userVault.assets()[i], _vault)){
+                return(true, _userVault.assets()[i]);
+            }
+        }
+        return(false,zeroAddress);
+    }
+
     /// @notice currently there's no option on 1inch to select an output value and calculate the input
     /// @notice so we use chainlink to give us a good estimate, we can then adjust that value to seek
     /// @notice the output value we want. Only allowing the value to creep a set amount to make sure
@@ -177,6 +209,9 @@ contract ExchangeManager is Ownable {
     }
     function updateSlippage(uint256 _slippage) external onlyOwner {
         slippage = _slippage;
+    }   
+    function updateEstimateSlippage(uint256 _estimateSlippage) external onlyOwner {
+        estimateSlippage = _estimateSlippage;
     }
 
     /// @dev for quick testing, later use truffle to pass this in.

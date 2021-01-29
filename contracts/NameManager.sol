@@ -77,6 +77,7 @@ contract NameManager is Ownable {
         return _strings;
     }
 
+    /// @notice pass in an array of names and return the ones that are due for renewal and the total cost.
     function checkForRenewals(uint256[] memory _nameList) public view returns(uint256[] memory, uint256){
         uint256 _count = countRenewals(_nameList);
         uint256 _price;

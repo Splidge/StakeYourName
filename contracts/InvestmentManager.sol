@@ -4,6 +4,7 @@ pragma experimental ABIEncoderV2;
 
 import "interfaces/ILendingPool.sol";
 import "interfaces/IProtocolDataProvider.sol";
+import "interfaces/IUserVault.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 //import "@openzeppelin/contracts/drafts/ERC20Permit.sol"; 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -75,7 +76,7 @@ contract InvestmentManager is Ownable {
         return _aTokenAddress;
     }
 
-    function getATokenBalance(address _asset, address _userVault) external view returns(uint256){
+    function getATokenBalance(address _asset, address _userVault) internal view returns(uint256){
         IERC20 _erc20 = IERC20(getAToken(_asset));
         return _erc20.balanceOf(_userVault);
     }
@@ -94,4 +95,19 @@ contract InvestmentManager is Ownable {
     function withdraw(address _asset, uint256 _amount, address _user) external {
         lendingPool.withdraw(_asset, _amount, _user);
     }
+
+    function getBalance(address _asset, address _vault) public view returns(uint256){
+        UserVault _userVault = UserVault(_vault);
+        return _userVault.balance(_asset);
+    }
+    function getInterest(address _asset, address _vault) external view returns(uint256) {
+        uint256 _tokenBalance = getATokenBalance(_asset, _vault);
+        return _tokenBalance.sub(getBalance(_asset, _vault));
+    }
+    function getTotal(address _asset, address _vault) external view returns(uint256){
+        uint256 _tokenBalance = getATokenBalance(_asset, _vault);
+        return _tokenBalance;
+    }
+
+
 }

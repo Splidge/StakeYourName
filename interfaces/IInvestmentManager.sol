@@ -9,4 +9,7 @@ interface InvestmentManager {
     function deposit(address _asset, address _userVault, uint256 _amount) external ;
     function checkAllowance(address _asset) external view returns(uint256);
     function withdraw(address _asset, uint256 _amount, address _user) external;
+    function getBalance(address _asset, address _vault) external view returns(uint256);
+    function getInterest(address _asset, address _vault) external view returns(uint256);
+    function getTotal(address _asset, address _vault) external view returns(uint256);
 }

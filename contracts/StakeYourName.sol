@@ -90,7 +90,7 @@ contract StakeYourName is Ownable {
         vaultAddAsset(_asset);
         approveVault(_asset);
         investmentManager.approveLendingPool(_asset, vault[msg.sender]);
-        setBalance(_asset, getBalance(_asset).add(_amount));
+        setBalance(_asset, investmentManager.getBalance(_asset, msg.sender).add(_amount));
         _erc20.transferFrom(msg.sender, address(investmentManager), _amount);
         investmentManager.deposit(_asset, vault[msg.sender], _amount);
     }
@@ -102,7 +102,7 @@ contract StakeYourName is Ownable {
     function withdraw(address _asset, uint256 _amount) external onlyUser {
         require(_asset != address(0));
         require(_amount > 0, "Amount must be more than 0");
-        uint256 _balance = getTotal(_asset);
+        uint256 _balance = investmentManager.getTotal(_asset, msg.sender);
         require(_balance > 0, "No balance left to withdraw");
         uint256 _transfer = 0;
         if (_amount > _balance) {
@@ -140,18 +140,6 @@ contract StakeYourName is Ownable {
     function setBalance(address _asset, uint256 _balance) public onlyUser{
         UserVault _userVault = UserVault(vault[msg.sender]);
         _userVault.setBalance(_asset, _balance);
-    }
-    function getBalance(address _asset) public view onlyUser returns(uint256){
-        UserVault _userVault = UserVault(vault[msg.sender]);
-        return _userVault.balance(_asset);
-    }
-    function getInterest(address _asset) public view onlyUser returns(uint256) {
-        uint256 _tokenBalance = investmentManager.getATokenBalance(_asset, vault[msg.sender]);
-        return _tokenBalance.sub(getBalance(_asset));
-    }
-    function getTotal(address _asset) public view onlyUser returns(uint256){
-        uint256 _tokenBalance = investmentManager.getATokenBalance(_asset, vault[msg.sender]);
-        return _tokenBalance;
     }
     function findVault(address _vault) public view returns(address){
         return vault[_vault];
@@ -193,17 +181,31 @@ contract StakeYourName is Ownable {
     *                                           *
     ********************************************/
 
+    /// @dev lets check each user to see if they have any names that need renewing
+    /// @dev then check if that user has the funds to pay for the names
+    /// @dev if they do then add them to be processed, otherwise leave it for later.
     function renewNames() public view {
+        bool _success = false;
+        address _asset;
         for(uint256 i; i < users.length; i++){
             UserVault _userVault = UserVault(vault[users[i]]);
             if(_userVault.names().length != 0 && _userVault.assets().length != 0){
                 uint256 _cost;
                 uint256[] memory _names = new uint256[](_userVault.names().length);
-                (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
-                checkAvailiableFunds(_cost, users[i]);
-                
-            }
+                if(_success == false){
+                    (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
+                    (_success, _asset) = exchangeManager.estimateFunds(_cost, users[i]);
+                } else {
+                    for(uint256 j; j < _userVault.assets().length; j++){
+                        if (_userVault.assets()[i] == _asset){
+
+                            (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
+                        }
+                    }
+                }
+            } 
         }
+
     }
 
     /******************************************** 
@@ -211,7 +213,7 @@ contract StakeYourName is Ownable {
     *   Exchange functions                      *
     *                                           *
     ********************************************/
-
+/*
     function checkAvailiableFunds(uint256 _cost, address _user) public view returns(bool _accept, address _token, uint256[] memory _distribution){
         UserVault _userVault = UserVault(vault[_user]);
         uint256[] memory _distributionArray = new uint256[](22);
@@ -224,7 +226,7 @@ contract StakeYourName is Ownable {
         }
         return (false, zeroAddress, _distributionArray);
     }
-
+*/
     function swapAssets() public view {
 
     }
