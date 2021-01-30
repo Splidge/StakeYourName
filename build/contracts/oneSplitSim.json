@@ -43,7 +43,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -87,7 +88,8 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"destToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"parts\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"flags\",\"type\":\"uint256\"}],\"name\":\"getExpectedReturn\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"returnAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"distribution\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"destToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minReturn\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"distribution\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256\",\"name\":\"flags\",\"type\":\"uint256\"}],\"name\":\"swap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"returnAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"getExpectedReturn(address,address,uint256,uint256,uint256)\":{\"params\":{\"amount\":\"(uint256) Amount for `fromToken`\",\"destToken\":\"(IERC20) Address of token or `address(0)` for Ether\",\"flags\":\"(uint256) Flags for enabling and disabling some features, default 0\",\"fromToken\":\"(IERC20) Address of token or `address(0)` for Ether\",\"parts\":\"(uint256) Number of pieces source volume could be splitted, works like granularity, higly affects gas usage. Should be called offchain, but could be called onchain if user swaps not his own funds, but this is still considered as not safe.\"}},\"swap(address,address,uint256,uint256,uint256[],uint256)\":{\"params\":{\"amount\":\"(uint256) Amount for `fromToken`\",\"destToken\":\"(IERC20) Address of token or `address(0)` for Ether\",\"distribution\":\"(uint256[]) Array of weights for volume distribution returned by `getExpectedReturn`\",\"flags\":\"(uint256) Flags for enabling and disabling some features, default 0\",\"fromToken\":\"(IERC20) Address of token or `address(0)` for Ether\",\"minReturn\":\"(uint256) Minimum expected return, else revert\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getExpectedReturn(address,address,uint256,uint256,uint256)\":{\"notice\":\"Calculate expected returning amount of `destToken`\"},\"swap(address,address,uint256,uint256,uint256[],uint256)\":{\"notice\":\"Swap `amount` of `fromToken` to `destToken`\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/oneSplitSim.sol\":\"oneSplitSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/oneSplitSim.sol\":{\"keccak256\":\"0x37a0c702094e1a6f36f2fb1742c8bc06ddf17db14153af434975d8edd87a2606\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8c68a8d0fc76148235e113bea625f30265909a959a3b5418ac1ca42e22edfdd8\",\"dweb:/ipfs/QmfSdtMHt8k1fpRHMvEQpMYmVdAPGjFSa7Fq8DmiQ7AGT7\"]}},\"version\":1}",
@@ -8747,9 +8749,17 @@
     "name": "solc",
     "version": "0.7.4+commit.3f05b770.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "42": {
+      "events": {},
+      "links": {},
+      "address": "0x7Aa9E0FD291AD7f2E186213e5D5f2228C7fBf6C8",
+      "transactionHash": "0x39bb87803fe6beebda744f77383c7729255ea1508cdfa68c756223e537c1a122"
+    }
+  },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-30T14:19:01.630Z",
+  "updatedAt": "2021-01-30T15:17:25.625Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {

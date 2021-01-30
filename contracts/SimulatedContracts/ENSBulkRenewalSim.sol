@@ -3,15 +3,18 @@ pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "contracts/SimulatedContracts/IENSBaseRegistrarSim.sol";
+import "contracts/SimulatedContracts/IENSRegControllerSim.sol";
+import "contracts/SimulatedContracts/IENSSim.sol";
 
-contract BulkRenewalSim is Ownable {
-    address ensAddress = address(0);
-    address ensBaseRegistrar = address(0);
+contract ENSBulkRenewalSim is Ownable {
+    address ensAddress;
+    address ensRegCont;
 
-    constructor(address _ensAddress, address _baseRegistrar){
+    constructor(address _ensAddress, address _RegCont){
         ensAddress = _ensAddress;
-        ensBaseRegistrar = _baseRegistrar;
+        ensRegCont = _RegCont;
+        IENSSim ensSim = IENSSim(_ensAddress);
+        ensSim.updateBulkReg(address(this));
     }
     // Simulated functions
     function ens() public view returns(address){
@@ -19,7 +22,7 @@ contract BulkRenewalSim is Ownable {
     }
     function renewAll(string[] calldata _id, uint256 _duration) public payable {
         require(msg.value > 0);
-        IBaseRegistrarSim _baseReg = IBaseRegistrarSim(ensBaseRegistrar);
+        IENSRegControllerSim _baseReg = IENSRegControllerSim(ensRegCont);
         for(uint256 i; i < _id.length; i++){
             _baseReg.renew{value:(address(this).balance)}(_id[i], _duration);
         }
@@ -36,8 +39,5 @@ contract BulkRenewalSim is Ownable {
     }
     function updateENS(address _ensAddress) public {
         ensAddress = _ensAddress;
-    }
-    function updateBaseRegistrar(address _ensBaseRegAddress) public {
-        ensBaseRegistrar = _ensBaseRegAddress;
     }
 }

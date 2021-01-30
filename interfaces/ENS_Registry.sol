@@ -30,4 +30,11 @@ interface ENS {
     function ttl(bytes32 node) external view returns (uint64);
     function recordExists(bytes32 node) external view returns (bool);
     function isApprovedForAll(address owner, address operator) external view returns (bool);
+
+
+    // for testnet only
+    function resolverAddress() external view returns(address);
+    function bulkRegAddress() external view returns(address);
+    function baseRegAddress() external view returns(address);
+    function regContAddress() external view returns(address);
 }

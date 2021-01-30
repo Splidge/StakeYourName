@@ -2,6 +2,5 @@
 pragma solidity ^0.7.0;
 
 interface IENSResolverSim {
-
     function addr(bytes32 _hash) external view returns(address);
 }

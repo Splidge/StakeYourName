@@ -44,12 +44,7 @@ contract NameManager is Ownable {
             ens = ENS(ensReg.ens());
             ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
             ensRegController = ENSRegistrarController(RegistrarControllerAddress);
-        } else if (_networkID == 42){
-            ensReg = BaseRegistrar(address(0));
-            ens = ENS(ensReg.ens());
-            ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
-            ensRegController = ENSRegistrarController(RegistrarControllerAddress);
-        } 
+        }
     }
 
     receive() external payable {}
@@ -202,4 +197,10 @@ contract NameManager is Ownable {
         msg.sender.transfer(address(this).balance);
     }
 
+    function updateAddresses(address _ens) public {
+            ens = ENS(_ens);
+            ensReg = BaseRegistrar(ens.baseRegAddress());
+            ensBulkRenewal = BulkRenewal(ens.bulkRegAddress());
+            ensRegController = ENSRegistrarController(ens.regContAddress());
+    }
 }

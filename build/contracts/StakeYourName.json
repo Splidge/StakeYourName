@@ -36,7 +36,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -49,7 +50,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -73,7 +75,8 @@
     },
     {
       "stateMutability": "payable",
-      "type": "receive"
+      "type": "receive",
+      "payable": true
     },
     {
       "inputs": [
@@ -223,7 +226,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -275,7 +279,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -295,7 +300,8 @@
       "name": "renewNamesGroupingUsers",
       "outputs": [],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -314,14 +320,16 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
       "name": "swapAssets",
       "outputs": [],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -51699,8 +51707,8 @@
         }
       },
       "links": {},
-      "address": "0x64e9Ef2eE6F3B9ECFD6fD14CECA489545770Eb09",
-      "transactionHash": "0xf2885ba80c2864f9d527757fc9371d033b26fa80aa32ff5e532ea9b49c549e98"
+      "address": "0xeC393e43B71B12c126614478A5170bbC31264d36",
+      "transactionHash": "0x62f87af0a3a84cd232846d90a32da9acfeab836999df4423548919f2b61f2c5f"
     },
     "5777": {
       "events": {
@@ -51730,7 +51738,8 @@
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-30T14:15:55.467Z",
+  "updatedAt": "2021-01-30T15:17:40.756Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Daniel Chilvers",
     "kind": "dev",

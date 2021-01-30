@@ -2,7 +2,7 @@
 pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
-interface IBulkRenewalSim {
+interface IENSBulkRenewalSim {
 
     // Simulated functions
     function ens() external view returns(address);

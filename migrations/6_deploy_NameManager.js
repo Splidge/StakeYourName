@@ -5,5 +5,6 @@ var NameManager = artifacts.require("NameManager");
 module.exports = function(deployer) {
     // Deployer is the Truffle wrapper for deploying
     // contracts to the network
+    
     deployer.deploy(NameManager);
 }
