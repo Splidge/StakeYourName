@@ -15,12 +15,19 @@ contract UserVault is Initializable{
 
     address public owner;
     mapping (address => uint256) public balance;
+    mapping (uint256 => string) public readableName;
     uint256[] public names;
     address[] public assets;
     
     modifier onlyOwner() {
         require(owner == msg.sender, "Ownable: caller is not the owner");
         _;
+    }
+
+    receive() external payable {}
+
+    function collectETH() external onlyOwner{
+        msg.sender.transfer(address(this).balance);
     }
 
     function initialize() public initializer{

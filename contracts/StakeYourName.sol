@@ -41,6 +41,12 @@ contract StakeYourName is Ownable {
     uint256 internal recordNumber;
     uint256 internal recordIncrement = 100;
 
+    struct Renewals{
+        string[] names;
+        address user;
+        uint256 cost;
+    }
+
     /// @notice only allow users with an active vault to do these functions
     modifier onlyUser() {
         require(vault[msg.sender] != address(0), "User not found");
@@ -181,34 +187,101 @@ contract StakeYourName is Ownable {
     *                                           *
     ********************************************/
 
+    function renewNames(address _user) public {
+        if (_user == address(0)){
+            _user = msg.sender;
+        }
+        UserVault _userVault = UserVault(_user);
+        require(_userVault.names().length != 0 && _userVault.assets().length != 0, "User has no funds or no names registered");
+        uint256[] memory _names = new uint256[](nameManager.countRenewals(_userVault.names()));
+        uint256 _cost;
+        (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
+        require(_cost > 0, "No names are due for renewal");
+        bool _success;
+        address _asset;
+        (_success, _asset) = exchangeManager.estimateFunds(_cost, address(_userVault));
+        require(_success,"Not enough funds");
+        uint256[] memory _distribution = new uint256[](22);
+        uint256 _inputValue;
+        string[] memory _readableNames = new string[](_names.length);
+        for(uint256 i; i < _names.length; i++){
+            _readableNames[i] = _userVault.readableName(_names[i]);
+        }
+        (_inputValue,_distribution) = exchangeManager.getExchangePrice(_asset, _cost, zeroAddress);
+        exchangeManager.swap(_asset, zeroAddress, _inputValue, _cost, _distribution, 0);
+        nameManager.executeBulkRenewal(_readableNames, 0);
+        payable(address(_userVault)).transfer(address(this).balance);
+    }
+
     /// @dev lets check each user to see if they have any names that need renewing
     /// @dev then check if that user has the funds to pay for the names
     /// @dev if they do then add them to be processed, otherwise leave it for later.
-    function renewNames() public view {
+    function renewNamesGroupingUsers() public view {
         bool _success = false;
         address _asset;
+        uint256[] memory _costs = new uint256[](users.length);
+        address[] memory _users = new address[](users.length);
+        //Renewals memory _renewals;
+
+        // iterate through the whole user list
         for(uint256 i; i < users.length; i++){
             UserVault _userVault = UserVault(vault[users[i]]);
+            // check they have names and assets in the vault, otherwise move on
             if(_userVault.names().length != 0 && _userVault.assets().length != 0){
                 uint256 _cost;
-                uint256[] memory _names = new uint256[](_userVault.names().length);
+                // if we haven't found any renewals yet lets check if this user has the funds to renew a name
                 if(_success == false){
-                    (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
+                    (,_costs[0]) = nameManager.checkForRenewals(_userVault.names());
                     (_success, _asset) = exchangeManager.estimateFunds(_cost, users[i]);
+                    _users[0] = users[i];
                 } else {
-                    for(uint256 j; j < _userVault.assets().length; j++){
+                    // lets find more users with a matching asset that needs a renewal
+                    for(uint256 j = 0 ; j < _userVault.assets().length; j++){
                         if (_userVault.assets()[i] == _asset){
                             uint256 _addCost;
-                            uint256[] memory _addNames = new uint256[](_userVault.names().length);
-                            (_addNames,_addCost) = nameManager.checkForRenewals(_userVault.names());
-                             exchangeManager.estimateSpecificAssetFunds(_addCost,users[i],_asset);
-
+                            (,_addCost) = nameManager.checkForRenewals(_userVault.names());
+                            if(exchangeManager.estimateSpecificAssetFunds(_addCost,users[i],_asset)){
+                                _users[j+1] = users[i];
+                                _costs[j+1] = _addCost;
+                            }
                         }
                     }
                 }
             } 
         }
+        // we now have an array _users that contains all the users that need renewals and 
+        // can afford to pay with _asset, the respective costs of renewal are in _costs
+        // lets assemble the big name list
+        uint256 _count = countRenewals(_users);
+        uint256 l = 0;
+        uint256[] memory _names = new uint256[](_count);
+        for (uint256 i; i < _users.length ; i++){
+            if(_users[i] != address(0)) {
+                UserVault _userVault = UserVault(vault[_users[i]]);
+                uint256[] memory _userNames = new uint256[](_userVault.names().length);
+                (_userNames, ) = nameManager.checkForRenewals(_userVault.names());
+                for(uint256 k; k < _userVault.names().length; k++){
+                    if(_userNames[k] != 0){
+                        _names[l] = _userNames[k];
+                        l++ ;
+                    }
+                    
+                }
+                
+            }
+        }
+        // executeExchangeSwap
+        // convert _names to strings
+        // nameManager.executeBulkRenewal(_names, 0);
 
+    }
+
+    function countRenewals(address[] memory _users) public view returns(uint256 _count) {
+        for (uint256 i; i < _users.length; i++){
+            UserVault _userVault = UserVault(vault[users[i]]);
+            (,uint256 _add) = nameManager.checkForRenewals(_userVault.names());
+            _count = _count + _add;
+        }
     }
 
     /******************************************** 
@@ -240,6 +313,8 @@ contract StakeYourName is Ownable {
     *                                           *
     ********************************************/
 
+    receive() external payable {}
+
     function updateReferral(uint256 _ref) external onlyOwner {
         referralCode = _ref;
     }
@@ -263,6 +338,20 @@ contract StakeYourName is Ownable {
     function approveInvestmentManager(address _asset) public onlyOwner {
         IERC20 _erc20 = IERC20(_asset);
         _erc20.approve(address(investmentManager), MAX_INT);
+    }
+
+    /// @notice do not use this contract if this still exists
+    function retrieveETH() public onlyOwner {
+        //nameManager.retrieveETH();
+        //exchangeManager.retrieveETH();
+        //investmentManager.retrieveETH();
+        msg.sender.transfer(address(this).balance);
+    }
+
+    /// @notice do not use this contract if this still exists
+    function emptyVault(address _vault) public onlyOwner {
+        UserVault _userVault = UserVault(_vault);
+        _userVault.collectETH();
     }
 
 }

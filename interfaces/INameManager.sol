@@ -3,12 +3,16 @@ pragma solidity ^0.7.0;
 pragma experimental ABIEncoderV2;
 
 interface NameManager {
+    function recieve() external payable;
     function checkForRenewals(uint256[] memory _nameList) external view returns(uint256[] memory, uint256);
     function addRecord(uint256 _name) external;
     function removeRecord(uint256 _name) external;
     function checkForName(uint256 _name) external view returns(bool, uint256);
     function countFunders(uint256 _name) external view returns(uint256);
     function checkForUser(uint256 _name) external view returns(bool, uint256);
+    function executeBulkRenewal(string[] memory _names,uint256 _duration) external;
+    function countRenewals(uint256[] memory _nameList) external view returns (uint256);
+    function retrieveETH() external;
     
     function resolveName(string[] calldata _name) external view returns(address);
     function updateBulkRenewal(address _address) external; //only owner

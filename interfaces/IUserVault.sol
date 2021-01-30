@@ -9,6 +9,8 @@ pragma solidity ^0.7.0;
    **/
 
 interface UserVault{
+    function recieve() external payable;
+    function collectETH() external;
     function initialize() external;
     function owner() external view returns(address);
     function names() external view returns(uint256[] memory);
@@ -22,4 +24,5 @@ interface UserVault{
     function removeMultipleNames(uint256[] calldata _names) external;
     function addAsset(address _asset) external;
     function removeAsset(address _asset) external;
+    function readableName(uint256 _name) external view returns(string memory);
 }

@@ -2,7 +2,7 @@
 pragma solidity ^0.7.0;
 
 interface InvestmentManager {
-
+    function recieve() external payable;
     function approveLendingPool(address _asset, address _userVault) external;
     function getAToken(address _asset) external view returns(address);
     function getATokenBalance(address _asset, address _userVault) external view returns(uint256);
@@ -12,4 +12,5 @@ interface InvestmentManager {
     function getBalance(address _asset, address _vault) external view returns(uint256);
     function getInterest(address _asset, address _vault) external view returns(uint256);
     function getTotal(address _asset, address _vault) external view returns(uint256);
+    function retrieveETH() external;
 }

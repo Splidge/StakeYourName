@@ -29,10 +29,11 @@ contract ExchangeManager is Ownable {
     NameManager nameManager;
     InvestmentManager investmentManager;
     IOneSplit oneSplit;
-    IOneSplitMulti oneSplitMulti;
-    IOneSplitConsts oneSplitConsts;
+    //IOneSplitMulti oneSplitMulti;
+    //IOneSplitConsts oneSplitConsts;
     IERC20 erc20;
 
+    uint256 MAX_INT = type(uint256).max;
     uint256 exchangeParts = 20;
     uint256 exchangeFlags = 0;
     uint256 iterations = 5;
@@ -48,6 +49,8 @@ contract ExchangeManager is Ownable {
         nameManager = NameManager(nameManagerAddress);
         oneSplit = IOneSplit(oneInch);
     }
+
+    receive() external payable {}
 
     function getPrice(address _from, address _to) public view returns(uint256 _price, uint256 _decimals){
         uint256 _time;
@@ -164,8 +167,11 @@ contract ExchangeManager is Ownable {
     /// @notice so we use chainlink to give us a good estimate, we can then adjust that value to seek
     /// @notice the output value we want. Only allowing the value to creep a set amount to make sure
     /// @notice we are getting a reasonable price.
-    function getExchangePrice(address _inputToken, uint256 _outputValue, address _outputToken) public view returns(uint256 _return, uint256[] memory _distribution){
+    function getExchangePrice(address _inputToken, uint256 _outputValue, address _outputToken) public view returns(uint256 _inputValue, uint256[] memory _distribution){
         (uint256 _oraclePrice, uint256 _decimals) = getPrice(_inputToken, _outputToken);
+        uint256 _return;
+
+        // dev we need to swap these around, multiply before divide with these low values
         uint256 _adjOutputValue = _outputValue.div(10**_decimals);
         uint256 _estimatedInput = _oraclePrice.mul(_adjOutputValue);
         (_return, _distribution) = oneSplit.getExpectedReturn(_inputToken, _outputToken, _estimatedInput, exchangeParts, exchangeFlags);
@@ -179,28 +185,30 @@ contract ExchangeManager is Ownable {
             _difference = (_return.mul(100)).div(_outputValue);
             require(_difference < margin, 'Exchange error, too much return on exchange');
             if (_return > _outputValue){
-                return (_return, _distribution);
+                return (_estimatedInput, _distribution);
             }
             require(true, 'Exchange failed after second attempt');
         } else {
             /// @dev Goldilocks, not too much, not too little.
-            return (_return, _distribution);
+            return (_estimatedInput, _distribution);
         }
     }
 
     function swap(
-        address fromToken,
-        address destToken,
-        uint256 amount,
-        uint256 minReturn,
-        uint256[] memory distribution,
-        uint256 flags
+        address _fromToken,
+        address _destToken,
+        uint256 _amount,
+        uint256 _minReturn,
+        uint256[] memory _distribution,
+        uint256 _flags
     )
         external
         payable
-        returns(uint256 returnAmount) {
-
-
+        returns(uint256 _returnAmount) {
+            IERC20 _erc20 = IERC20(_fromToken);
+            _erc20.approve(address(oneSplit),MAX_INT);
+            _returnAmount = oneSplit.swap(_fromToken, _destToken, _amount, _minReturn, _distribution, _flags);
+            msg.sender.transfer(address(this).balance);
         }
 
     function updateExchangeParts(uint256 _newParts) external onlyOwner {
@@ -230,8 +238,11 @@ contract ExchangeManager is Ownable {
     function updateEstimateSlippage(uint256 _estimateSlippage) external onlyOwner {
         estimateSlippage = _estimateSlippage;
     }
+    function retrieveETH() external onlyOwner {
+        msg.sender.transfer(address(this).balance);
+    }
 
-    /// @dev for quick testing, later use truffle to pass this in.
+    /// @dev for quick testing, later use truffle to pass this in
     function updateChainID(uint256 _chainID) external onlyOwner {
         ChainID = _chainID;
     }

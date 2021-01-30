@@ -57,6 +57,9 @@ contract InvestmentManager is Ownable {
         lendingPool = ILendingPool(lendingPooladdress);
     }
 
+    // we shouldn't need this on this contract
+    receive() external payable {}
+
     event debug(address _address, uint256 state);
 
     /// @notice Approves sending _asset ERC20 tokens to the lendingPool
@@ -108,6 +111,8 @@ contract InvestmentManager is Ownable {
         uint256 _tokenBalance = getATokenBalance(_asset, _vault);
         return _tokenBalance;
     }
-
+    function retrieveETH() external onlyOwner {
+        msg.sender.transfer(address(this).balance);
+    }
 
 }

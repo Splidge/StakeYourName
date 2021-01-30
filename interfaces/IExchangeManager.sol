@@ -4,6 +4,8 @@ pragma solidity ^0.7.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 interface ExchangeManager {
+
+    function recieve() external payable;
     function get1InchAddress() external ;
     
     function getExchangePrice(
@@ -16,8 +18,8 @@ interface ExchangeManager {
         returns(uint256, uint256[] memory);
 
     function swap(
-        IERC20 fromToken,
-        IERC20 destToken,
+        address fromToken,
+        address destToken,
         uint256 amount,
         uint256 minReturn,
         uint256[] memory distribution,
@@ -46,5 +48,5 @@ interface ExchangeManager {
     function updatePercentageIncrease(uint256 _newPercent) external;
     function updateIterations(uint256 _newIterations) external;
     function updateNameManagerAddress(address _nameManager) external;
-
+    function retrieveETH() external;
 }

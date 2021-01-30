@@ -15,13 +15,14 @@ import "interfaces/ENS_RegistrarController.sol";
 /// @notice Can check for name expiry and pay for renewals
 /// @author Daniel Chilvers
 
+
 contract NameManager is Ownable {
     /// @dev can probably remove ensRegistryAddress as it can be discovered from the Registrar
     address internal ensRegistryAddress = 0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e;
     address internal baseRegistrarAddress = 0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85;
     address internal bulkRenewalAddress = 0xfF252725f6122A92551A5FA9a6b6bf10eb0Be035;
     address internal RegistrarControllerAddress = 0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5;
-    uint256 internal renewalPeriod = 28 days; 
+    uint256 internal renewalPeriod = 28 days;
 
     BaseRegistrar ensReg;
     ENS ens;
@@ -37,12 +38,28 @@ contract NameManager is Ownable {
 
     uint256[] nameList;
 
-    constructor() {
-        ensReg = BaseRegistrar(baseRegistrarAddress);
-        ens = ENS(ensReg.ens());
-        ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
-        ensRegController = ENSRegistrarController(RegistrarControllerAddress);
-        
+    constructor(uint256 _networkID) {
+        if (_networkID == 1 || _networkID == 3){
+            ensReg = BaseRegistrar(baseRegistrarAddress);
+            ens = ENS(ensReg.ens());
+            ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
+            ensRegController = ENSRegistrarController(RegistrarControllerAddress);
+        } else if (_networkID == 42){
+            ensReg = BaseRegistrar(address(0));
+            ens = ENS(ensReg.ens());
+            ensBulkRenewal = BulkRenewal(bulkRenewalAddress);
+            ensRegController = ENSRegistrarController(RegistrarControllerAddress);
+        } 
+    }
+
+    receive() external payable {}
+
+    function executeBulkRenewal(string[] memory _names, uint256 _duration) external {
+        if(_duration == 0){ _duration = renewalPeriod;}
+        bytes4 _interfaceID = 0x3150bfba;
+        require(ensBulkRenewal.supportsInterface(_interfaceID),"Incorrect ENS BulkRenewal address");
+        ensBulkRenewal.renewAll{value:address(this).balance}(_names, _duration);
+        msg.sender.transfer(address(this).balance);
     }
 
     function checkBulkPrice(string[] memory _names, uint256 _duration) public view returns(uint256) {
@@ -52,6 +69,7 @@ contract NameManager is Ownable {
     function checkPrice(string memory _name, uint256 _duration) public view returns(uint256) {
         return ensRegController.rentPrice(_name, _duration);
     }
+
 
     function uintArrayToStringsArray(uint256[] memory _ints) public pure returns(string[] memory){
         string[] memory _strings = new string[](_ints.length);    
@@ -99,7 +117,7 @@ contract NameManager is Ownable {
         return (_names, _price);
     }
 
-    function countRenewals(uint256[] memory _nameList) internal view returns (uint256){
+    function countRenewals(uint256[] memory _nameList) public view returns (uint256){
         uint256 _count;
         for (uint i; i < _nameList.length; i++) {
             if(renewalDue(_nameList[i])) {
@@ -177,6 +195,11 @@ contract NameManager is Ownable {
     // @dev this could be expensive, lets do this off-chain where possible
     function computeHash(string calldata _subdomain, bytes32 _name) public pure returns (bytes32 namehash) {
         namehash = keccak256(abi.encodePacked(_name, keccak256(abi.encodePacked(_subdomain))));
+    }
+
+    // for testing purposes
+    function retrieveETH() external onlyOwner {
+        msg.sender.transfer(address(this).balance);
     }
 
 }
