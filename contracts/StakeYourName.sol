@@ -208,6 +208,8 @@ contract StakeYourName is Ownable {
             _readableNames[i] = _userVault.readableName(_names[i]);
         }
         (_inputValue,_distribution) = exchangeManager.getExchangePrice(_asset, _cost, zeroAddress);
+        IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
+        _erc20.transferFrom(vault[_user], address(exchangeManager), _inputValue);
         exchangeManager.swap(_asset, zeroAddress, _inputValue, _cost, _distribution, 0);
         nameManager.executeBulkRenewal(_readableNames, 0);
         payable(address(_userVault)).transfer(address(this).balance);
@@ -326,10 +328,10 @@ contract StakeYourName is Ownable {
     *                                           *
     ********************************************/
 
-    function setNameManager(address _address) external onlyOwner {
+    function setNameManager(address payable _address) external onlyOwner {
         nameManager = NameManager(_address);
     }
-    function setExchangeManager(address _address) external onlyOwner {
+    function setExchangeManager(address payable _address) external onlyOwner {
         exchangeManager = ExchangeManager(_address);
     }
     function setInvestmentManager(address _address) external onlyOwner {
@@ -338,6 +340,16 @@ contract StakeYourName is Ownable {
     function approveInvestmentManager(address _asset) public onlyOwner {
         IERC20 _erc20 = IERC20(_asset);
         _erc20.approve(address(investmentManager), MAX_INT);
+    }
+
+    // set up all the interconnections required for the testnet
+    function setupTestNet(address payable _nameManager, address payable _exchangeManager, address _investmentManager, address _vault, address _oneSplit, address _ens) public onlyOwner{
+        nameManager = NameManager(_nameManager);
+        exchangeManager = ExchangeManager(_exchangeManager);
+        investmentManager = InvestmentManager(_investmentManager);
+        exchangeManager.updateNameManagerAddress(_nameManager);
+        exchangeManager.setOneSplitAddress(_oneSplit);
+        nameManager.updateAddresses(_ens);
     }
 
     /// @notice do not use this contract if this still exists

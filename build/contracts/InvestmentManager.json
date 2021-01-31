@@ -72,7 +72,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -85,7 +86,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -109,7 +111,8 @@
     },
     {
       "stateMutability": "payable",
-      "type": "receive"
+      "type": "receive",
+      "payable": true
     },
     {
       "inputs": [
@@ -146,7 +149,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -188,7 +192,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -235,7 +240,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -259,7 +265,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -283,7 +290,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -16000,8 +16008,8 @@
         }
       },
       "links": {},
-      "address": "0xd16b0C7F533bb1dd8191EC4440Ab1Cb845fe5a57",
-      "transactionHash": "0x1c7a6caa22b05841e2ca6a5b2f61f9a600699c5b0a38d68c544b1a2454dce650"
+      "address": "0xCd833D6C68d324305469FFaB6c0FBF8C060359A0",
+      "transactionHash": "0x60b266ae186d779c4a9fb18ac492e51dd71cd80b601aa8517db710cbfa8f0446"
     },
     "5777": {
       "events": {},
@@ -16011,7 +16019,8 @@
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-30T14:15:55.429Z",
+  "updatedAt": "2021-01-31T10:42:21.498Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Daniel Chilvers*",
     "kind": "dev",

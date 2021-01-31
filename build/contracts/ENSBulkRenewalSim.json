@@ -47,7 +47,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -80,7 +81,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -98,7 +100,8 @@
       "name": "renewAll",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -117,7 +120,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -8207,12 +8211,13 @@
         }
       },
       "links": {},
-      "address": "0x8B6057cEB23a56600D4062F939a7Ec100dD7633c",
-      "transactionHash": "0x229a2708920b7422523846507d2579ea678fdb2c5cd759e034586f4bee10b703"
+      "address": "0xafcD2501A695040891516e511F0d90003a93E0D4",
+      "transactionHash": "0xc5064f9a2b46f333780fb769c7291b551ed4fcb23f97f0f9a07e9fa1f56dabc7"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-30T16:22:19.098Z",
+  "updatedAt": "2021-01-31T10:41:09.628Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {

@@ -24,7 +24,7 @@ contract ExchangeManager is Ownable {
     address internal zeroAddress = address(0);
     address internal oneInch = zeroAddress;
     ///@dev this is not the final NameManager address, update later
-    address internal nameManagerAddress = 0xbC86029dbC214939a3c5d383d0C245d5B75538C0;
+    address payable internal nameManagerAddress = 0xbC86029dbC214939a3c5d383d0C245d5B75538C0;
 
     NameManager nameManager;
     InvestmentManager investmentManager;
@@ -71,7 +71,27 @@ contract ExchangeManager is Ownable {
             _name[3] = _pair;
             return nameManager.resolveName(_name);
         } else {
-            return 0x122eb74f9d0F1a5ed587F43D120C1c2BbDb9360B;
+
+            //kovan doesn't implement the full ENS services, we need to manually enter the addresses
+            if(keccak256(abi.encodePacked(_pair)) == keccak256(abi.encodePacked("dai-eth"))){
+                return 0x22B58f1EbEDfCA50feF632bD73368b2FdA96D541;
+            }
+            if(keccak256(abi.encodePacked(_pair)) == keccak256(abi.encodePacked("aave-eth"))){
+                return 0xd04647B7CB523bb9f26730E9B6dE1174db7591Ad;
+            }
+            if(keccak256(abi.encodePacked(_pair)) == keccak256(abi.encodePacked("tusd-eth"))){
+                return 0x7aeCF1c19661d12E962b69eBC8f6b2E63a55C660;
+            }
+            if(keccak256(abi.encodePacked(_pair)) == keccak256(abi.encodePacked("uni-eth"))){
+                return 0x17756515f112429471F86f98D5052aCB6C47f6ee;
+            }
+            if(keccak256(abi.encodePacked(_pair)) == keccak256(abi.encodePacked("usdt-eth"))){
+                return 0x0bF499444525a23E7Bb61997539725cA2e928138;
+            }
+            if(keccak256(abi.encodePacked(_pair)) == keccak256(abi.encodePacked("usdc-eth"))){
+                return 0x64EaC61A2DFda2c3Fa04eED49AA33D021AeC8838;
+            }
+            return address(0);
         }
     }
 
@@ -107,7 +127,6 @@ contract ExchangeManager is Ownable {
 		}
 		return string(bLower);
 	}
-
 
     /// @dev use our NameManager to grab the 1Inch contract address
     function get1InchAddress() public onlyOwner {
@@ -223,7 +242,8 @@ contract ExchangeManager is Ownable {
     function updateIterations(uint256 _newIterations) external onlyOwner {
         iterations = _newIterations;
     }
-    function updateNameManagerAddress(address _nameManager) external onlyOwner {
+    // this needs be to onlyOwner once testing done
+    function updateNameManagerAddress(address payable _nameManager) external {
         nameManager = NameManager(_nameManager);
     }
     function updateFresh(uint256 _fresh) external onlyOwner {
@@ -240,6 +260,10 @@ contract ExchangeManager is Ownable {
     }
     function retrieveETH() external onlyOwner {
         msg.sender.transfer(address(this).balance);
+    }
+    // this needs be to onlyOwner once testing done
+    function setOneSplitAddress(address _oneSplit) external {
+        oneSplit = IOneSplit(_oneSplit);
     }
 
     /// @dev for quick testing, later use truffle to pass this in
