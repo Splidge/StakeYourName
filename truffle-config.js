@@ -77,7 +77,7 @@ module.exports = {
      kovan: {
       provider: () => new HDWalletProvider( ropstenPrivateKey, "https://kovan.infura.io/v3/"+infuraKey),
       network_id: 42,       // Kovan's id
-      //gas: 5500000,        // Kovan has a lower block limit than mainnet
+      gas: 5500000,        // Kovan has a lower block limit than mainnet
       gasPrice: 2000000000, // set gas price low 20gewi
       confirmations: 0,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 50,  // # of blocks before a deployment times out  (minimum/default: 50)

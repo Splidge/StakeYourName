@@ -47,8 +47,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -81,8 +80,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -100,8 +98,7 @@
       "name": "renewAll",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -120,8 +117,7 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -4317,27 +4313,27 @@
     "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/ENSBulkRenewalSim.sol",
     "exportedSymbols": {
       "Context": [
-        5556
+        5688
       ],
       "ENSBulkRenewalSim": [
-        2448
+        2563
       ],
       "IENSRegControllerSim": [
-        6451
+        6583
       ],
       "IENSSim": [
-        6506
+        6638
       ],
       "Ownable": [
-        5665
+        5797
       ]
     },
-    "id": 2449,
+    "id": 2564,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 2296,
+        "id": 2411,
         "literals": [
           "solidity",
           "^",
@@ -4348,7 +4344,7 @@
         "src": "33:23:5"
       },
       {
-        "id": 2297,
+        "id": 2412,
         "literals": [
           "experimental",
           "ABIEncoderV2"
@@ -4359,10 +4355,10 @@
       {
         "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
         "file": "@openzeppelin/contracts/access/Ownable.sol",
-        "id": 2298,
+        "id": 2413,
         "nodeType": "ImportDirective",
-        "scope": 2449,
-        "sourceUnit": 5666,
+        "scope": 2564,
+        "sourceUnit": 5798,
         "src": "95:52:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4370,10 +4366,10 @@
       {
         "absolutePath": "contracts/SimulatedContracts/IENSRegControllerSim.sol",
         "file": "contracts/SimulatedContracts/IENSRegControllerSim.sol",
-        "id": 2299,
+        "id": 2414,
         "nodeType": "ImportDirective",
-        "scope": 2449,
-        "sourceUnit": 6452,
+        "scope": 2564,
+        "sourceUnit": 6584,
         "src": "149:63:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4381,10 +4377,10 @@
       {
         "absolutePath": "contracts/SimulatedContracts/IENSSim.sol",
         "file": "contracts/SimulatedContracts/IENSSim.sol",
-        "id": 2300,
+        "id": 2415,
         "nodeType": "ImportDirective",
-        "scope": 2449,
-        "sourceUnit": 6507,
+        "scope": 2564,
+        "sourceUnit": 6639,
         "src": "214:50:5",
         "symbolAliases": [],
         "unitAlias": ""
@@ -4394,43 +4390,43 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 2301,
+              "id": 2416,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 5665,
+              "referencedDeclaration": 5797,
               "src": "298:7:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$5665",
+                "typeIdentifier": "t_contract$_Ownable_$5797",
                 "typeString": "contract Ownable"
               }
             },
-            "id": 2302,
+            "id": 2417,
             "nodeType": "InheritanceSpecifier",
             "src": "298:7:5"
           }
         ],
         "contractDependencies": [
-          5556,
-          5665
+          5688,
+          5797
         ],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 2448,
+        "id": 2563,
         "linearizedBaseContracts": [
-          2448,
-          5665,
-          5556
+          2563,
+          5797,
+          5688
         ],
         "name": "ENSBulkRenewalSim",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 2304,
+            "id": 2419,
             "mutability": "mutable",
             "name": "ensAddress",
             "nodeType": "VariableDeclaration",
-            "scope": 2448,
+            "scope": 2563,
             "src": "313:18:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4439,7 +4435,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 2303,
+              "id": 2418,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "313:7:5",
@@ -4453,11 +4449,11 @@
           },
           {
             "constant": false,
-            "id": 2306,
+            "id": 2421,
             "mutability": "mutable",
             "name": "ensRegCont",
             "nodeType": "VariableDeclaration",
-            "scope": 2448,
+            "scope": 2563,
             "src": "338:18:5",
             "stateVariable": true,
             "storageLocation": "default",
@@ -4466,7 +4462,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 2305,
+              "id": 2420,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "338:7:5",
@@ -4480,23 +4476,23 @@
           },
           {
             "body": {
-              "id": 2336,
+              "id": 2451,
               "nodeType": "Block",
               "src": "415:169:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 2315,
+                    "id": 2430,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 2313,
+                      "id": 2428,
                       "name": "ensAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2304,
+                      "referencedDeclaration": 2419,
                       "src": "426:10:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4506,11 +4502,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 2314,
+                      "id": 2429,
                       "name": "_ensAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2308,
+                      "referencedDeclaration": 2423,
                       "src": "439:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4523,23 +4519,23 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 2316,
+                  "id": 2431,
                   "nodeType": "ExpressionStatement",
                   "src": "426:24:5"
                 },
                 {
                   "expression": {
-                    "id": 2319,
+                    "id": 2434,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 2317,
+                      "id": 2432,
                       "name": "ensRegCont",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2306,
+                      "referencedDeclaration": 2421,
                       "src": "461:10:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4549,11 +4545,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 2318,
+                      "id": 2433,
                       "name": "_RegCont",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2310,
+                      "referencedDeclaration": 2425,
                       "src": "474:8:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -4566,52 +4562,52 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 2320,
+                  "id": 2435,
                   "nodeType": "ExpressionStatement",
                   "src": "461:21:5"
                 },
                 {
                   "assignments": [
-                    2322
+                    2437
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2322,
+                      "id": 2437,
                       "mutability": "mutable",
                       "name": "ensSim",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2336,
+                      "scope": 2451,
                       "src": "493:14:5",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IENSSim_$6506",
+                        "typeIdentifier": "t_contract$_IENSSim_$6638",
                         "typeString": "contract IENSSim"
                       },
                       "typeName": {
-                        "id": 2321,
+                        "id": 2436,
                         "name": "IENSSim",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 6506,
+                        "referencedDeclaration": 6638,
                         "src": "493:7:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IENSSim_$6506",
+                          "typeIdentifier": "t_contract$_IENSSim_$6638",
                           "typeString": "contract IENSSim"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2326,
+                  "id": 2441,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 2324,
+                        "id": 2439,
                         "name": "_ensAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2308,
+                        "referencedDeclaration": 2423,
                         "src": "518:11:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4626,18 +4622,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 2323,
+                      "id": 2438,
                       "name": "IENSSim",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 6506,
+                      "referencedDeclaration": 6638,
                       "src": "510:7:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_IENSSim_$6506_$",
+                        "typeIdentifier": "t_type$_t_contract$_IENSSim_$6638_$",
                         "typeString": "type(contract IENSSim)"
                       }
                     },
-                    "id": 2325,
+                    "id": 2440,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4648,7 +4644,7 @@
                     "src": "510:20:5",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IENSSim_$6506",
+                      "typeIdentifier": "t_contract$_IENSSim_$6638",
                       "typeString": "contract IENSSim"
                     }
                   },
@@ -4661,14 +4657,14 @@
                       {
                         "arguments": [
                           {
-                            "id": 2332,
+                            "id": 2447,
                             "name": "this",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": -28,
                             "src": "570:4:5",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                              "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                               "typeString": "contract ENSBulkRenewalSim"
                             }
                           }
@@ -4676,11 +4672,11 @@
                         "expression": {
                           "argumentTypes": [
                             {
-                              "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                              "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                               "typeString": "contract ENSBulkRenewalSim"
                             }
                           ],
-                          "id": 2331,
+                          "id": 2446,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -4692,14 +4688,14 @@
                             "typeString": "type(address)"
                           },
                           "typeName": {
-                            "id": 2330,
+                            "id": 2445,
                             "name": "address",
                             "nodeType": "ElementaryTypeName",
                             "src": "562:7:5",
                             "typeDescriptions": {}
                           }
                         },
-                        "id": 2333,
+                        "id": 2448,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4723,32 +4719,32 @@
                         }
                       ],
                       "expression": {
-                        "id": 2327,
+                        "id": 2442,
                         "name": "ensSim",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2322,
+                        "referencedDeclaration": 2437,
                         "src": "541:6:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IENSSim_$6506",
+                          "typeIdentifier": "t_contract$_IENSSim_$6638",
                           "typeString": "contract IENSSim"
                         }
                       },
-                      "id": 2329,
+                      "id": 2444,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "memberName": "updateBulkReg",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 6475,
+                      "referencedDeclaration": 6607,
                       "src": "541:20:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_nonpayable$_t_address_$returns$__$",
                         "typeString": "function (address) external"
                       }
                     },
-                    "id": 2334,
+                    "id": 2449,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4763,29 +4759,29 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2335,
+                  "id": 2450,
                   "nodeType": "ExpressionStatement",
                   "src": "541:35:5"
                 }
               ]
             },
-            "id": 2337,
+            "id": 2452,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2311,
+              "id": 2426,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2308,
+                  "id": 2423,
                   "mutability": "mutable",
                   "name": "_ensAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2337,
+                  "scope": 2452,
                   "src": "377:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4794,7 +4790,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2307,
+                    "id": 2422,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "377:7:5",
@@ -4808,11 +4804,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2310,
+                  "id": 2425,
                   "mutability": "mutable",
                   "name": "_RegCont",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2337,
+                  "scope": 2452,
                   "src": "398:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4821,7 +4817,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2309,
+                    "id": 2424,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "398:7:5",
@@ -4837,12 +4833,12 @@
               "src": "376:39:5"
             },
             "returnParameters": {
-              "id": 2312,
+              "id": 2427,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "415:0:5"
             },
-            "scope": 2448,
+            "scope": 2563,
             "src": "365:219:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -4850,7 +4846,7 @@
           },
           {
             "body": {
-              "id": 2345,
+              "id": 2460,
               "nodeType": "Block",
               "src": "661:38:5",
               "statements": [
@@ -4858,11 +4854,11 @@
                   "expression": {
                     "components": [
                       {
-                        "id": 2342,
+                        "id": 2457,
                         "name": "ensAddress",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2304,
+                        "referencedDeclaration": 2419,
                         "src": "680:10:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -4870,7 +4866,7 @@
                         }
                       }
                     ],
-                    "id": 2343,
+                    "id": 2458,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -4883,37 +4879,37 @@
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 2341,
-                  "id": 2344,
+                  "functionReturnParameters": 2456,
+                  "id": 2459,
                   "nodeType": "Return",
                   "src": "672:19:5"
                 }
               ]
             },
             "functionSelector": "3f15457f",
-            "id": 2346,
+            "id": 2461,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "ens",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2338,
+              "id": 2453,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "630:2:5"
             },
             "returnParameters": {
-              "id": 2341,
+              "id": 2456,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2340,
+                  "id": 2455,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2346,
+                  "scope": 2461,
                   "src": "653:7:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4922,7 +4918,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2339,
+                    "id": 2454,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "653:7:5",
@@ -4937,7 +4933,7 @@
               ],
               "src": "652:9:5"
             },
-            "scope": 2448,
+            "scope": 2563,
             "src": "618:81:5",
             "stateMutability": "view",
             "virtual": false,
@@ -4945,7 +4941,7 @@
           },
           {
             "body": {
-              "id": 2407,
+              "id": 2522,
               "nodeType": "Block",
               "src": "780:305:5",
               "statements": [
@@ -4957,14 +4953,14 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 2358,
+                        "id": 2473,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
                           "expression": {
-                            "id": 2355,
+                            "id": 2470,
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -4975,7 +4971,7 @@
                               "typeString": "msg"
                             }
                           },
-                          "id": 2356,
+                          "id": 2471,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -4992,7 +4988,7 @@
                         "operator": ">",
                         "rightExpression": {
                           "hexValue": "30",
-                          "id": 2357,
+                          "id": 2472,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -5020,7 +5016,7 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 2354,
+                      "id": 2469,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
@@ -5034,7 +5030,7 @@
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 2359,
+                    "id": 2474,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5049,52 +5045,52 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2360,
+                  "id": 2475,
                   "nodeType": "ExpressionStatement",
                   "src": "791:22:5"
                 },
                 {
                   "assignments": [
-                    2362
+                    2477
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 2362,
+                      "id": 2477,
                       "mutability": "mutable",
                       "name": "_baseReg",
                       "nodeType": "VariableDeclaration",
-                      "scope": 2407,
+                      "scope": 2522,
                       "src": "824:29:5",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_contract$_IENSRegControllerSim_$6451",
+                        "typeIdentifier": "t_contract$_IENSRegControllerSim_$6583",
                         "typeString": "contract IENSRegControllerSim"
                       },
                       "typeName": {
-                        "id": 2361,
+                        "id": 2476,
                         "name": "IENSRegControllerSim",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 6451,
+                        "referencedDeclaration": 6583,
                         "src": "824:20:5",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_IENSRegControllerSim_$6451",
+                          "typeIdentifier": "t_contract$_IENSRegControllerSim_$6583",
                           "typeString": "contract IENSRegControllerSim"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 2366,
+                  "id": 2481,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 2364,
+                        "id": 2479,
                         "name": "ensRegCont",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2306,
+                        "referencedDeclaration": 2421,
                         "src": "877:10:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -5109,18 +5105,18 @@
                           "typeString": "address"
                         }
                       ],
-                      "id": 2363,
+                      "id": 2478,
                       "name": "IENSRegControllerSim",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 6451,
+                      "referencedDeclaration": 6583,
                       "src": "856:20:5",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_type$_t_contract$_IENSRegControllerSim_$6451_$",
+                        "typeIdentifier": "t_type$_t_contract$_IENSRegControllerSim_$6583_$",
                         "typeString": "type(contract IENSRegControllerSim)"
                       }
                     },
-                    "id": 2365,
+                    "id": 2480,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5131,7 +5127,7 @@
                     "src": "856:32:5",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_contract$_IENSRegControllerSim_$6451",
+                      "typeIdentifier": "t_contract$_IENSRegControllerSim_$6583",
                       "typeString": "contract IENSRegControllerSim"
                     }
                   },
@@ -5140,7 +5136,7 @@
                 },
                 {
                   "body": {
-                    "id": 2393,
+                    "id": 2508,
                     "nodeType": "Block",
                     "src": "934:91:5",
                     "statements": [
@@ -5149,24 +5145,24 @@
                           "arguments": [
                             {
                               "baseExpression": {
-                                "id": 2387,
+                                "id": 2502,
                                 "name": "_id",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2349,
+                                "referencedDeclaration": 2464,
                                 "src": "995:3:5",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_array$_t_string_calldata_ptr_$dyn_calldata_ptr",
                                   "typeString": "string calldata[] calldata"
                                 }
                               },
-                              "id": 2389,
+                              "id": 2504,
                               "indexExpression": {
-                                "id": 2388,
+                                "id": 2503,
                                 "name": "i",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2368,
+                                "referencedDeclaration": 2483,
                                 "src": "999:1:5",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_uint256",
@@ -5185,11 +5181,11 @@
                               }
                             },
                             {
-                              "id": 2390,
+                              "id": 2505,
                               "name": "_duration",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2351,
+                              "referencedDeclaration": 2466,
                               "src": "1003:9:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -5220,32 +5216,32 @@
                                 }
                               ],
                               "expression": {
-                                "id": 2377,
+                                "id": 2492,
                                 "name": "_baseReg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2362,
+                                "referencedDeclaration": 2477,
                                 "src": "949:8:5",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_IENSRegControllerSim_$6451",
+                                  "typeIdentifier": "t_contract$_IENSRegControllerSim_$6583",
                                   "typeString": "contract IENSRegControllerSim"
                                 }
                               },
-                              "id": 2379,
+                              "id": 2494,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "memberName": "renew",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 6422,
+                              "referencedDeclaration": 6554,
                               "src": "949:14:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_payable$_t_string_memory_ptr_$_t_uint256_$returns$__$",
                                 "typeString": "function (string memory,uint256) payable external"
                               }
                             },
-                            "id": 2386,
+                            "id": 2501,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -5261,14 +5257,14 @@
                                     "expression": {
                                       "arguments": [
                                         {
-                                          "id": 2382,
+                                          "id": 2497,
                                           "name": "this",
                                           "nodeType": "Identifier",
                                           "overloadedDeclarations": [],
                                           "referencedDeclaration": -28,
                                           "src": "979:4:5",
                                           "typeDescriptions": {
-                                            "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                            "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                             "typeString": "contract ENSBulkRenewalSim"
                                           }
                                         }
@@ -5276,11 +5272,11 @@
                                       "expression": {
                                         "argumentTypes": [
                                           {
-                                            "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                            "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                             "typeString": "contract ENSBulkRenewalSim"
                                           }
                                         ],
-                                        "id": 2381,
+                                        "id": 2496,
                                         "isConstant": false,
                                         "isLValue": false,
                                         "isPure": true,
@@ -5292,14 +5288,14 @@
                                           "typeString": "type(address)"
                                         },
                                         "typeName": {
-                                          "id": 2380,
+                                          "id": 2495,
                                           "name": "address",
                                           "nodeType": "ElementaryTypeName",
                                           "src": "971:7:5",
                                           "typeDescriptions": {}
                                         }
                                       },
-                                      "id": 2383,
+                                      "id": 2498,
                                       "isConstant": false,
                                       "isLValue": false,
                                       "isPure": false,
@@ -5314,7 +5310,7 @@
                                         "typeString": "address"
                                       }
                                     },
-                                    "id": 2384,
+                                    "id": 2499,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": false,
@@ -5328,7 +5324,7 @@
                                     }
                                   }
                                 ],
-                                "id": 2385,
+                                "id": 2500,
                                 "isConstant": false,
                                 "isInlineArray": false,
                                 "isLValue": false,
@@ -5348,7 +5344,7 @@
                               "typeString": "function (string memory,uint256) payable external"
                             }
                           },
-                          "id": 2391,
+                          "id": 2506,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5363,7 +5359,7 @@
                             "typeString": "tuple()"
                           }
                         },
-                        "id": 2392,
+                        "id": 2507,
                         "nodeType": "ExpressionStatement",
                         "src": "949:64:5"
                       }
@@ -5374,17 +5370,17 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 2373,
+                    "id": 2488,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 2370,
+                      "id": 2485,
                       "name": "i",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2368,
+                      "referencedDeclaration": 2483,
                       "src": "914:1:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
@@ -5395,18 +5391,18 @@
                     "operator": "<",
                     "rightExpression": {
                       "expression": {
-                        "id": 2371,
+                        "id": 2486,
                         "name": "_id",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2349,
+                        "referencedDeclaration": 2464,
                         "src": "918:3:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_string_calldata_ptr_$dyn_calldata_ptr",
                           "typeString": "string calldata[] calldata"
                         }
                       },
-                      "id": 2372,
+                      "id": 2487,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5425,19 +5421,19 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 2394,
+                  "id": 2509,
                   "initializationExpression": {
                     "assignments": [
-                      2368
+                      2483
                     ],
                     "declarations": [
                       {
                         "constant": false,
-                        "id": 2368,
+                        "id": 2483,
                         "mutability": "mutable",
                         "name": "i",
                         "nodeType": "VariableDeclaration",
-                        "scope": 2394,
+                        "scope": 2509,
                         "src": "903:9:5",
                         "stateVariable": false,
                         "storageLocation": "default",
@@ -5446,7 +5442,7 @@
                           "typeString": "uint256"
                         },
                         "typeName": {
-                          "id": 2367,
+                          "id": 2482,
                           "name": "uint256",
                           "nodeType": "ElementaryTypeName",
                           "src": "903:7:5",
@@ -5458,13 +5454,13 @@
                         "visibility": "internal"
                       }
                     ],
-                    "id": 2369,
+                    "id": 2484,
                     "nodeType": "VariableDeclarationStatement",
                     "src": "903:9:5"
                   },
                   "loopExpression": {
                     "expression": {
-                      "id": 2375,
+                      "id": 2490,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5474,11 +5470,11 @@
                       "prefix": false,
                       "src": "930:3:5",
                       "subExpression": {
-                        "id": 2374,
+                        "id": 2489,
                         "name": "i",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2368,
+                        "referencedDeclaration": 2483,
                         "src": "930:1:5",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -5490,7 +5486,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 2376,
+                    "id": 2491,
                     "nodeType": "ExpressionStatement",
                     "src": "930:3:5"
                   },
@@ -5504,14 +5500,14 @@
                         "expression": {
                           "arguments": [
                             {
-                              "id": 2402,
+                              "id": 2517,
                               "name": "this",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": -28,
                               "src": "1063:4:5",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                 "typeString": "contract ENSBulkRenewalSim"
                               }
                             }
@@ -5519,11 +5515,11 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                 "typeString": "contract ENSBulkRenewalSim"
                               }
                             ],
-                            "id": 2401,
+                            "id": 2516,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -5535,14 +5531,14 @@
                               "typeString": "type(address)"
                             },
                             "typeName": {
-                              "id": 2400,
+                              "id": 2515,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "1055:7:5",
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 2403,
+                          "id": 2518,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5557,7 +5553,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 2404,
+                        "id": 2519,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -5580,7 +5576,7 @@
                       ],
                       "expression": {
                         "expression": {
-                          "id": 2395,
+                          "id": 2510,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -5591,7 +5587,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 2398,
+                        "id": 2513,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -5604,7 +5600,7 @@
                           "typeString": "address payable"
                         }
                       },
-                      "id": 2399,
+                      "id": 2514,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5617,7 +5613,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 2405,
+                    "id": 2520,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5632,30 +5628,30 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2406,
+                  "id": 2521,
                   "nodeType": "ExpressionStatement",
                   "src": "1035:42:5"
                 }
               ]
             },
             "functionSelector": "e8d6dbb4",
-            "id": 2408,
+            "id": 2523,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "renewAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2352,
+              "id": 2467,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2349,
+                  "id": 2464,
                   "mutability": "mutable",
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2408,
+                  "scope": 2523,
                   "src": "723:21:5",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -5665,7 +5661,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 2347,
+                      "id": 2462,
                       "name": "string",
                       "nodeType": "ElementaryTypeName",
                       "src": "723:6:5",
@@ -5674,7 +5670,7 @@
                         "typeString": "string"
                       }
                     },
-                    "id": 2348,
+                    "id": 2463,
                     "nodeType": "ArrayTypeName",
                     "src": "723:8:5",
                     "typeDescriptions": {
@@ -5686,11 +5682,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 2351,
+                  "id": 2466,
                   "mutability": "mutable",
                   "name": "_duration",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2408,
+                  "scope": 2523,
                   "src": "746:17:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5699,7 +5695,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 2350,
+                    "id": 2465,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "746:7:5",
@@ -5714,12 +5710,12 @@
               "src": "722:42:5"
             },
             "returnParameters": {
-              "id": 2353,
+              "id": 2468,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "780:0:5"
             },
-            "scope": 2448,
+            "scope": 2563,
             "src": "705:380:5",
             "stateMutability": "payable",
             "virtual": false,
@@ -5727,7 +5723,7 @@
           },
           {
             "body": {
-              "id": 2418,
+              "id": 2533,
               "nodeType": "Block",
               "src": "1151:32:5",
               "statements": [
@@ -5736,7 +5732,7 @@
                     "components": [
                       {
                         "hexValue": "74727565",
-                        "id": 2415,
+                        "id": 2530,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -5751,7 +5747,7 @@
                         "value": "true"
                       }
                     ],
-                    "id": 2416,
+                    "id": 2531,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -5764,31 +5760,31 @@
                       "typeString": "bool"
                     }
                   },
-                  "functionReturnParameters": 2414,
-                  "id": 2417,
+                  "functionReturnParameters": 2529,
+                  "id": 2532,
                   "nodeType": "Return",
                   "src": "1162:13:5"
                 }
               ]
             },
             "functionSelector": "01ffc9a7",
-            "id": 2419,
+            "id": 2534,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2411,
+              "id": 2526,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2410,
+                  "id": 2525,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2419,
+                  "scope": 2534,
                   "src": "1118:6:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5797,7 +5793,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 2409,
+                    "id": 2524,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "1118:6:5",
@@ -5812,16 +5808,16 @@
               "src": "1117:8:5"
             },
             "returnParameters": {
-              "id": 2414,
+              "id": 2529,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2413,
+                  "id": 2528,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2419,
+                  "scope": 2534,
                   "src": "1146:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -5830,7 +5826,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 2412,
+                    "id": 2527,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1146:4:5",
@@ -5844,7 +5840,7 @@
               ],
               "src": "1145:6:5"
             },
-            "scope": 2448,
+            "scope": 2563,
             "src": "1091:92:5",
             "stateMutability": "pure",
             "virtual": false,
@@ -5852,7 +5848,7 @@
           },
           {
             "body": {
-              "id": 2436,
+              "id": 2551,
               "nodeType": "Block",
               "src": "1254:61:5",
               "statements": [
@@ -5863,14 +5859,14 @@
                         "expression": {
                           "arguments": [
                             {
-                              "id": 2431,
+                              "id": 2546,
                               "name": "this",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
                               "referencedDeclaration": -28,
                               "src": "1293:4:5",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                 "typeString": "contract ENSBulkRenewalSim"
                               }
                             }
@@ -5878,11 +5874,11 @@
                           "expression": {
                             "argumentTypes": [
                               {
-                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                 "typeString": "contract ENSBulkRenewalSim"
                               }
                             ],
-                            "id": 2430,
+                            "id": 2545,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -5894,14 +5890,14 @@
                               "typeString": "type(address)"
                             },
                             "typeName": {
-                              "id": 2429,
+                              "id": 2544,
                               "name": "address",
                               "nodeType": "ElementaryTypeName",
                               "src": "1285:7:5",
                               "typeDescriptions": {}
                             }
                           },
-                          "id": 2432,
+                          "id": 2547,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -5916,7 +5912,7 @@
                             "typeString": "address"
                           }
                         },
-                        "id": 2433,
+                        "id": 2548,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -5939,7 +5935,7 @@
                       ],
                       "expression": {
                         "expression": {
-                          "id": 2424,
+                          "id": 2539,
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
@@ -5950,7 +5946,7 @@
                             "typeString": "msg"
                           }
                         },
-                        "id": 2427,
+                        "id": 2542,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -5963,7 +5959,7 @@
                           "typeString": "address payable"
                         }
                       },
-                      "id": 2428,
+                      "id": 2543,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -5976,7 +5972,7 @@
                         "typeString": "function (uint256)"
                       }
                     },
-                    "id": 2434,
+                    "id": 2549,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -5991,25 +5987,25 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 2435,
+                  "id": 2550,
                   "nodeType": "ExpressionStatement",
                   "src": "1265:42:5"
                 }
               ]
             },
             "functionSelector": "3ccfd60b",
-            "id": 2437,
+            "id": 2552,
             "implemented": true,
             "kind": "function",
             "modifiers": [
               {
-                "id": 2422,
+                "id": 2537,
                 "modifierName": {
-                  "id": 2421,
+                  "id": 2536,
                   "name": "onlyOwner",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 5614,
+                  "referencedDeclaration": 5746,
                   "src": "1244:9:5",
                   "typeDescriptions": {
                     "typeIdentifier": "t_modifier$__$",
@@ -6023,18 +6019,18 @@
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2420,
+              "id": 2535,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1234:2:5"
             },
             "returnParameters": {
-              "id": 2423,
+              "id": 2538,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1254:0:5"
             },
-            "scope": 2448,
+            "scope": 2563,
             "src": "1217:98:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -6042,23 +6038,23 @@
           },
           {
             "body": {
-              "id": 2446,
+              "id": 2561,
               "nodeType": "Block",
               "src": "1368:43:5",
               "statements": [
                 {
                   "expression": {
-                    "id": 2444,
+                    "id": 2559,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
-                      "id": 2442,
+                      "id": 2557,
                       "name": "ensAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2304,
+                      "referencedDeclaration": 2419,
                       "src": "1379:10:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -6068,11 +6064,11 @@
                     "nodeType": "Assignment",
                     "operator": "=",
                     "rightHandSide": {
-                      "id": 2443,
+                      "id": 2558,
                       "name": "_ensAddress",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 2439,
+                      "referencedDeclaration": 2554,
                       "src": "1392:11:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -6085,30 +6081,30 @@
                       "typeString": "address"
                     }
                   },
-                  "id": 2445,
+                  "id": 2560,
                   "nodeType": "ExpressionStatement",
                   "src": "1379:24:5"
                 }
               ]
             },
             "functionSelector": "ae55c35d",
-            "id": 2447,
+            "id": 2562,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "updateENS",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 2440,
+              "id": 2555,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 2439,
+                  "id": 2554,
                   "mutability": "mutable",
                   "name": "_ensAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 2447,
+                  "scope": 2562,
                   "src": "1340:19:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -6117,7 +6113,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 2438,
+                    "id": 2553,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1340:7:5",
@@ -6133,19 +6129,19 @@
               "src": "1339:21:5"
             },
             "returnParameters": {
-              "id": 2441,
+              "id": 2556,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1368:0:5"
             },
-            "scope": 2448,
+            "scope": 2563,
             "src": "1321:90:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 2449,
+        "scope": 2564,
         "src": "268:1146:5"
       }
     ],
@@ -6156,19 +6152,19 @@
       "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/ENSBulkRenewalSim.sol",
       "exportedSymbols": {
         "Context": [
-          5556
+          5688
         ],
         "ENSBulkRenewalSim": [
-          2448
+          2563
         ],
         "IENSRegControllerSim": [
-          6451
+          6583
         ],
         "IENSSim": [
-          6506
+          6638
         ],
         "Ownable": [
-          5665
+          5797
         ]
       },
       "license": "MIT"
@@ -6183,7 +6179,7 @@
             ".0"
           ]
         },
-        "id": 2296,
+        "id": 2411,
         "name": "PragmaDirective",
         "src": "33:23:5"
       },
@@ -6194,52 +6190,52 @@
             "ABIEncoderV2"
           ]
         },
-        "id": 2297,
+        "id": 2412,
         "name": "PragmaDirective",
         "src": "58:33:5"
       },
       {
         "attributes": {
-          "SourceUnit": 5666,
+          "SourceUnit": 5798,
           "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
           "file": "@openzeppelin/contracts/access/Ownable.sol",
-          "scope": 2449,
+          "scope": 2564,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 2298,
+        "id": 2413,
         "name": "ImportDirective",
         "src": "95:52:5"
       },
       {
         "attributes": {
-          "SourceUnit": 6452,
+          "SourceUnit": 6584,
           "absolutePath": "contracts/SimulatedContracts/IENSRegControllerSim.sol",
           "file": "contracts/SimulatedContracts/IENSRegControllerSim.sol",
-          "scope": 2449,
+          "scope": 2564,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 2299,
+        "id": 2414,
         "name": "ImportDirective",
         "src": "149:63:5"
       },
       {
         "attributes": {
-          "SourceUnit": 6507,
+          "SourceUnit": 6639,
           "absolutePath": "contracts/SimulatedContracts/IENSSim.sol",
           "file": "contracts/SimulatedContracts/IENSSim.sol",
-          "scope": 2449,
+          "scope": 2564,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 2300,
+        "id": 2415,
         "name": "ImportDirective",
         "src": "214:50:5"
       },
@@ -6247,18 +6243,18 @@
         "attributes": {
           "abstract": false,
           "contractDependencies": [
-            5556,
-            5665
+            5688,
+            5797
           ],
           "contractKind": "contract",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            2448,
-            5665,
-            5556
+            2563,
+            5797,
+            5688
           ],
           "name": "ENSBulkRenewalSim",
-          "scope": 2449
+          "scope": 2564
         },
         "children": [
           {
@@ -6267,15 +6263,15 @@
               {
                 "attributes": {
                   "name": "Ownable",
-                  "referencedDeclaration": 5665,
+                  "referencedDeclaration": 5797,
                   "type": "contract Ownable"
                 },
-                "id": 2301,
+                "id": 2416,
                 "name": "UserDefinedTypeName",
                 "src": "298:7:5"
               }
             ],
-            "id": 2302,
+            "id": 2417,
             "name": "InheritanceSpecifier",
             "src": "298:7:5"
           },
@@ -6284,7 +6280,7 @@
               "constant": false,
               "mutability": "mutable",
               "name": "ensAddress",
-              "scope": 2448,
+              "scope": 2563,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -6297,12 +6293,12 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 2303,
+                "id": 2418,
                 "name": "ElementaryTypeName",
                 "src": "313:7:5"
               }
             ],
-            "id": 2304,
+            "id": 2419,
             "name": "VariableDeclaration",
             "src": "313:18:5"
           },
@@ -6311,7 +6307,7 @@
               "constant": false,
               "mutability": "mutable",
               "name": "ensRegCont",
-              "scope": 2448,
+              "scope": 2563,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -6324,12 +6320,12 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
-                "id": 2305,
+                "id": 2420,
                 "name": "ElementaryTypeName",
                 "src": "338:7:5"
               }
             ],
-            "id": 2306,
+            "id": 2421,
             "name": "VariableDeclaration",
             "src": "338:18:5"
           },
@@ -6342,7 +6338,7 @@
                 null
               ],
               "name": "",
-              "scope": 2448,
+              "scope": 2563,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "public"
@@ -6355,7 +6351,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_ensAddress",
-                      "scope": 2337,
+                      "scope": 2452,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -6368,12 +6364,12 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 2307,
+                        "id": 2422,
                         "name": "ElementaryTypeName",
                         "src": "377:7:5"
                       }
                     ],
-                    "id": 2308,
+                    "id": 2423,
                     "name": "VariableDeclaration",
                     "src": "377:19:5"
                   },
@@ -6382,7 +6378,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_RegCont",
-                      "scope": 2337,
+                      "scope": 2452,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -6395,17 +6391,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 2309,
+                        "id": 2424,
                         "name": "ElementaryTypeName",
                         "src": "398:7:5"
                       }
                     ],
-                    "id": 2310,
+                    "id": 2425,
                     "name": "VariableDeclaration",
                     "src": "398:16:5"
                   }
                 ],
-                "id": 2311,
+                "id": 2426,
                 "name": "ParameterList",
                 "src": "376:39:5"
               },
@@ -6416,7 +6412,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2312,
+                "id": 2427,
                 "name": "ParameterList",
                 "src": "415:0:5"
               },
@@ -6439,11 +6435,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2304,
+                              "referencedDeclaration": 2419,
                               "type": "address",
                               "value": "ensAddress"
                             },
-                            "id": 2313,
+                            "id": 2428,
                             "name": "Identifier",
                             "src": "426:10:5"
                           },
@@ -6452,21 +6448,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2308,
+                              "referencedDeclaration": 2423,
                               "type": "address",
                               "value": "_ensAddress"
                             },
-                            "id": 2314,
+                            "id": 2429,
                             "name": "Identifier",
                             "src": "439:11:5"
                           }
                         ],
-                        "id": 2315,
+                        "id": 2430,
                         "name": "Assignment",
                         "src": "426:24:5"
                       }
                     ],
-                    "id": 2316,
+                    "id": 2431,
                     "name": "ExpressionStatement",
                     "src": "426:24:5"
                   },
@@ -6487,11 +6483,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2306,
+                              "referencedDeclaration": 2421,
                               "type": "address",
                               "value": "ensRegCont"
                             },
-                            "id": 2317,
+                            "id": 2432,
                             "name": "Identifier",
                             "src": "461:10:5"
                           },
@@ -6500,28 +6496,28 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2310,
+                              "referencedDeclaration": 2425,
                               "type": "address",
                               "value": "_RegCont"
                             },
-                            "id": 2318,
+                            "id": 2433,
                             "name": "Identifier",
                             "src": "474:8:5"
                           }
                         ],
-                        "id": 2319,
+                        "id": 2434,
                         "name": "Assignment",
                         "src": "461:21:5"
                       }
                     ],
-                    "id": 2320,
+                    "id": 2435,
                     "name": "ExpressionStatement",
                     "src": "461:21:5"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        2322
+                        2437
                       ]
                     },
                     "children": [
@@ -6530,7 +6526,7 @@
                           "constant": false,
                           "mutability": "mutable",
                           "name": "ensSim",
-                          "scope": 2336,
+                          "scope": 2451,
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "contract IENSSim",
@@ -6540,15 +6536,15 @@
                           {
                             "attributes": {
                               "name": "IENSSim",
-                              "referencedDeclaration": 6506,
+                              "referencedDeclaration": 6638,
                               "type": "contract IENSSim"
                             },
-                            "id": 2321,
+                            "id": 2436,
                             "name": "UserDefinedTypeName",
                             "src": "493:7:5"
                           }
                         ],
-                        "id": 2322,
+                        "id": 2437,
                         "name": "VariableDeclaration",
                         "src": "493:14:5"
                       },
@@ -6578,11 +6574,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6506,
+                              "referencedDeclaration": 6638,
                               "type": "type(contract IENSSim)",
                               "value": "IENSSim"
                             },
-                            "id": 2323,
+                            "id": 2438,
                             "name": "Identifier",
                             "src": "510:7:5"
                           },
@@ -6591,21 +6587,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2308,
+                              "referencedDeclaration": 2423,
                               "type": "address",
                               "value": "_ensAddress"
                             },
-                            "id": 2324,
+                            "id": 2439,
                             "name": "Identifier",
                             "src": "518:11:5"
                           }
                         ],
-                        "id": 2325,
+                        "id": 2440,
                         "name": "FunctionCall",
                         "src": "510:20:5"
                       }
                     ],
-                    "id": 2326,
+                    "id": 2441,
                     "name": "VariableDeclarationStatement",
                     "src": "493:37:5"
                   },
@@ -6639,7 +6635,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "updateBulkReg",
-                              "referencedDeclaration": 6475,
+                              "referencedDeclaration": 6607,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -6648,16 +6644,16 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2322,
+                                  "referencedDeclaration": 2437,
                                   "type": "contract IENSSim",
                                   "value": "ensSim"
                                 },
-                                "id": 2327,
+                                "id": 2442,
                                 "name": "Identifier",
                                 "src": "541:6:5"
                               }
                             ],
-                            "id": 2329,
+                            "id": 2444,
                             "name": "MemberAccess",
                             "src": "541:20:5"
                           },
@@ -6680,7 +6676,7 @@
                                 "attributes": {
                                   "argumentTypes": [
                                     {
-                                      "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                      "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                       "typeString": "contract ENSBulkRenewalSim"
                                     }
                                   ],
@@ -6695,12 +6691,12 @@
                                     "attributes": {
                                       "name": "address"
                                     },
-                                    "id": 2330,
+                                    "id": 2445,
                                     "name": "ElementaryTypeName",
                                     "src": "562:7:5"
                                   }
                                 ],
-                                "id": 2331,
+                                "id": 2446,
                                 "name": "ElementaryTypeNameExpression",
                                 "src": "562:7:5"
                               },
@@ -6713,32 +6709,32 @@
                                   "type": "contract ENSBulkRenewalSim",
                                   "value": "this"
                                 },
-                                "id": 2332,
+                                "id": 2447,
                                 "name": "Identifier",
                                 "src": "570:4:5"
                               }
                             ],
-                            "id": 2333,
+                            "id": 2448,
                             "name": "FunctionCall",
                             "src": "562:13:5"
                           }
                         ],
-                        "id": 2334,
+                        "id": 2449,
                         "name": "FunctionCall",
                         "src": "541:35:5"
                       }
                     ],
-                    "id": 2335,
+                    "id": 2450,
                     "name": "ExpressionStatement",
                     "src": "541:35:5"
                   }
                 ],
-                "id": 2336,
+                "id": 2451,
                 "name": "Block",
                 "src": "415:169:5"
               }
             ],
-            "id": 2337,
+            "id": 2452,
             "name": "FunctionDefinition",
             "src": "365:219:5"
           },
@@ -6752,7 +6748,7 @@
                 null
               ],
               "name": "ens",
-              "scope": 2448,
+              "scope": 2563,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "public"
@@ -6765,7 +6761,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2338,
+                "id": 2453,
                 "name": "ParameterList",
                 "src": "630:2:5"
               },
@@ -6776,7 +6772,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 2346,
+                      "scope": 2461,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -6789,17 +6785,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 2339,
+                        "id": 2454,
                         "name": "ElementaryTypeName",
                         "src": "653:7:5"
                       }
                     ],
-                    "id": 2340,
+                    "id": 2455,
                     "name": "VariableDeclaration",
                     "src": "653:7:5"
                   }
                 ],
-                "id": 2341,
+                "id": 2456,
                 "name": "ParameterList",
                 "src": "652:9:5"
               },
@@ -6807,7 +6803,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 2341
+                      "functionReturnParameters": 2456
                     },
                     "children": [
                       {
@@ -6825,31 +6821,31 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2304,
+                              "referencedDeclaration": 2419,
                               "type": "address",
                               "value": "ensAddress"
                             },
-                            "id": 2342,
+                            "id": 2457,
                             "name": "Identifier",
                             "src": "680:10:5"
                           }
                         ],
-                        "id": 2343,
+                        "id": 2458,
                         "name": "TupleExpression",
                         "src": "679:12:5"
                       }
                     ],
-                    "id": 2344,
+                    "id": 2459,
                     "name": "Return",
                     "src": "672:19:5"
                   }
                 ],
-                "id": 2345,
+                "id": 2460,
                 "name": "Block",
                 "src": "661:38:5"
               }
             ],
-            "id": 2346,
+            "id": 2461,
             "name": "FunctionDefinition",
             "src": "618:81:5"
           },
@@ -6863,7 +6859,7 @@
                 null
               ],
               "name": "renewAll",
-              "scope": 2448,
+              "scope": 2563,
               "stateMutability": "payable",
               "virtual": false,
               "visibility": "public"
@@ -6876,7 +6872,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_id",
-                      "scope": 2408,
+                      "scope": 2523,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "string[]",
@@ -6893,17 +6889,17 @@
                               "name": "string",
                               "type": "string"
                             },
-                            "id": 2347,
+                            "id": 2462,
                             "name": "ElementaryTypeName",
                             "src": "723:6:5"
                           }
                         ],
-                        "id": 2348,
+                        "id": 2463,
                         "name": "ArrayTypeName",
                         "src": "723:8:5"
                       }
                     ],
-                    "id": 2349,
+                    "id": 2464,
                     "name": "VariableDeclaration",
                     "src": "723:21:5"
                   },
@@ -6912,7 +6908,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_duration",
-                      "scope": 2408,
+                      "scope": 2523,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -6924,17 +6920,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 2350,
+                        "id": 2465,
                         "name": "ElementaryTypeName",
                         "src": "746:7:5"
                       }
                     ],
-                    "id": 2351,
+                    "id": 2466,
                     "name": "VariableDeclaration",
                     "src": "746:17:5"
                   }
                 ],
-                "id": 2352,
+                "id": 2467,
                 "name": "ParameterList",
                 "src": "722:42:5"
               },
@@ -6945,7 +6941,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2353,
+                "id": 2468,
                 "name": "ParameterList",
                 "src": "780:0:5"
               },
@@ -6984,7 +6980,7 @@
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 2354,
+                            "id": 2469,
                             "name": "Identifier",
                             "src": "791:7:5"
                           },
@@ -7021,12 +7017,12 @@
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 2355,
+                                    "id": 2470,
                                     "name": "Identifier",
                                     "src": "799:3:5"
                                   }
                                 ],
-                                "id": 2356,
+                                "id": 2471,
                                 "name": "MemberAccess",
                                 "src": "799:9:5"
                               },
@@ -7041,29 +7037,29 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 2357,
+                                "id": 2472,
                                 "name": "Literal",
                                 "src": "811:1:5"
                               }
                             ],
-                            "id": 2358,
+                            "id": 2473,
                             "name": "BinaryOperation",
                             "src": "799:13:5"
                           }
                         ],
-                        "id": 2359,
+                        "id": 2474,
                         "name": "FunctionCall",
                         "src": "791:22:5"
                       }
                     ],
-                    "id": 2360,
+                    "id": 2475,
                     "name": "ExpressionStatement",
                     "src": "791:22:5"
                   },
                   {
                     "attributes": {
                       "assignments": [
-                        2362
+                        2477
                       ]
                     },
                     "children": [
@@ -7072,7 +7068,7 @@
                           "constant": false,
                           "mutability": "mutable",
                           "name": "_baseReg",
-                          "scope": 2407,
+                          "scope": 2522,
                           "stateVariable": false,
                           "storageLocation": "default",
                           "type": "contract IENSRegControllerSim",
@@ -7082,15 +7078,15 @@
                           {
                             "attributes": {
                               "name": "IENSRegControllerSim",
-                              "referencedDeclaration": 6451,
+                              "referencedDeclaration": 6583,
                               "type": "contract IENSRegControllerSim"
                             },
-                            "id": 2361,
+                            "id": 2476,
                             "name": "UserDefinedTypeName",
                             "src": "824:20:5"
                           }
                         ],
-                        "id": 2362,
+                        "id": 2477,
                         "name": "VariableDeclaration",
                         "src": "824:29:5"
                       },
@@ -7120,11 +7116,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 6451,
+                              "referencedDeclaration": 6583,
                               "type": "type(contract IENSRegControllerSim)",
                               "value": "IENSRegControllerSim"
                             },
-                            "id": 2363,
+                            "id": 2478,
                             "name": "Identifier",
                             "src": "856:20:5"
                           },
@@ -7133,21 +7129,21 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2306,
+                              "referencedDeclaration": 2421,
                               "type": "address",
                               "value": "ensRegCont"
                             },
-                            "id": 2364,
+                            "id": 2479,
                             "name": "Identifier",
                             "src": "877:10:5"
                           }
                         ],
-                        "id": 2365,
+                        "id": 2480,
                         "name": "FunctionCall",
                         "src": "856:32:5"
                       }
                     ],
-                    "id": 2366,
+                    "id": 2481,
                     "name": "VariableDeclarationStatement",
                     "src": "824:64:5"
                   },
@@ -7156,7 +7152,7 @@
                       {
                         "attributes": {
                           "assignments": [
-                            2368
+                            2483
                           ]
                         },
                         "children": [
@@ -7165,7 +7161,7 @@
                               "constant": false,
                               "mutability": "mutable",
                               "name": "i",
-                              "scope": 2394,
+                              "scope": 2509,
                               "stateVariable": false,
                               "storageLocation": "default",
                               "type": "uint256",
@@ -7177,17 +7173,17 @@
                                   "name": "uint256",
                                   "type": "uint256"
                                 },
-                                "id": 2367,
+                                "id": 2482,
                                 "name": "ElementaryTypeName",
                                 "src": "903:7:5"
                               }
                             ],
-                            "id": 2368,
+                            "id": 2483,
                             "name": "VariableDeclaration",
                             "src": "903:9:5"
                           }
                         ],
-                        "id": 2369,
+                        "id": 2484,
                         "name": "VariableDeclarationStatement",
                         "src": "903:9:5"
                       },
@@ -7210,11 +7206,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2368,
+                              "referencedDeclaration": 2483,
                               "type": "uint256",
                               "value": "i"
                             },
-                            "id": 2370,
+                            "id": 2485,
                             "name": "Identifier",
                             "src": "914:1:5"
                           },
@@ -7233,21 +7229,21 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2349,
+                                  "referencedDeclaration": 2464,
                                   "type": "string calldata[] calldata",
                                   "value": "_id"
                                 },
-                                "id": 2371,
+                                "id": 2486,
                                 "name": "Identifier",
                                 "src": "918:3:5"
                               }
                             ],
-                            "id": 2372,
+                            "id": 2487,
                             "name": "MemberAccess",
                             "src": "918:10:5"
                           }
                         ],
-                        "id": 2373,
+                        "id": 2488,
                         "name": "BinaryOperation",
                         "src": "914:14:5"
                       },
@@ -7269,21 +7265,21 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2368,
+                                  "referencedDeclaration": 2483,
                                   "type": "uint256",
                                   "value": "i"
                                 },
-                                "id": 2374,
+                                "id": 2489,
                                 "name": "Identifier",
                                 "src": "930:1:5"
                               }
                             ],
-                            "id": 2375,
+                            "id": 2490,
                             "name": "UnaryOperation",
                             "src": "930:3:5"
                           }
                         ],
-                        "id": 2376,
+                        "id": 2491,
                         "name": "ExpressionStatement",
                         "src": "930:3:5"
                       },
@@ -7345,7 +7341,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "renew",
-                                          "referencedDeclaration": 6422,
+                                          "referencedDeclaration": 6554,
                                           "type": "function (string memory,uint256) payable external"
                                         },
                                         "children": [
@@ -7354,16 +7350,16 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 2362,
+                                              "referencedDeclaration": 2477,
                                               "type": "contract IENSRegControllerSim",
                                               "value": "_baseReg"
                                             },
-                                            "id": 2377,
+                                            "id": 2492,
                                             "name": "Identifier",
                                             "src": "949:8:5"
                                           }
                                         ],
-                                        "id": 2379,
+                                        "id": 2494,
                                         "name": "MemberAccess",
                                         "src": "949:14:5"
                                       },
@@ -7406,7 +7402,7 @@
                                                     "attributes": {
                                                       "argumentTypes": [
                                                         {
-                                                          "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                                          "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                                           "typeString": "contract ENSBulkRenewalSim"
                                                         }
                                                       ],
@@ -7421,12 +7417,12 @@
                                                         "attributes": {
                                                           "name": "address"
                                                         },
-                                                        "id": 2380,
+                                                        "id": 2495,
                                                         "name": "ElementaryTypeName",
                                                         "src": "971:7:5"
                                                       }
                                                     ],
-                                                    "id": 2381,
+                                                    "id": 2496,
                                                     "name": "ElementaryTypeNameExpression",
                                                     "src": "971:7:5"
                                                   },
@@ -7439,27 +7435,27 @@
                                                       "type": "contract ENSBulkRenewalSim",
                                                       "value": "this"
                                                     },
-                                                    "id": 2382,
+                                                    "id": 2497,
                                                     "name": "Identifier",
                                                     "src": "979:4:5"
                                                   }
                                                 ],
-                                                "id": 2383,
+                                                "id": 2498,
                                                 "name": "FunctionCall",
                                                 "src": "971:13:5"
                                               }
                                             ],
-                                            "id": 2384,
+                                            "id": 2499,
                                             "name": "MemberAccess",
                                             "src": "971:21:5"
                                           }
                                         ],
-                                        "id": 2385,
+                                        "id": 2500,
                                         "name": "TupleExpression",
                                         "src": "970:23:5"
                                       }
                                     ],
-                                    "id": 2386,
+                                    "id": 2501,
                                     "name": "FunctionCallOptions",
                                     "src": "949:45:5"
                                   },
@@ -7477,11 +7473,11 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 2349,
+                                          "referencedDeclaration": 2464,
                                           "type": "string calldata[] calldata",
                                           "value": "_id"
                                         },
-                                        "id": 2387,
+                                        "id": 2502,
                                         "name": "Identifier",
                                         "src": "995:3:5"
                                       },
@@ -7490,16 +7486,16 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 2368,
+                                          "referencedDeclaration": 2483,
                                           "type": "uint256",
                                           "value": "i"
                                         },
-                                        "id": 2388,
+                                        "id": 2503,
                                         "name": "Identifier",
                                         "src": "999:1:5"
                                       }
                                     ],
-                                    "id": 2389,
+                                    "id": 2504,
                                     "name": "IndexAccess",
                                     "src": "995:6:5"
                                   },
@@ -7508,31 +7504,31 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 2351,
+                                      "referencedDeclaration": 2466,
                                       "type": "uint256",
                                       "value": "_duration"
                                     },
-                                    "id": 2390,
+                                    "id": 2505,
                                     "name": "Identifier",
                                     "src": "1003:9:5"
                                   }
                                 ],
-                                "id": 2391,
+                                "id": 2506,
                                 "name": "FunctionCall",
                                 "src": "949:64:5"
                               }
                             ],
-                            "id": 2392,
+                            "id": 2507,
                             "name": "ExpressionStatement",
                             "src": "949:64:5"
                           }
                         ],
-                        "id": 2393,
+                        "id": 2508,
                         "name": "Block",
                         "src": "934:91:5"
                       }
                     ],
-                    "id": 2394,
+                    "id": 2509,
                     "name": "ForStatement",
                     "src": "899:126:5"
                   },
@@ -7588,17 +7584,17 @@
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 2395,
+                                    "id": 2510,
                                     "name": "Identifier",
                                     "src": "1035:3:5"
                                   }
                                 ],
-                                "id": 2398,
+                                "id": 2513,
                                 "name": "MemberAccess",
                                 "src": "1035:10:5"
                               }
                             ],
-                            "id": 2399,
+                            "id": 2514,
                             "name": "MemberAccess",
                             "src": "1035:19:5"
                           },
@@ -7631,7 +7627,7 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                          "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                           "typeString": "contract ENSBulkRenewalSim"
                                         }
                                       ],
@@ -7646,12 +7642,12 @@
                                         "attributes": {
                                           "name": "address"
                                         },
-                                        "id": 2400,
+                                        "id": 2515,
                                         "name": "ElementaryTypeName",
                                         "src": "1055:7:5"
                                       }
                                     ],
-                                    "id": 2401,
+                                    "id": 2516,
                                     "name": "ElementaryTypeNameExpression",
                                     "src": "1055:7:5"
                                   },
@@ -7664,37 +7660,37 @@
                                       "type": "contract ENSBulkRenewalSim",
                                       "value": "this"
                                     },
-                                    "id": 2402,
+                                    "id": 2517,
                                     "name": "Identifier",
                                     "src": "1063:4:5"
                                   }
                                 ],
-                                "id": 2403,
+                                "id": 2518,
                                 "name": "FunctionCall",
                                 "src": "1055:13:5"
                               }
                             ],
-                            "id": 2404,
+                            "id": 2519,
                             "name": "MemberAccess",
                             "src": "1055:21:5"
                           }
                         ],
-                        "id": 2405,
+                        "id": 2520,
                         "name": "FunctionCall",
                         "src": "1035:42:5"
                       }
                     ],
-                    "id": 2406,
+                    "id": 2521,
                     "name": "ExpressionStatement",
                     "src": "1035:42:5"
                   }
                 ],
-                "id": 2407,
+                "id": 2522,
                 "name": "Block",
                 "src": "780:305:5"
               }
             ],
-            "id": 2408,
+            "id": 2523,
             "name": "FunctionDefinition",
             "src": "705:380:5"
           },
@@ -7708,7 +7704,7 @@
                 null
               ],
               "name": "supportsInterface",
-              "scope": 2448,
+              "scope": 2563,
               "stateMutability": "pure",
               "virtual": false,
               "visibility": "public"
@@ -7721,7 +7717,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 2419,
+                      "scope": 2534,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -7733,17 +7729,17 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 2409,
+                        "id": 2524,
                         "name": "ElementaryTypeName",
                         "src": "1118:6:5"
                       }
                     ],
-                    "id": 2410,
+                    "id": 2525,
                     "name": "VariableDeclaration",
                     "src": "1118:6:5"
                   }
                 ],
-                "id": 2411,
+                "id": 2526,
                 "name": "ParameterList",
                 "src": "1117:8:5"
               },
@@ -7754,7 +7750,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 2419,
+                      "scope": 2534,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -7766,17 +7762,17 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 2412,
+                        "id": 2527,
                         "name": "ElementaryTypeName",
                         "src": "1146:4:5"
                       }
                     ],
-                    "id": 2413,
+                    "id": 2528,
                     "name": "VariableDeclaration",
                     "src": "1146:4:5"
                   }
                 ],
-                "id": 2414,
+                "id": 2529,
                 "name": "ParameterList",
                 "src": "1145:6:5"
               },
@@ -7784,7 +7780,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 2414
+                      "functionReturnParameters": 2529
                     },
                     "children": [
                       {
@@ -7808,27 +7804,27 @@
                               "type": "bool",
                               "value": "true"
                             },
-                            "id": 2415,
+                            "id": 2530,
                             "name": "Literal",
                             "src": "1170:4:5"
                           }
                         ],
-                        "id": 2416,
+                        "id": 2531,
                         "name": "TupleExpression",
                         "src": "1169:6:5"
                       }
                     ],
-                    "id": 2417,
+                    "id": 2532,
                     "name": "Return",
                     "src": "1162:13:5"
                   }
                 ],
-                "id": 2418,
+                "id": 2533,
                 "name": "Block",
                 "src": "1151:32:5"
               }
             ],
-            "id": 2419,
+            "id": 2534,
             "name": "FunctionDefinition",
             "src": "1091:92:5"
           },
@@ -7839,7 +7835,7 @@
               "isConstructor": false,
               "kind": "function",
               "name": "withdraw",
-              "scope": 2448,
+              "scope": 2563,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "public"
@@ -7852,7 +7848,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2420,
+                "id": 2535,
                 "name": "ParameterList",
                 "src": "1234:2:5"
               },
@@ -7863,7 +7859,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2423,
+                "id": 2538,
                 "name": "ParameterList",
                 "src": "1254:0:5"
               },
@@ -7875,16 +7871,16 @@
                       "overloadedDeclarations": [
                         null
                       ],
-                      "referencedDeclaration": 5614,
+                      "referencedDeclaration": 5746,
                       "type": "modifier ()",
                       "value": "onlyOwner"
                     },
-                    "id": 2421,
+                    "id": 2536,
                     "name": "Identifier",
                     "src": "1244:9:5"
                   }
                 ],
-                "id": 2422,
+                "id": 2537,
                 "name": "ModifierInvocation",
                 "src": "1244:9:5"
               },
@@ -7942,17 +7938,17 @@
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 2424,
+                                    "id": 2539,
                                     "name": "Identifier",
                                     "src": "1265:3:5"
                                   }
                                 ],
-                                "id": 2427,
+                                "id": 2542,
                                 "name": "MemberAccess",
                                 "src": "1265:10:5"
                               }
                             ],
-                            "id": 2428,
+                            "id": 2543,
                             "name": "MemberAccess",
                             "src": "1265:19:5"
                           },
@@ -7985,7 +7981,7 @@
                                     "attributes": {
                                       "argumentTypes": [
                                         {
-                                          "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2448",
+                                          "typeIdentifier": "t_contract$_ENSBulkRenewalSim_$2563",
                                           "typeString": "contract ENSBulkRenewalSim"
                                         }
                                       ],
@@ -8000,12 +7996,12 @@
                                         "attributes": {
                                           "name": "address"
                                         },
-                                        "id": 2429,
+                                        "id": 2544,
                                         "name": "ElementaryTypeName",
                                         "src": "1285:7:5"
                                       }
                                     ],
-                                    "id": 2430,
+                                    "id": 2545,
                                     "name": "ElementaryTypeNameExpression",
                                     "src": "1285:7:5"
                                   },
@@ -8018,37 +8014,37 @@
                                       "type": "contract ENSBulkRenewalSim",
                                       "value": "this"
                                     },
-                                    "id": 2431,
+                                    "id": 2546,
                                     "name": "Identifier",
                                     "src": "1293:4:5"
                                   }
                                 ],
-                                "id": 2432,
+                                "id": 2547,
                                 "name": "FunctionCall",
                                 "src": "1285:13:5"
                               }
                             ],
-                            "id": 2433,
+                            "id": 2548,
                             "name": "MemberAccess",
                             "src": "1285:21:5"
                           }
                         ],
-                        "id": 2434,
+                        "id": 2549,
                         "name": "FunctionCall",
                         "src": "1265:42:5"
                       }
                     ],
-                    "id": 2435,
+                    "id": 2550,
                     "name": "ExpressionStatement",
                     "src": "1265:42:5"
                   }
                 ],
-                "id": 2436,
+                "id": 2551,
                 "name": "Block",
                 "src": "1254:61:5"
               }
             ],
-            "id": 2437,
+            "id": 2552,
             "name": "FunctionDefinition",
             "src": "1217:98:5"
           },
@@ -8062,7 +8058,7 @@
                 null
               ],
               "name": "updateENS",
-              "scope": 2448,
+              "scope": 2563,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "public"
@@ -8075,7 +8071,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_ensAddress",
-                      "scope": 2447,
+                      "scope": 2562,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -8088,17 +8084,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 2438,
+                        "id": 2553,
                         "name": "ElementaryTypeName",
                         "src": "1340:7:5"
                       }
                     ],
-                    "id": 2439,
+                    "id": 2554,
                     "name": "VariableDeclaration",
                     "src": "1340:19:5"
                   }
                 ],
-                "id": 2440,
+                "id": 2555,
                 "name": "ParameterList",
                 "src": "1339:21:5"
               },
@@ -8109,7 +8105,7 @@
                   ]
                 },
                 "children": [],
-                "id": 2441,
+                "id": 2556,
                 "name": "ParameterList",
                 "src": "1368:0:5"
               },
@@ -8132,11 +8128,11 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2304,
+                              "referencedDeclaration": 2419,
                               "type": "address",
                               "value": "ensAddress"
                             },
-                            "id": 2442,
+                            "id": 2557,
                             "name": "Identifier",
                             "src": "1379:10:5"
                           },
@@ -8145,41 +8141,41 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2439,
+                              "referencedDeclaration": 2554,
                               "type": "address",
                               "value": "_ensAddress"
                             },
-                            "id": 2443,
+                            "id": 2558,
                             "name": "Identifier",
                             "src": "1392:11:5"
                           }
                         ],
-                        "id": 2444,
+                        "id": 2559,
                         "name": "Assignment",
                         "src": "1379:24:5"
                       }
                     ],
-                    "id": 2445,
+                    "id": 2560,
                     "name": "ExpressionStatement",
                     "src": "1379:24:5"
                   }
                 ],
-                "id": 2446,
+                "id": 2561,
                 "name": "Block",
                 "src": "1368:43:5"
               }
             ],
-            "id": 2447,
+            "id": 2562,
             "name": "FunctionDefinition",
             "src": "1321:90:5"
           }
         ],
-        "id": 2448,
+        "id": 2563,
         "name": "ContractDefinition",
         "src": "268:1146:5"
       }
     ],
-    "id": 2449,
+    "id": 2564,
     "name": "SourceUnit",
     "src": "33:1381:5"
   },
@@ -8216,8 +8212,7 @@
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-31T10:41:09.628Z",
-  "networkType": "ethereum",
+  "updatedAt": "2021-01-31T14:08:15.043Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

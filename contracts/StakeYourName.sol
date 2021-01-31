@@ -24,7 +24,6 @@ contract StakeYourName is Ownable {
     ExchangeManager exchangeManager;
     InvestmentManager investmentManager;
 
-    
     constructor() {
         /// @dev TO:DO set deployment addresses of the managers in here.
 
@@ -33,13 +32,11 @@ contract StakeYourName is Ownable {
     using SafeMath for uint256;
     address internal masterVault;
     address[] internal users;
-    address internal zeroAddress = 0x0000000000000000000000000000000000000000;
+    address constant zeroAddress = 0x0000000000000000000000000000000000000000;
     mapping (address => address) internal vault;
     uint256 public referralCode = 0;
     uint256 constant MAX_INT = type(uint256).max;
-    uint256 internal MIN_APPROVAL = type(uint256).max/2;
-    uint256 internal recordNumber;
-    uint256 internal recordIncrement = 100;
+    uint256 constant MIN_APPROVAL = type(uint256).max/2;
 
     struct Renewals{
         string[] names;
@@ -321,7 +318,6 @@ contract StakeYourName is Ownable {
         referralCode = _ref;
     }
 
-
     /******************************************** 
     *                                           *
     *   Test and/or temporary functions.        *
@@ -342,21 +338,19 @@ contract StakeYourName is Ownable {
         _erc20.approve(address(investmentManager), MAX_INT);
     }
 
-    // set up all the interconnections required for the testnet
-    function setupTestNet(address payable _nameManager, address payable _exchangeManager, address _investmentManager, address _vault, address _oneSplit, address _ens) public onlyOwner{
+    /* set up all the interconnections required for the testnet
+    function setupTestNet(address payable _nameManager, address payable _exchangeManager, address _investmentManager, address _vault, address _oneSplit, address _ens) external onlyOwner{
         nameManager = NameManager(_nameManager);
         exchangeManager = ExchangeManager(_exchangeManager);
         investmentManager = InvestmentManager(_investmentManager);
         exchangeManager.updateNameManagerAddress(_nameManager);
         exchangeManager.setOneSplitAddress(_oneSplit);
         nameManager.updateAddresses(_ens);
-    }
+        setMasterVault(_vault);
+    }*/
 
     /// @notice do not use this contract if this still exists
     function retrieveETH() public onlyOwner {
-        //nameManager.retrieveETH();
-        //exchangeManager.retrieveETH();
-        //investmentManager.retrieveETH();
         msg.sender.transfer(address(this).balance);
     }
 
