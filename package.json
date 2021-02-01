@@ -3,6 +3,7 @@
     "@chainlink/contracts": "^0.1.4",
     "@openzeppelin/contracts": "^3.3.0",
     "@truffle/hdwallet-provider": "^1.2.1",
+    "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "nodejs": "^0.0.0",
     "truffle-contract-size": "^2.0.1"

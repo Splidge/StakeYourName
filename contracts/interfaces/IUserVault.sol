@@ -14,8 +14,8 @@ interface IUserVault{
     function collectETH() external;
     function initialize() external;
     function owner() external view returns(address);
-    function names() external view returns(uint256[] memory);
-    function assets() external view returns(address[] memory);
+    function names(uint256 _index) external view returns(uint256);
+    function assets(uint256 _index) external view returns(address);
     function balance(address _asset) external view returns(uint256);
     function setBalance(address _asset, uint256 _balance) external returns(uint256);
     function approve(address _asset) external;
@@ -25,5 +25,6 @@ interface IUserVault{
     function removeMultipleNames(uint256[] calldata _names) external;
     function addAsset(address _asset) external;
     function removeAsset(address _asset) external;
-    function readableName(uint256 _name) external view returns(string memory);
+    function readableName(uint256 _name) external view returns(string[] memory);
+    function countAssets() external view returns(uint256);
 }

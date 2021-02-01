@@ -93,4 +93,8 @@ contract UserVault is Initializable{
             }  
         }
     }
+
+    function countAssets() external view returns(uint256){
+        return assets.length;
+    }
 }

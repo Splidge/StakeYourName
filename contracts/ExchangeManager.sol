@@ -58,7 +58,8 @@ contract ExchangeManager is Ownable {
         address _address = getOracleAddress(assembleTokenEthPair(_from, _to));
         AggregatorV3Interface _aggregator = AggregatorV3Interface(_address);
         (,_intPrice,,_time,) = _aggregator.latestRoundData();
-        require(block.timestamp - _time > fresh);
+        /// @dev review this, we need it but it's turning negative.
+        //require(block.timestamp - _time > fresh);
         _decimals = _aggregator.decimals();
         _price = SafeCast.toUint256(_intPrice);
     }
@@ -141,10 +142,10 @@ contract ExchangeManager is Ownable {
         IUserVault _userVault = IUserVault(_vault);
         uint256[] memory _distributionArray = new uint256[](22);
         uint256 _price;
-        for (uint256 i; i < _userVault.assets().length; i++){
-            (_price, _distributionArray) = getExchangePrice(_userVault.assets()[i] , _cost, zeroAddress);
+        for (uint256 i; i < _userVault.countAssets(); i++){
+            (_price, _distributionArray) = getExchangePrice(_userVault.assets(i) , _cost, zeroAddress);
             if(_price != 0){
-                return (true, _userVault.assets()[i], _distributionArray);
+                return (true, _userVault.assets(i), _distributionArray);
             }
         }
         return (false, zeroAddress, _distributionArray);
@@ -153,13 +154,13 @@ contract ExchangeManager is Ownable {
     /// @dev estimate if the vault will have enough of any funds to complete the purshase
     function estimateFunds(uint256 _cost, address _vault) public view returns(bool _accept, address _token){
         IUserVault _userVault = IUserVault(_vault);
-        for (uint256 i; i < _userVault.assets().length; i++){
-            (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets()[i], zeroAddress );
+        for (uint256 i; i < _userVault.countAssets(); i++){
+            (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets(i), zeroAddress );
             uint256 _estimatedInput = _oraclePrice.mul(_cost);
             _estimatedInput = (_estimatedInput.mul( estimateSlippage )).div(100);
             _estimatedInput = _estimatedInput.div(10**_decimals);
-            if (_estimatedInput > investmentManager.getInterest(_userVault.assets()[i], _vault)){
-                return(true, _userVault.assets()[i]);
+            if (_estimatedInput > investmentManager.getInterest(_userVault.assets(i), _vault)){
+                return(true, _userVault.assets(i));
             }
         }
         return(false,zeroAddress);
@@ -167,13 +168,13 @@ contract ExchangeManager is Ownable {
 
     function estimateSpecificAssetFunds(uint256 _cost, address _vault, address _asset) public view returns(bool _accept){
         IUserVault _userVault = IUserVault(_vault);
-        for (uint256 i; i < _userVault.assets().length; i++){
-            if(_userVault.assets()[i] == _asset){
-                (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets()[i], zeroAddress );
+        for (uint256 i; i < _userVault.countAssets(); i++){
+            if(_userVault.assets(i) == _asset){
+                (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets(i), zeroAddress );
                 uint256 _estimatedInput = _oraclePrice.mul(_cost);
                 _estimatedInput = (_estimatedInput.mul( estimateSlippage )).div(100);
                 _estimatedInput = _estimatedInput.div(10**_decimals);
-                if (_estimatedInput > investmentManager.getInterest(_userVault.assets()[i], _vault)){
+                if (_estimatedInput > investmentManager.getInterest(_userVault.assets(i), _vault)){
                     return(true);
                 }
             }

@@ -42,7 +42,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -75,7 +76,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -93,7 +95,8 @@
       "name": "renew",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -117,7 +120,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -136,7 +140,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -207,7 +212,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -226,7 +232,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -250,7 +257,8 @@
         }
       ],
       "stateMutability": "pure",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -12229,12 +12237,13 @@
         }
       },
       "links": {},
-      "address": "0xb37Ec23e01d51878F7b8a869eAf76B9E56a0303B",
-      "transactionHash": "0xaa79e0841eebe908b3a640a56a614705c5010cd3ac7b2ff68ecaef0c9493bf0b"
+      "address": "0x6146b2512Dd5197EA8Cf97f8f6d057A4D7D9371E",
+      "transactionHash": "0x4dbabd1e034b269f4c55527472860e40238ee49d2fb5544017ea2dca7643d9c1"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T15:31:38.076Z",
+  "updatedAt": "2021-02-01T18:35:33.365Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {

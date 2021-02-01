@@ -29,7 +29,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ens\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_hash\",\"type\":\"bytes32\"}],\"name\":\"addr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/ENSResolverSim.sol\":\"ENSResolverSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/ENSResolverSim.sol\":{\"keccak256\":\"0x7363cc82f951bd6e457fce100b275e66fe24a0b45ad9c104ab4a5b334369c96b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://43f0514921a6b44d8129e488e2d8012ceaf202a6ad609203c4da2cd99ebf2df9\",\"dweb:/ipfs/QmTk7R2RcfH9NchkWHnXDEKoLsorsaNKnxUtEuhLwqQfjQ\"]},\"contracts/SimulatedContracts/IENSSim.sol\":{\"keccak256\":\"0x67f9792441ef27c2c825d8339483bea597d842b781f9f2ed0ece3319a414fe3b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e951667363bc85045d830d936cea8380e5a5bc963e9ba2c9cb83fd2591197dde\",\"dweb:/ipfs/QmbVqFRHVcba1XVy1gzyy9qMaSBBXaNx1aDk4F8Rf7tqws\"]}},\"version\":1}",
@@ -2478,12 +2479,13 @@
     "42": {
       "events": {},
       "links": {},
-      "address": "0xA98643dC2Eb9Eb99965cD5A6F1FD16562607be72",
-      "transactionHash": "0x2a90b5e9c6010d8cc9c75cf914d84c594d38129d7f224c76600702b4374c8b78"
+      "address": "0x20a3DB359192f6263F2b6104c1999EC79404846b",
+      "transactionHash": "0x5eb7895d9be06653de1743235898ec587ee04a84d4658ff618d1e3afb4c28c57"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T15:31:38.081Z",
+  "updatedAt": "2021-02-01T18:35:33.362Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -57,12 +57,15 @@ contract StakeYourName is Ownable {
 
     /// @notice _name must in reverse order with each subdomain in the next index
     /// @notice e.g. splidge.eth would be _name[0] = 'eth', _name[1] = 'splidge'
+    /// @dev reading in as string so we can store the readable name if the user
+    /// @dev doesn't have reverse resolving set
     function addName(string[] calldata _name) external onlyUser {
         uint256 _hash = uint256(nameManager.returnHash(_name));
         IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.addName(_hash, _name);
     }
 
+    /// @notice as addName however each element of the array can contain another name
     function addMultipleNames(string[][] calldata _names) external onlyUser {
         uint256[] memory _hashs = new uint256[](_names[0].length);
         for (uint256 i; i < _names[0].length; i++) {

@@ -78,7 +78,7 @@
         3255
       ],
       "IENSSim": [
-        9156
+        9297
       ]
     },
     "id": 3256,
@@ -102,7 +102,7 @@
         "id": 3231,
         "nodeType": "ImportDirective",
         "scope": 3256,
-        "sourceUnit": 9157,
+        "sourceUnit": 9298,
         "src": "60:50:9",
         "symbolAliases": [],
         "unitAlias": ""
@@ -375,7 +375,7 @@
           3255
         ],
         "IENSSim": [
-          9156
+          9297
         ]
       },
       "license": "MIT"
@@ -396,7 +396,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 9157,
+          "SourceUnit": 9298,
           "absolutePath": "contracts/SimulatedContracts/IENSSim.sol",
           "file": "contracts/SimulatedContracts/IENSSim.sol",
           "scope": 3256,
@@ -748,7 +748,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T16:31:58.253Z",
+  "updatedAt": "2021-02-01T18:32:45.222Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

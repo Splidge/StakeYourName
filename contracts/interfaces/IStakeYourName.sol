@@ -15,11 +15,11 @@ interface IStakeYourName {
     *                                           *
     ********************************************/
 
-    function addName(uint256 _name) external;
-    function addMultipleNames(uint256[] calldata _names) external;
+    function addName(string[] calldata _name) external;
+    function addMultipleNames(string[][] calldata _names) external;
     function removeName(uint256 _name) external;
     function removeMultipleNames(uint256[] calldata _names) external;
-    function deposit(address _asset, uint256 _amount, bool _newUser) external;
+    function deposit(address _asset, uint256 _amount) external;
     function withdraw(address _asset, uint256 _amount) external;
     /******************************************** 
     *                                           *
