@@ -33,6 +33,7 @@ const ropstenPrivateKey = process.env.ROPSTEN_PRIVATE_KEY;
 const infuraKey = process.env.INFURA_PROJECT_ID;
 
 module.exports = {
+  plugins: ["truffle-plugin-verify", "truffle-security",'truffle-contract-size'],
   /**
    * Networks define how you connect to your ethereum client and let you set the
    * defaults web3 uses to send transactions. If you don't specify one truffle
@@ -69,7 +70,7 @@ module.exports = {
     ropsten: {
       provider: () => new HDWalletProvider( ropstenPrivateKey, "https://ropsten.infura.io/v3/"+infuraKey),
       network_id: 3,       // Ropsten's id
-      gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      gas: 12000000,        // Ropsten has a lower block limit than mainnet
       confirmations: 0,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 50,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
@@ -77,7 +78,7 @@ module.exports = {
      kovan: {
       provider: () => new HDWalletProvider( ropstenPrivateKey, "https://kovan.infura.io/v3/"+infuraKey),
       network_id: 42,       // Kovan's id
-      gas: 5500000,        // Kovan has a lower block limit than mainnet
+      gas: 12000000,        // Kovan has a lower block limit than mainnet
       gasPrice: 2000000000, // set gas price low 20gewi
       confirmations: 0,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 50,  // # of blocks before a deployment times out  (minimum/default: 50)
@@ -99,18 +100,21 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-       version: "0.7.4",    // Fetch exact version from solc-bin (default: truffle's version)
+       version: "0.7.6",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
+       settings: {          // See the solidity docs for advice about optimization and evmVersion
+        optimizer: {
+          enabled: true,
+          runs: 200
+        },
+        //evmVersion: "byzantium"
+       }
     }
   },
   ens:  {
     enabled: true
-  }   
+  },   
+  api_keys: {
+    etherscan: 'ETHERSCAN_API'
+  }
 };

@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
   /**
    * @title UserVault - Interface
@@ -8,7 +9,7 @@ pragma solidity ^0.7.0;
    * @author Daniel Chilvers
    **/
 
-interface UserVault{
+interface IUserVault{
     function recieve() external payable;
     function collectETH() external;
     function initialize() external;
@@ -18,8 +19,8 @@ interface UserVault{
     function balance(address _asset) external view returns(uint256);
     function setBalance(address _asset, uint256 _balance) external returns(uint256);
     function approve(address _asset) external;
-    function addName(uint256 _name) external;
-    function addMultipleNames(uint256[] calldata _names) external;
+    function addName(uint256 _name, string[] memory _readableName) external;
+    function addMultipleNames(uint256[] calldata _names, string[][] calldata _readableNames) external;
     function removeName(uint256 _name) external;
     function removeMultipleNames(uint256[] calldata _names) external;
     function addAsset(address _asset) external;

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-interface InvestmentManager {
+interface IInvestmentManager {
     function recieve() external payable;
     function approveLendingPool(address _asset, address _userVault) external;
     function getAToken(address _asset) external view returns(address);

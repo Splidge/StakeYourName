@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: agpl-3.0
-pragma solidity ^0.7.0;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
-import {ILendingPoolAddressesProvider} from 'interfaces/ILendingPoolAddressesProvider.sol';
+import './ILendingPoolAddressesProvider.sol';
 
 interface IProtocolDataProvider {
   struct TokenData {

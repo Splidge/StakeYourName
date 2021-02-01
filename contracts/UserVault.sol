@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
   /**
    * @title UserVault
@@ -15,7 +16,7 @@ contract UserVault is Initializable{
 
     address public owner;
     mapping (address => uint256) public balance;
-    mapping (uint256 => string) public readableName;
+    mapping (uint256 => string[]) public readableName;
     uint256[] public names;
     address[] public assets;
     
@@ -44,13 +45,14 @@ contract UserVault is Initializable{
          return balance[_asset] = _balance;
     }
 
-    function addName(uint256 _name) public onlyOwner {
+    function addName(uint256 _name, string[] memory _readableName) public onlyOwner {
+        readableName[_name] = _readableName;
         names.push(_name);
     }
 
-    function addMultipleNames(uint256[] calldata _names) external onlyOwner {
+    function addMultipleNames(uint256[] calldata _names, string[][] calldata _readableNames) external onlyOwner {
         for (uint256 i; i < _names.length; i++){
-            addName(_names[i]);
+            addName(_names[i], _readableNames[i]);
         }
     }
 

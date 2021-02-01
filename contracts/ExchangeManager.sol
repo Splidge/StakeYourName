@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
 import "@openzeppelin/contracts/access/Ownable.sol"; 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/SafeCast.sol";
-import "interfaces/IOneSplit.sol";
-import "interfaces/IUserVault.sol";
-import "interfaces/INameManager.sol";
-import "interfaces/IInvestmentManager.sol";
+import "./interfaces/IOneSplit.sol";
+import "./interfaces/IUserVault.sol";
+import "./interfaces/INameManager.sol";
+import "./interfaces/IInvestmentManager.sol";
 import "@chainlink/contracts/v0.7/interfaces/AggregatorV3Interface.sol";
 
   /**
@@ -26,8 +26,8 @@ contract ExchangeManager is Ownable {
     ///@dev this is not the final NameManager address, update later
     address payable internal nameManagerAddress = 0xbC86029dbC214939a3c5d383d0C245d5B75538C0;
 
-    NameManager nameManager;
-    InvestmentManager investmentManager;
+    INameManager nameManager;
+    IInvestmentManager investmentManager;
     IOneSplit oneSplit;
     //IOneSplitMulti oneSplitMulti;
     //IOneSplitConsts oneSplitConsts;
@@ -46,7 +46,7 @@ contract ExchangeManager is Ownable {
 
     constructor(uint _networkID) {
         ChainID =_networkID;
-        nameManager = NameManager(nameManagerAddress);
+        nameManager = INameManager(nameManagerAddress);
         oneSplit = IOneSplit(oneInch);
     }
 
@@ -138,7 +138,7 @@ contract ExchangeManager is Ownable {
     }
 
     function checkAvailiableFunds(uint256 _cost, address _vault) public view returns(bool _accept, address _token, uint256[] memory _distribution){
-        UserVault _userVault = UserVault(_vault);
+        IUserVault _userVault = IUserVault(_vault);
         uint256[] memory _distributionArray = new uint256[](22);
         uint256 _price;
         for (uint256 i; i < _userVault.assets().length; i++){
@@ -152,7 +152,7 @@ contract ExchangeManager is Ownable {
 
     /// @dev estimate if the vault will have enough of any funds to complete the purshase
     function estimateFunds(uint256 _cost, address _vault) public view returns(bool _accept, address _token){
-        UserVault _userVault = UserVault(_vault);
+        IUserVault _userVault = IUserVault(_vault);
         for (uint256 i; i < _userVault.assets().length; i++){
             (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets()[i], zeroAddress );
             uint256 _estimatedInput = _oraclePrice.mul(_cost);
@@ -166,7 +166,7 @@ contract ExchangeManager is Ownable {
     }
 
     function estimateSpecificAssetFunds(uint256 _cost, address _vault, address _asset) public view returns(bool _accept){
-        UserVault _userVault = UserVault(_vault);
+        IUserVault _userVault = IUserVault(_vault);
         for (uint256 i; i < _userVault.assets().length; i++){
             if(_userVault.assets()[i] == _asset){
                 (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets()[i], zeroAddress );
@@ -244,7 +244,7 @@ contract ExchangeManager is Ownable {
     }
     // this needs be to onlyOwner once testing done
     function updateNameManagerAddress(address payable _nameManager) external {
-        nameManager = NameManager(_nameManager);
+        nameManager = INameManager(_nameManager);
     }
     function updateFresh(uint256 _fresh) external onlyOwner {
         fresh = _fresh;

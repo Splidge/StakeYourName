@@ -21,7 +21,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_hash\",\"type\":\"bytes32\"}],\"name\":\"addr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSResolverSim.sol\":\"IENSResolverSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSResolverSim.sol\":{\"keccak256\":\"0x8d07e6f01146e4bc8a83535db4515d7b770abd351ac1ed499432319a56b78eae\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f7ab925cb5983d3b822c3e973dc2c1ccd053f430cc8b05465deba7cd0437ebc0\",\"dweb:/ipfs/QmZhVW8Gd51ug5jF8JbPUguXCZVwyoV8HpP2TyUyeUuHeC\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_hash\",\"type\":\"bytes32\"}],\"name\":\"addr\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSResolverSim.sol\":\"IENSResolverSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSResolverSim.sol\":{\"keccak256\":\"0x8d07e6f01146e4bc8a83535db4515d7b770abd351ac1ed499432319a56b78eae\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://f7ab925cb5983d3b822c3e973dc2c1ccd053f430cc8b05465deba7cd0437ebc0\",\"dweb:/ipfs/QmZhVW8Gd51ug5jF8JbPUguXCZVwyoV8HpP2TyUyeUuHeC\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -35,15 +35,15 @@
     "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSResolverSim.sol",
     "exportedSymbols": {
       "IENSResolverSim": [
-        3213
+        3345
       ]
     },
-    "id": 3214,
+    "id": 3346,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3205,
+        "id": 3337,
         "literals": [
           "solidity",
           "^",
@@ -59,32 +59,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 3213,
+        "id": 3345,
         "linearizedBaseContracts": [
-          3213
+          3345
         ],
         "name": "IENSResolverSim",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "3b3b57de",
-            "id": 3212,
+            "id": 3344,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addr",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3208,
+              "id": 3340,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3207,
+                  "id": 3339,
                   "mutability": "mutable",
                   "name": "_hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3212,
+                  "scope": 3344,
                   "src": "107:13:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -93,7 +93,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3206,
+                    "id": 3338,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "107:7:12",
@@ -108,16 +108,16 @@
               "src": "106:15:12"
             },
             "returnParameters": {
-              "id": 3211,
+              "id": 3343,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3210,
+                  "id": 3342,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3212,
+                  "scope": 3344,
                   "src": "144:7:12",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -126,7 +126,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3209,
+                    "id": 3341,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "144:7:12",
@@ -141,14 +141,14 @@
               ],
               "src": "143:9:12"
             },
-            "scope": 3213,
+            "scope": 3345,
             "src": "93:60:12",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3214,
+        "scope": 3346,
         "src": "60:96:12"
       }
     ],
@@ -159,7 +159,7 @@
       "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSResolverSim.sol",
       "exportedSymbols": {
         "IENSResolverSim": [
-          3213
+          3345
         ]
       },
       "license": "MIT"
@@ -174,7 +174,7 @@
             ".0"
           ]
         },
-        "id": 3205,
+        "id": 3337,
         "name": "PragmaDirective",
         "src": "33:23:12"
       },
@@ -190,10 +190,10 @@
           "contractKind": "interface",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            3213
+            3345
           ],
           "name": "IENSResolverSim",
-          "scope": 3214
+          "scope": 3346
         },
         "children": [
           {
@@ -206,7 +206,7 @@
                 null
               ],
               "name": "addr",
-              "scope": 3213,
+              "scope": 3345,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -219,7 +219,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_hash",
-                      "scope": 3212,
+                      "scope": 3344,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -231,17 +231,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 3206,
+                        "id": 3338,
                         "name": "ElementaryTypeName",
                         "src": "107:7:12"
                       }
                     ],
-                    "id": 3207,
+                    "id": 3339,
                     "name": "VariableDeclaration",
                     "src": "107:13:12"
                   }
                 ],
-                "id": 3208,
+                "id": 3340,
                 "name": "ParameterList",
                 "src": "106:15:12"
               },
@@ -252,7 +252,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 3212,
+                      "scope": 3344,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -265,42 +265,42 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3209,
+                        "id": 3341,
                         "name": "ElementaryTypeName",
                         "src": "144:7:12"
                       }
                     ],
-                    "id": 3210,
+                    "id": 3342,
                     "name": "VariableDeclaration",
                     "src": "144:7:12"
                   }
                 ],
-                "id": 3211,
+                "id": 3343,
                 "name": "ParameterList",
                 "src": "143:9:12"
               }
             ],
-            "id": 3212,
+            "id": 3344,
             "name": "FunctionDefinition",
             "src": "93:60:12"
           }
         ],
-        "id": 3213,
+        "id": 3345,
         "name": "ContractDefinition",
         "src": "60:96:12"
       }
     ],
-    "id": 3214,
+    "id": 3346,
     "name": "SourceUnit",
     "src": "33:123:12"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.7.4+commit.3f05b770.Emscripten.clang"
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-01-31T10:39:39.977Z",
+  "updatedAt": "2021-02-01T15:31:38.086Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

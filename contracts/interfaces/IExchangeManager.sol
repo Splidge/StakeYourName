@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.0;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
   /**
    * @title Manages exchanging tokens and ETH
    * @notice part of the StakeYourName DApp
    * @author Daniel Chilvers
    **/
-interface ExchangeManager {
+interface IExchangeManager {
 
     receive() external payable;
     function getPrice(address _from, address _to) external view returns(uint256 _price, uint256 _decimals);

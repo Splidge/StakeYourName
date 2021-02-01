@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.4;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "interfaces/ENS_Registry.sol";
-import "interfaces/ENS_BaseRegistrar.sol";
-import "interfaces/ENS_BulkRenewal.sol";
-import "interfaces/ENS_Resolver.sol";
-import "interfaces/ENS_RegistrarController.sol";
+import "./interfaces/ENS_Registry.sol";
+import "./interfaces/ENS_BaseRegistrar.sol";
+import "./interfaces/ENS_BulkRenewal.sol";
+import "./interfaces/ENS_Resolver.sol";
+import "./interfaces/ENS_RegistrarController.sol";
 
 /// @title StakeYourName - NameManager
 /// @notice Maintains a list of users and names they want to keep renewed
@@ -129,13 +129,18 @@ contract NameManager is Ownable {
     *
     */
 
-    /// @notice pass in either the _name or _nameHash to resolve an address
-    function resolveName(string[] calldata _name) public view returns(address){
+    function returnHash(string[] calldata _name) public pure returns(bytes32){
         bytes32 _nameHash;
         _nameHash = computeHash(_name[0], _nameHash);
         for (uint256 i = 1; i < _name.length; i++){
             _nameHash = computeHash(_name[i], _nameHash); 
         }
+        return _nameHash;
+    }
+
+    /// @notice pass in either the _name or _nameHash to resolve an address
+    function resolveName(string[] calldata _name) public view returns(address){
+        bytes32 _nameHash = returnHash(_name);
         ENSResolver _ensResolver =  ENSResolver(ens.resolver(_nameHash));
         return(_ensResolver.addr(_nameHash));
     }

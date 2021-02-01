@@ -2,7 +2,6 @@
 pragma solidity ^0.7.0;
 
 interface ENSResolver {
-
     /**
      * Sets the ABI associated with an ENS node.
      * Nodes may have one ABI of each content type. To remove an ABI, set it to
@@ -11,7 +10,11 @@ interface ENSResolver {
      * @param contentType The content type of the ABI
      * @param data The ABI data.
      */
-    function setABI(bytes32 node, uint256 contentType, bytes calldata data) external;
+    function setABI(
+        bytes32 node,
+        uint256 contentType,
+        bytes calldata data
+    ) external;
 
     /**
      * Returns the ABI associated with an ENS node.
@@ -21,7 +24,10 @@ interface ENSResolver {
      * @return contentType The content type of the return value
      * @return data The ABI data
      */
-    function ABI(bytes32 node, uint256 contentTypes) external view returns (uint256, bytes memory);
+    function ABI(bytes32 node, uint256 contentTypes)
+        external
+        view
+        returns (uint256, bytes memory);
 
     /**
      * Sets the address associated with an ENS node.
@@ -81,14 +87,21 @@ interface ENSResolver {
      * @param resource the ID of the resource as per https://en.wikipedia.org/wiki/List_of_DNS_record_types
      * @return the DNS record in wire format if present, otherwise empty
      */
-    function dnsRecord(bytes32 node, bytes32 name, uint16 resource) external view returns (bytes memory);
+    function dnsRecord(
+        bytes32 node,
+        bytes32 name,
+        uint16 resource
+    ) external view returns (bytes memory);
 
     /**
      * Check if a given node has records.
      * @param node the namehash of the node for which to check the records
      * @param name the namehash of the node for which to check the records
      */
-    function hasDNSRecords(bytes32 node, bytes32 name) external view returns (bool);
+    function hasDNSRecords(bytes32 node, bytes32 name)
+        external
+        view
+        returns (bool);
 
     /**
      * Clear all information for a DNS zone.
@@ -103,7 +116,11 @@ interface ENSResolver {
      * @param interfaceID The EIP 168 interface ID.
      * @param implementer The address of a contract that implements this interface for this node.
      */
-    function setInterface(bytes32 node, bytes4 interfaceID, address implementer) external;
+    function setInterface(
+        bytes32 node,
+        bytes4 interfaceID,
+        address implementer
+    ) external;
 
     /**
      * Returns the address of a contract that implements the specified interface for this name.
@@ -115,7 +132,10 @@ interface ENSResolver {
      * @param interfaceID The EIP 168 interface ID to check for.
      * @return The address that implements this interface, or 0 if the interface is unsupported.
      */
-    function interfaceImplementer(bytes32 node, bytes4 interfaceID) external view returns (address);
+    function interfaceImplementer(bytes32 node, bytes4 interfaceID)
+        external
+        view
+        returns (address);
 
     /**
      * Sets the name associated with an ENS node, for reverse records.
@@ -124,6 +144,7 @@ interface ENSResolver {
      * @param name The name to set.
      */
     function setName(bytes32 node, string calldata name) external;
+
     /**
      * Returns the name associated with an ENS node, for reverse records.
      * Defined in EIP181.
@@ -138,7 +159,11 @@ interface ENSResolver {
      * @param x the X coordinate of the curve point for the public key.
      * @param y the Y coordinate of the curve point for the public key.
      */
-    function setPubkey(bytes32 node, bytes32 x, bytes32 y) external;
+    function setPubkey(
+        bytes32 node,
+        bytes32 x,
+        bytes32 y
+    ) external;
 
     /**
      * Returns the SECP256k1 public key associated with an ENS node.
@@ -155,7 +180,11 @@ interface ENSResolver {
      * @param key The key to set.
      * @param value The text data value to set.
      */
-    function setText(bytes32 node, string calldata key, string calldata value) external;
+    function setText(
+        bytes32 node,
+        string calldata key,
+        string calldata value
+    ) external;
 
     /**
      * Returns the text data associated with an ENS node and key.
@@ -163,8 +192,10 @@ interface ENSResolver {
      * @param key The text data key to query.
      * @return The associated text data.
      */
-    function text(bytes32 node, string calldata key) external view returns (string memory);
+    function text(bytes32 node, string calldata key)
+        external
+        view
+        returns (string memory);
 
-    function supportsInterface(bytes4 interfaceID) external pure returns(bool);
-
+    function supportsInterface(bytes4 interfaceID) external pure returns (bool);
 }

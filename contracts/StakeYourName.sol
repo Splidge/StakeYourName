@@ -1,15 +1,16 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.4;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/proxy/Clones.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "interfaces/INameManager.sol";
-import "interfaces/IInvestmentManager.sol";
-import "interfaces/IExchangeManager.sol";
-import "interfaces/IUserVault.sol";
+import "./interfaces/INameManager.sol";
+import "./interfaces/IInvestmentManager.sol";
+import "./interfaces/IExchangeManager.sol";
+import "./interfaces/IUserVault.sol";
+
 //import "interfaces/ENS_BulkRenewal.sol";
 //import "interfaces/ENS_Resolver.sol";
 
@@ -19,26 +20,24 @@ import "interfaces/IUserVault.sol";
 /// @author Daniel Chilvers
 
 contract StakeYourName is Ownable {
-
-    NameManager nameManager;
-    ExchangeManager exchangeManager;
-    InvestmentManager investmentManager;
+    INameManager nameManager;
+    IExchangeManager exchangeManager;
+    IInvestmentManager investmentManager;
 
     constructor() {
         /// @dev TO:DO set deployment addresses of the managers in here.
-
     }
 
     using SafeMath for uint256;
     address internal masterVault;
     address[] internal users;
     address constant zeroAddress = 0x0000000000000000000000000000000000000000;
-    mapping (address => address) internal vault;
+    mapping(address => address) internal vault;
     uint256 public referralCode = 0;
     uint256 constant MAX_INT = type(uint256).max;
-    uint256 constant MIN_APPROVAL = type(uint256).max/2;
+    uint256 constant MIN_APPROVAL = type(uint256).max / 2;
 
-    struct Renewals{
+    struct Renewals {
         string[] names;
         address user;
         uint256 cost;
@@ -50,29 +49,36 @@ contract StakeYourName is Ownable {
         _;
     }
 
-    /******************************************** 
-    *                                           *
-    *   User functions                          *
-    *                                           *
-    ********************************************/
+    /********************************************
+     *                                           *
+     *   User functions                          *
+     *                                           *
+     ********************************************/
 
-    function addName(uint256 _name) external onlyUser {
-        UserVault _userVault = UserVault(vault[msg.sender]);
-        _userVault.addName(_name);
+    /// @notice _name must in reverse order with each subdomain in the next index
+    /// @notice e.g. splidge.eth would be _name[0] = 'eth', _name[1] = 'splidge'
+    function addName(string[] calldata _name) external onlyUser {
+        uint256 _hash = uint256(nameManager.returnHash(_name));
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
+        _userVault.addName(_hash, _name);
     }
 
-    function addMultipleNames(uint256[] calldata _names) external onlyUser {
-        UserVault _userVault = UserVault(vault[msg.sender]);
-        _userVault.addMultipleNames(_names);
+    function addMultipleNames(string[][] calldata _names) external onlyUser {
+        uint256[] memory _hashs = new uint256[](_names[0].length);
+        for (uint256 i; i < _names[0].length; i++) {
+            _hashs[i] = uint256(nameManager.returnHash(_names[i]));
+        }
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
+        _userVault.addMultipleNames(_hashs, _names);
     }
 
     function removeName(uint256 _name) external onlyUser {
-        UserVault _userVault = UserVault(vault[msg.sender]);
-        _userVault.removeName(_name);        
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
+        _userVault.removeName(_name);
     }
 
     function removeMultipleNames(uint256[] calldata _names) external onlyUser {
-        UserVault _userVault = UserVault(vault[msg.sender]);
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.removeMultipleNames(_names);
     }
 
@@ -80,20 +86,28 @@ contract StakeYourName is Ownable {
     /// @notice updates vault with new balance
     /// @param _asset the contract address of the token to deposit
     /// @param _amount the amount to deposit in wei
-    /// @param _newUser if true this user is added to the userList
-    function deposit(address _asset, uint256 _amount, bool _newUser) external {
-        require(_asset != address(0), "Asset contract can't be the zero address");
+    function deposit(address _asset, uint256 _amount) external {
+        require(
+            _asset != address(0),
+            "Asset contract can not be the zero address"
+        );
         require(_amount > 0, "Amount must be more than 0");
         IERC20 _erc20 = IERC20(_asset);
-        require( _erc20.allowance(msg.sender, address(this)) >= _amount, "User not approved to send this amount");
-        if (vault[msg.sender] == address(0)){
+        require(
+            _erc20.allowance(msg.sender, address(this)) >= _amount,
+            "User not approved to send this amount"
+        );
+        if (vault[msg.sender] == address(0)) {
             deployVault();
         }
-        if (_newUser = true){addUser();}
+        addUser();
         vaultAddAsset(_asset);
         approveVault(_asset);
         investmentManager.approveLendingPool(_asset, vault[msg.sender]);
-        setBalance(_asset, investmentManager.getBalance(_asset, msg.sender).add(_amount));
+        setBalance(
+            _asset,
+            investmentManager.getBalance(_asset, vault[msg.sender]).add(_amount)
+        );
         _erc20.transferFrom(msg.sender, address(investmentManager), _amount);
         investmentManager.deposit(_asset, vault[msg.sender], _amount);
     }
@@ -119,95 +133,126 @@ contract StakeYourName is Ownable {
             setBalance(_asset, _balance.sub(_amount));
         }
         IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
-        _erc20.transferFrom(vault[msg.sender], address(investmentManager), _amount);
+        _erc20.transferFrom(
+            vault[msg.sender],
+            address(investmentManager),
+            _amount
+        );
         investmentManager.withdraw(_asset, _transfer, msg.sender);
     }
 
-    /******************************************** 
-    *                                           *
-    *   User Vault deployment and functions.    *
-    *                                           *
-    ********************************************/
+    /********************************************
+     *                                           *
+     *   User Vault deployment and functions.    *
+     *                                           *
+     ********************************************/
 
     /// @notice clone the master vault contract
-    function deployVault() public{
+    function deployVault() public {
         bytes32 _salt = keccak256(abi.encodePacked(msg.sender));
         vault[msg.sender] = Clones.cloneDeterministic(masterVault, _salt);
-        UserVault _userVault = UserVault(vault[msg.sender]);
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.initialize();
     }
 
     function setMasterVault(address _vault) public onlyOwner {
         masterVault = _vault;
     }
-    function setBalance(address _asset, uint256 _balance) public onlyUser{
-        UserVault _userVault = UserVault(vault[msg.sender]);
+
+    function setBalance(address _asset, uint256 _balance) public onlyUser {
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.setBalance(_asset, _balance);
     }
-    function findVault(address _vault) public view returns(address){
+
+    function findVault(address _vault) public view returns (address) {
         return vault[_vault];
     }
+
     function approveVault(address _asset) public {
-        UserVault _userVault = UserVault(vault[msg.sender]);
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.approve(investmentManager.getAToken(_asset));
     }
+
     function vaultAddAsset(address _asset) public {
-        UserVault _userVault = UserVault(vault[msg.sender]);
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.addAsset(_asset);
     }
+
     function vaultRemoveAsset(address _asset) public {
-        UserVault _userVault = UserVault(vault[msg.sender]);
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.removeAsset(_asset);
     }
 
     function addUser() internal {
         bool _found = false;
-        for (uint256 i; i < users.length; i++){
-            if(users[i] == msg.sender){
+        for (uint256 i; i < users.length; i++) {
+            if (users[i] == msg.sender) {
                 _found = true;
             }
         }
-        if (_found = false){
-            users.push(msg.sender); 
-        }       
+        if (_found = false) {
+            users.push(msg.sender);
+        }
     }
 
     /// @dev this is stupid, it'll always return msg.sender (hopefully)
-    function getOwner() public view onlyUser returns(address){
-        UserVault _userVault = UserVault(vault[msg.sender]);
+    function getOwner() public view onlyUser returns (address) {
+        IUserVault _userVault = IUserVault(vault[msg.sender]);
         return _userVault.owner();
     }
 
-    /******************************************** 
-    *                                           *
-    *   Name functions                          *
-    *                                           *
-    ********************************************/
+    /********************************************
+     *                                           *
+     *   Name functions                          *
+     *                                           *
+     ********************************************/
 
     function renewNames(address _user) public {
-        if (_user == address(0)){
+        if (_user == address(0)) {
             _user = msg.sender;
         }
-        UserVault _userVault = UserVault(_user);
-        require(_userVault.names().length != 0 && _userVault.assets().length != 0, "User has no funds or no names registered");
-        uint256[] memory _names = new uint256[](nameManager.countRenewals(_userVault.names()));
+        IUserVault _userVault = IUserVault(_user);
+        require(
+            _userVault.names().length != 0 && _userVault.assets().length != 0,
+            "User has no funds or no names registered"
+        );
+        uint256[] memory _names =
+            new uint256[](nameManager.countRenewals(_userVault.names()));
         uint256 _cost;
-        (_names,_cost) = nameManager.checkForRenewals(_userVault.names());
+        (_names, _cost) = nameManager.checkForRenewals(_userVault.names());
         require(_cost > 0, "No names are due for renewal");
         bool _success;
         address _asset;
-        (_success, _asset) = exchangeManager.estimateFunds(_cost, address(_userVault));
-        require(_success,"Not enough funds");
+        (_success, _asset) = exchangeManager.estimateFunds(
+            _cost,
+            address(_userVault)
+        );
+        require(_success, "Not enough funds");
         uint256[] memory _distribution = new uint256[](22);
         uint256 _inputValue;
         string[] memory _readableNames = new string[](_names.length);
-        for(uint256 i; i < _names.length; i++){
+        for (uint256 i; i < _names.length; i++) {
             _readableNames[i] = _userVault.readableName(_names[i]);
         }
-        (_inputValue,_distribution) = exchangeManager.getExchangePrice(_asset, _cost, zeroAddress);
+        (_inputValue, _distribution) = exchangeManager.getExchangePrice(
+            _asset,
+            _cost,
+            zeroAddress
+        );
         IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
-        _erc20.transferFrom(vault[_user], address(exchangeManager), _inputValue);
-        exchangeManager.swap(_asset, zeroAddress, _inputValue, _cost, _distribution, 0);
+        _erc20.transferFrom(
+            vault[_user],
+            address(exchangeManager),
+            _inputValue
+        );
+        exchangeManager.swap(
+            _asset,
+            zeroAddress,
+            _inputValue,
+            _cost,
+            _distribution,
+            0
+        );
         nameManager.executeBulkRenewal(_readableNames, 0);
         payable(address(_userVault)).transfer(address(this).balance);
     }
@@ -223,72 +268,92 @@ contract StakeYourName is Ownable {
         //Renewals memory _renewals;
 
         // iterate through the whole user list
-        for(uint256 i; i < users.length; i++){
-            UserVault _userVault = UserVault(vault[users[i]]);
+        for (uint256 i; i < users.length; i++) {
+            IUserVault _userVault = IUserVault(vault[users[i]]);
             // check they have names and assets in the vault, otherwise move on
-            if(_userVault.names().length != 0 && _userVault.assets().length != 0){
+            if (
+                _userVault.names().length != 0 &&
+                _userVault.assets().length != 0
+            ) {
                 uint256 _cost;
                 // if we haven't found any renewals yet lets check if this user has the funds to renew a name
-                if(_success == false){
-                    (,_costs[0]) = nameManager.checkForRenewals(_userVault.names());
-                    (_success, _asset) = exchangeManager.estimateFunds(_cost, users[i]);
+                if (_success == false) {
+                    (, _costs[0]) = nameManager.checkForRenewals(
+                        _userVault.names()
+                    );
+                    (_success, _asset) = exchangeManager.estimateFunds(
+                        _cost,
+                        users[i]
+                    );
                     _users[0] = users[i];
                 } else {
                     // lets find more users with a matching asset that needs a renewal
-                    for(uint256 j = 0 ; j < _userVault.assets().length; j++){
-                        if (_userVault.assets()[i] == _asset){
+                    for (uint256 j = 0; j < _userVault.assets().length; j++) {
+                        if (_userVault.assets()[i] == _asset) {
                             uint256 _addCost;
-                            (,_addCost) = nameManager.checkForRenewals(_userVault.names());
-                            if(exchangeManager.estimateSpecificAssetFunds(_addCost,users[i],_asset)){
-                                _users[j+1] = users[i];
-                                _costs[j+1] = _addCost;
+                            (, _addCost) = nameManager.checkForRenewals(
+                                _userVault.names()
+                            );
+                            if (
+                                exchangeManager.estimateSpecificAssetFunds(
+                                    _addCost,
+                                    users[i],
+                                    _asset
+                                )
+                            ) {
+                                _users[j + 1] = users[i];
+                                _costs[j + 1] = _addCost;
                             }
                         }
                     }
                 }
-            } 
+            }
         }
-        // we now have an array _users that contains all the users that need renewals and 
+        // we now have an array _users that contains all the users that need renewals and
         // can afford to pay with _asset, the respective costs of renewal are in _costs
         // lets assemble the big name list
         uint256 _count = countRenewals(_users);
         uint256 l = 0;
         uint256[] memory _names = new uint256[](_count);
-        for (uint256 i; i < _users.length ; i++){
-            if(_users[i] != address(0)) {
-                UserVault _userVault = UserVault(vault[_users[i]]);
-                uint256[] memory _userNames = new uint256[](_userVault.names().length);
-                (_userNames, ) = nameManager.checkForRenewals(_userVault.names());
-                for(uint256 k; k < _userVault.names().length; k++){
-                    if(_userNames[k] != 0){
+        for (uint256 i; i < _users.length; i++) {
+            if (_users[i] != address(0)) {
+                IUserVault _userVault = IUserVault(vault[_users[i]]);
+                uint256[] memory _userNames =
+                    new uint256[](_userVault.names().length);
+                (_userNames, ) = nameManager.checkForRenewals(
+                    _userVault.names()
+                );
+                for (uint256 k; k < _userVault.names().length; k++) {
+                    if (_userNames[k] != 0) {
                         _names[l] = _userNames[k];
-                        l++ ;
+                        l++;
                     }
-                    
                 }
-                
             }
         }
         // executeExchangeSwap
         // convert _names to strings
         // nameManager.executeBulkRenewal(_names, 0);
-
     }
 
-    function countRenewals(address[] memory _users) public view returns(uint256 _count) {
-        for (uint256 i; i < _users.length; i++){
-            UserVault _userVault = UserVault(vault[users[i]]);
-            (,uint256 _add) = nameManager.checkForRenewals(_userVault.names());
+    function countRenewals(address[] memory _users)
+        public
+        view
+        returns (uint256 _count)
+    {
+        for (uint256 i; i < _users.length; i++) {
+            IUserVault _userVault = IUserVault(vault[users[i]]);
+            (, uint256 _add) = nameManager.checkForRenewals(_userVault.names());
             _count = _count + _add;
         }
     }
 
-    /******************************************** 
-    *                                           *
-    *   Exchange functions                      *
-    *                                           *
-    ********************************************/
-/*
+    /********************************************
+     *                                           *
+     *   Exchange functions                      *
+     *                                           *
+     ********************************************/
+    /*
     function checkAvailiableFunds(uint256 _cost, address _user) public view returns(bool _accept, address _token, uint256[] memory _distribution){
         UserVault _userVault = UserVault(vault[_user]);
         uint256[] memory _distributionArray = new uint256[](22);
@@ -302,15 +367,13 @@ contract StakeYourName is Ownable {
         return (false, zeroAddress, _distributionArray);
     }
 */
-    function swapAssets() public view {
+    function swapAssets() public view {}
 
-    }
-
-    /******************************************** 
-    *                                           *
-    *   Admin functions                         *
-    *                                           *
-    ********************************************/
+    /********************************************
+     *                                           *
+     *   Admin functions                         *
+     *                                           *
+     ********************************************/
 
     receive() external payable {}
 
@@ -318,36 +381,46 @@ contract StakeYourName is Ownable {
         referralCode = _ref;
     }
 
-    /******************************************** 
-    *                                           *
-    *   Test and/or temporary functions.        *
-    *                                           *
-    ********************************************/
+    /********************************************
+     *                                           *
+     *   Test and/or temporary functions.        *
+     *                                           *
+     ********************************************/
 
     function setNameManager(address payable _address) external onlyOwner {
-        nameManager = NameManager(_address);
+        nameManager = INameManager(_address);
     }
+
     function setExchangeManager(address payable _address) external onlyOwner {
-        exchangeManager = ExchangeManager(_address);
+        exchangeManager = IExchangeManager(_address);
     }
+
     function setInvestmentManager(address _address) external onlyOwner {
-        investmentManager = InvestmentManager(_address);
+        investmentManager = IInvestmentManager(_address);
     }
+
     function approveInvestmentManager(address _asset) public onlyOwner {
         IERC20 _erc20 = IERC20(_asset);
         _erc20.approve(address(investmentManager), MAX_INT);
     }
 
-    /* set up all the interconnections required for the testnet
-    function setupTestNet(address payable _nameManager, address payable _exchangeManager, address _investmentManager, address _vault, address _oneSplit, address _ens) external onlyOwner{
-        nameManager = NameManager(_nameManager);
-        exchangeManager = ExchangeManager(_exchangeManager);
-        investmentManager = InvestmentManager(_investmentManager);
+    // set up all the interconnections required for the testnet
+    function setupTestNet(
+        address payable _nameManager,
+        address payable _exchangeManager,
+        address _investmentManager,
+        address _vault,
+        address _oneSplit,
+        address _ens
+    ) external onlyOwner {
+        nameManager = INameManager(_nameManager);
+        exchangeManager = IExchangeManager(_exchangeManager);
+        investmentManager = IInvestmentManager(_investmentManager);
         exchangeManager.updateNameManagerAddress(_nameManager);
         exchangeManager.setOneSplitAddress(_oneSplit);
         nameManager.updateAddresses(_ens);
         setMasterVault(_vault);
-    }*/
+    }
 
     /// @notice do not use this contract if this still exists
     function retrieveETH() public onlyOwner {
@@ -356,8 +429,7 @@ contract StakeYourName is Ownable {
 
     /// @notice do not use this contract if this still exists
     function emptyVault(address _vault) public onlyOwner {
-        UserVault _userVault = UserVault(_vault);
+        IUserVault _userVault = IUserVault(_vault);
         _userVault.collectETH();
     }
-
 }

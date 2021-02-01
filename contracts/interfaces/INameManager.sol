@@ -1,14 +1,15 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.7.4;
-pragma experimental ABIEncoderV2;
+pragma solidity ^0.7.6;
+pragma abicoder v2;
 
 /// @title StakeYourName - NameManager
 /// @notice Maintains a list of users and names they want to keep renewed
 /// @notice Can check for name expiry and pay for renewals
 /// @author Daniel Chilvers
 
-interface NameManager {
+interface INameManager {
     receive() external payable;
+    function returnHash(string [] calldata _name) external pure returns(bytes32);
     function executeBulkRenewal(string[] memory _names, uint256 _duration) external;
     function checkBulkPrice(string[] memory _names, uint256 _duration) external view returns(uint256);
     function checkPrice(string memory _name, uint256 _duration) external view returns(uint256);
