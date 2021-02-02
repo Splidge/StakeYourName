@@ -146,7 +146,7 @@ contract NameManager is Ownable {
     }
 
     function renewalDue(uint256 _labelhash) public view returns(bool) {
-        return (getNameExpiry(_labelhash) <= block.timestamp - renewalPeriod);
+        return (getNameExpiry(_labelhash) <= block.timestamp + renewalPeriod);
     }
 
     function updateRenewalPeriod(uint256 _time) public onlyOwner {
