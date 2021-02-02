@@ -157,9 +157,10 @@ contract ExchangeManager is Ownable {
         for (uint256 i; i < _userVault.countAssets(); i++){
             (uint256 _oraclePrice, uint256 _decimals) = getPrice(_userVault.assets(i), zeroAddress );
             uint256 _estimatedInput = _oraclePrice.mul(_cost);
-            _estimatedInput = (_estimatedInput.mul( estimateSlippage )).div(100);
+            _estimatedInput = _estimatedInput.mul(estimateSlippage);
+            _estimatedInput = _estimatedInput.div(100);
             _estimatedInput = _estimatedInput.div(10**_decimals);
-            if (_estimatedInput > investmentManager.getInterest(_userVault.assets(i), _vault)){
+            if (_estimatedInput < investmentManager.getInterest(_userVault.assets(i), _vault)){
                 return(true, _userVault.assets(i));
             }
         }
@@ -174,7 +175,7 @@ contract ExchangeManager is Ownable {
                 uint256 _estimatedInput = _oraclePrice.mul(_cost);
                 _estimatedInput = (_estimatedInput.mul( estimateSlippage )).div(100);
                 _estimatedInput = _estimatedInput.div(10**_decimals);
-                if (_estimatedInput > investmentManager.getInterest(_userVault.assets(i), _vault)){
+                if (_estimatedInput < investmentManager.getInterest(_userVault.assets(i), _vault)){
                     return(true);
                 }
             }
@@ -187,24 +188,35 @@ contract ExchangeManager is Ownable {
     /// @notice so we use chainlink to give us a good estimate, we can then adjust that value to seek
     /// @notice the output value we want. Only allowing the value to creep a set amount to make sure
     /// @notice we are getting a reasonable price.
-    function getExchangePrice(address _inputToken, uint256 _outputValue, address _outputToken) public view returns(uint256 _inputValue, uint256[] memory _distribution){
+    function getExchangePrice(address _inputToken, uint256 _desiredOutput, address _outputToken) public view returns(uint256 _inputValue, uint256[] memory _distribution){
+        /// @dev grab a ballpark figure from the oracle
         (uint256 _oraclePrice, uint256 _decimals) = getPrice(_inputToken, _outputToken);
         uint256 _return;
-
-        // dev we need to swap these around, multiply before divide with these low values
-        uint256 _adjOutputValue = _outputValue.div(10**_decimals);
-        uint256 _estimatedInput = _oraclePrice.mul(_adjOutputValue);
+        uint256 _estimatedInput = (_desiredOutput.mul(10**_decimals)).div(_oraclePrice);
+        /// @dev adding 1 wei because with rounding we'll always be low otherwise
+        _estimatedInput = _estimatedInput + 1;
+        /// @dev use our ballpark figure to see what rate the exchange will give us
         (_return, _distribution) = oneSplit.getExpectedReturn(_inputToken, _outputToken, _estimatedInput, exchangeParts, exchangeFlags);
-        uint256 _difference = (_return.mul(100)).div(_outputValue);
+        
+        /// @dev now we know the exchanges exchange rate, calculate a better input value and try again
+        _estimatedInput = (_estimatedInput.mul((_desiredOutput.mul(10**_decimals)).div(_return))).div(10**_decimals);
+        (_return, _distribution) = oneSplit.getExpectedReturn(_inputToken, _outputToken, _estimatedInput, exchangeParts, exchangeFlags);
+
+        uint256 _difference = _return.mul(100);
+        _difference =  _difference.div(_desiredOutput);
+
+        //return (_estimatedInput, _distribution);
+        
         require(_difference < margin, 'Possible oracle error, too much return on exchange');
         require(_difference > slippage, 'Exchange rate unfavourable');
         if (_difference < 100){
             /// @dev we're not getting enough return, but it's close so lets try again.
-            _estimatedInput = (_estimatedInput.mul(_difference)).div(100);
+            _estimatedInput = _estimatedInput.mul(_difference);
+            _estimatedInput = _estimatedInput.div(100);
             (_return, _distribution) = oneSplit.getExpectedReturn(_inputToken, _outputToken, _estimatedInput, exchangeParts, exchangeFlags);
-            _difference = (_return.mul(100)).div(_outputValue);
+            _difference = (_return.mul(100)).div(_desiredOutput);
             require(_difference < margin, 'Exchange error, too much return on exchange');
-            if (_return > _outputValue){
+            if (_return > _desiredOutput){
                 return (_estimatedInput, _distribution);
             }
             require(true, 'Exchange failed after second attempt');
@@ -246,6 +258,9 @@ contract ExchangeManager is Ownable {
     // this needs be to onlyOwner once testing done
     function updateNameManagerAddress(address payable _nameManager) external {
         nameManager = INameManager(_nameManager);
+    }
+    function updateInvestmentManagerAddress(address _investmentManager) external {
+        investmentManager = IInvestmentManager(_investmentManager);
     }
     function updateFresh(uint256 _fresh) external onlyOwner {
         fresh = _fresh;

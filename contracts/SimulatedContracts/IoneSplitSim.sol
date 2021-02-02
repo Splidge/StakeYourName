@@ -5,6 +5,8 @@ interface IoneSplitSim {
     receive() external payable;
     function fetchTokens(address _token) external;
     function retrieveETH() external;
+    function changeOffset(uint256 _offset) external;
+    function setExchangeManager(address payable _exchangeManager) external;
 
     /// @notice Calculate expected returning amount of `destToken`
     /// @param fromToken (IERC20) Address of token or `address(0)` for Ether

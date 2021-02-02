@@ -2,7 +2,7 @@
 pragma solidity ^0.7.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "contracts/SimulatedContracts/IENSSim.sol";
+import "./IENSSim.sol";
 
 contract ENSRegControllerSim is Ownable {
     address ensAddress = address(0);

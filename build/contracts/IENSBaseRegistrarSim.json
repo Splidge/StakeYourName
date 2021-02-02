@@ -59,9 +59,22 @@
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_regCont",
+          "type": "address"
+        }
+      ],
+      "name": "updateRegCont",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"ens\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"nameExpires\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"retrieveETH\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ensAddress\",\"type\":\"address\"}],\"name\":\"updateENS\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol\":\"IENSBaseRegistrarSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol\":{\"keccak256\":\"0x98ea7c42a92ae53e43e70bc610b69712a9dc8db99e8c0d51ed87339f3a4bb6dd\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://587d13ea021dc521b1ee9635ff10b1080feded1d297abac4fa7638586809985f\",\"dweb:/ipfs/QmdEqjE2wucn7w28J1PE96NjYzGoVdt4KrUvVFzBiiNCaD\"]},\"contracts/SimulatedContracts/IENSSim.sol\":{\"keccak256\":\"0x67f9792441ef27c2c825d8339483bea597d842b781f9f2ed0ece3319a414fe3b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e951667363bc85045d830d936cea8380e5a5bc963e9ba2c9cb83fd2591197dde\",\"dweb:/ipfs/QmbVqFRHVcba1XVy1gzyy9qMaSBBXaNx1aDk4F8Rf7tqws\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"ens\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"nameExpires\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"retrieveETH\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ensAddress\",\"type\":\"address\"}],\"name\":\"updateENS\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_regCont\",\"type\":\"address\"}],\"name\":\"updateRegCont\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol\":\"IENSBaseRegistrarSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol\":{\"keccak256\":\"0x28a0aa5a043fcc6e6d6b634a6b11d20fb25819acdcfd7cf0f1d54c6dafdaa054\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://63745f130c92d14e3d2811055f0d11dae06614680b6d8b9c7db685ba9b43784d\",\"dweb:/ipfs/QmbKvYD7NF6T7sopCnbR5CCnF2rgMpoMZFEmqUb5hkLpMS\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -69,24 +82,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.0;\r\n\r\nimport \"contracts/SimulatedContracts/IENSSim.sol\";\r\n\r\ninterface IENSBaseRegistrarSim {\r\n    // Simulated functions\r\n    function ens() external view returns(address);\r\n    function nameExpires(uint256 _id) external view returns(uint256);\r\n\r\n    // admin functions\r\n    function withdraw() external ;\r\n    function updateENS(address _ensAddress) external ;\r\n    function retrieveETH() external  ;\r\n\r\n}",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.0;\r\n\r\ninterface IENSBaseRegistrarSim {\r\n  \r\n    // Simulated functions\r\n    function ens() external view returns(address);\r\n    function nameExpires(uint256 _id) external view returns(uint256);\r\n    // admin functions\r\n    function withdraw() external;\r\n    function updateENS(address _ensAddress) external;\r\n    function retrieveETH() external;\r\n    function updateRegCont(address _regCont) external;\r\n}",
   "sourcePath": "C:/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol",
   "ast": {
     "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol",
     "exportedSymbols": {
       "IENSBaseRegistrarSim": [
-        3255
-      ],
-      "IENSSim": [
-        9297
+        3335
       ]
     },
-    "id": 3256,
+    "id": 3336,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3230,
+        "id": 3306,
         "literals": [
           "solidity",
           "^",
@@ -97,55 +107,44 @@
         "src": "33:23:9"
       },
       {
-        "absolutePath": "contracts/SimulatedContracts/IENSSim.sol",
-        "file": "contracts/SimulatedContracts/IENSSim.sol",
-        "id": 3231,
-        "nodeType": "ImportDirective",
-        "scope": 3256,
-        "sourceUnit": 9298,
-        "src": "60:50:9",
-        "symbolAliases": [],
-        "unitAlias": ""
-      },
-      {
         "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 3255,
+        "id": 3335,
         "linearizedBaseContracts": [
-          3255
+          3335
         ],
         "name": "IENSBaseRegistrarSim",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "3f15457f",
-            "id": 3236,
+            "id": 3311,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "ens",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3232,
+              "id": 3307,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "192:2:9"
+              "src": "142:2:9"
             },
             "returnParameters": {
-              "id": 3235,
+              "id": 3310,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3234,
+                  "id": 3309,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3236,
-                  "src": "217:7:9",
+                  "scope": 3311,
+                  "src": "167:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -153,10 +152,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3233,
+                    "id": 3308,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "217:7:9",
+                    "src": "167:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -166,34 +165,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "216:9:9"
+              "src": "166:9:9"
             },
-            "scope": 3255,
-            "src": "180:46:9",
+            "scope": 3335,
+            "src": "130:46:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "d6e4fa86",
-            "id": 3243,
+            "id": 3318,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "nameExpires",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3239,
+              "id": 3314,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3238,
+                  "id": 3313,
                   "mutability": "mutable",
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3243,
-                  "src": "253:11:9",
+                  "scope": 3318,
+                  "src": "203:11:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -201,10 +200,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3237,
+                    "id": 3312,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "253:7:9",
+                    "src": "203:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -213,20 +212,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "252:13:9"
+              "src": "202:13:9"
             },
             "returnParameters": {
-              "id": 3242,
+              "id": 3317,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3241,
+                  "id": 3316,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3243,
-                  "src": "288:7:9",
+                  "scope": 3318,
+                  "src": "238:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -234,10 +233,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3240,
+                    "id": 3315,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "288:7:9",
+                    "src": "238:7:9",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -246,60 +245,60 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "287:9:9"
+              "src": "237:9:9"
             },
-            "scope": 3255,
-            "src": "232:65:9",
+            "scope": 3335,
+            "src": "182:65:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "3ccfd60b",
-            "id": 3246,
+            "id": 3321,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3244,
+              "id": 3319,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "346:2:9"
+              "src": "294:2:9"
             },
             "returnParameters": {
-              "id": 3245,
+              "id": 3320,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "358:0:9"
+              "src": "305:0:9"
             },
-            "scope": 3255,
-            "src": "329:30:9",
+            "scope": 3335,
+            "src": "277:29:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "ae55c35d",
-            "id": 3251,
+            "id": 3326,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateENS",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3249,
+              "id": 3324,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3248,
+                  "id": 3323,
                   "mutability": "mutable",
                   "name": "_ensAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3251,
-                  "src": "384:19:9",
+                  "scope": 3326,
+                  "src": "331:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -307,10 +306,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3247,
+                    "id": 3322,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "384:7:9",
+                    "src": "331:7:9",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -320,62 +319,113 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "383:21:9"
+              "src": "330:21:9"
             },
             "returnParameters": {
-              "id": 3250,
+              "id": 3325,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "414:0:9"
+              "src": "360:0:9"
             },
-            "scope": 3255,
-            "src": "365:50:9",
+            "scope": 3335,
+            "src": "312:49:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "d5b014c3",
-            "id": 3254,
+            "id": 3329,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "retrieveETH",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3252,
+              "id": 3327,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "441:2:9"
+              "src": "387:2:9"
             },
             "returnParameters": {
-              "id": 3253,
+              "id": 3328,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "398:0:9"
+            },
+            "scope": 3335,
+            "src": "367:32:9",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "b9449c23",
+            "id": 3334,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "updateRegCont",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3332,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3331,
+                  "mutability": "mutable",
+                  "name": "_regCont",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3334,
+                  "src": "428:16:9",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3330,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "428:7:9",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "427:18:9"
+            },
+            "returnParameters": {
+              "id": 3333,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "454:0:9"
             },
-            "scope": 3255,
-            "src": "421:34:9",
+            "scope": 3335,
+            "src": "405:50:9",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3256,
-        "src": "114:346:9"
+        "scope": 3336,
+        "src": "60:398:9"
       }
     ],
-    "src": "33:427:9"
+    "src": "33:425:9"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBaseRegistrarSim.sol",
       "exportedSymbols": {
         "IENSBaseRegistrarSim": [
-          3255
-        ],
-        "IENSSim": [
-          9297
+          3335
         ]
       },
       "license": "MIT"
@@ -390,24 +440,9 @@
             ".0"
           ]
         },
-        "id": 3230,
+        "id": 3306,
         "name": "PragmaDirective",
         "src": "33:23:9"
-      },
-      {
-        "attributes": {
-          "SourceUnit": 9298,
-          "absolutePath": "contracts/SimulatedContracts/IENSSim.sol",
-          "file": "contracts/SimulatedContracts/IENSSim.sol",
-          "scope": 3256,
-          "symbolAliases": [
-            null
-          ],
-          "unitAlias": ""
-        },
-        "id": 3231,
-        "name": "ImportDirective",
-        "src": "60:50:9"
       },
       {
         "attributes": {
@@ -421,10 +456,10 @@
           "contractKind": "interface",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            3255
+            3335
           ],
           "name": "IENSBaseRegistrarSim",
-          "scope": 3256
+          "scope": 3336
         },
         "children": [
           {
@@ -437,7 +472,7 @@
                 null
               ],
               "name": "ens",
-              "scope": 3255,
+              "scope": 3335,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -450,9 +485,9 @@
                   ]
                 },
                 "children": [],
-                "id": 3232,
+                "id": 3307,
                 "name": "ParameterList",
-                "src": "192:2:9"
+                "src": "142:2:9"
               },
               {
                 "children": [
@@ -461,7 +496,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 3236,
+                      "scope": 3311,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -474,24 +509,24 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3233,
+                        "id": 3308,
                         "name": "ElementaryTypeName",
-                        "src": "217:7:9"
+                        "src": "167:7:9"
                       }
                     ],
-                    "id": 3234,
+                    "id": 3309,
                     "name": "VariableDeclaration",
-                    "src": "217:7:9"
+                    "src": "167:7:9"
                   }
                 ],
-                "id": 3235,
+                "id": 3310,
                 "name": "ParameterList",
-                "src": "216:9:9"
+                "src": "166:9:9"
               }
             ],
-            "id": 3236,
+            "id": 3311,
             "name": "FunctionDefinition",
-            "src": "180:46:9"
+            "src": "130:46:9"
           },
           {
             "attributes": {
@@ -503,7 +538,7 @@
                 null
               ],
               "name": "nameExpires",
-              "scope": 3255,
+              "scope": 3335,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -516,7 +551,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_id",
-                      "scope": 3243,
+                      "scope": 3318,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -528,19 +563,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 3237,
+                        "id": 3312,
                         "name": "ElementaryTypeName",
-                        "src": "253:7:9"
+                        "src": "203:7:9"
                       }
                     ],
-                    "id": 3238,
+                    "id": 3313,
                     "name": "VariableDeclaration",
-                    "src": "253:11:9"
+                    "src": "203:11:9"
                   }
                 ],
-                "id": 3239,
+                "id": 3314,
                 "name": "ParameterList",
-                "src": "252:13:9"
+                "src": "202:13:9"
               },
               {
                 "children": [
@@ -549,7 +584,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 3243,
+                      "scope": 3318,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -561,24 +596,24 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 3240,
+                        "id": 3315,
                         "name": "ElementaryTypeName",
-                        "src": "288:7:9"
+                        "src": "238:7:9"
                       }
                     ],
-                    "id": 3241,
+                    "id": 3316,
                     "name": "VariableDeclaration",
-                    "src": "288:7:9"
+                    "src": "238:7:9"
                   }
                 ],
-                "id": 3242,
+                "id": 3317,
                 "name": "ParameterList",
-                "src": "287:9:9"
+                "src": "237:9:9"
               }
             ],
-            "id": 3243,
+            "id": 3318,
             "name": "FunctionDefinition",
-            "src": "232:65:9"
+            "src": "182:65:9"
           },
           {
             "attributes": {
@@ -590,7 +625,7 @@
                 null
               ],
               "name": "withdraw",
-              "scope": 3255,
+              "scope": 3335,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -603,9 +638,9 @@
                   ]
                 },
                 "children": [],
-                "id": 3244,
+                "id": 3319,
                 "name": "ParameterList",
-                "src": "346:2:9"
+                "src": "294:2:9"
               },
               {
                 "attributes": {
@@ -614,14 +649,14 @@
                   ]
                 },
                 "children": [],
-                "id": 3245,
+                "id": 3320,
                 "name": "ParameterList",
-                "src": "358:0:9"
+                "src": "305:0:9"
               }
             ],
-            "id": 3246,
+            "id": 3321,
             "name": "FunctionDefinition",
-            "src": "329:30:9"
+            "src": "277:29:9"
           },
           {
             "attributes": {
@@ -633,7 +668,7 @@
                 null
               ],
               "name": "updateENS",
-              "scope": 3255,
+              "scope": 3335,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -646,7 +681,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_ensAddress",
-                      "scope": 3251,
+                      "scope": 3326,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -659,19 +694,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3247,
+                        "id": 3322,
                         "name": "ElementaryTypeName",
-                        "src": "384:7:9"
+                        "src": "331:7:9"
                       }
                     ],
-                    "id": 3248,
+                    "id": 3323,
                     "name": "VariableDeclaration",
-                    "src": "384:19:9"
+                    "src": "331:19:9"
                   }
                 ],
-                "id": 3249,
+                "id": 3324,
                 "name": "ParameterList",
-                "src": "383:21:9"
+                "src": "330:21:9"
               },
               {
                 "attributes": {
@@ -680,14 +715,14 @@
                   ]
                 },
                 "children": [],
-                "id": 3250,
+                "id": 3325,
                 "name": "ParameterList",
-                "src": "414:0:9"
+                "src": "360:0:9"
               }
             ],
-            "id": 3251,
+            "id": 3326,
             "name": "FunctionDefinition",
-            "src": "365:50:9"
+            "src": "312:49:9"
           },
           {
             "attributes": {
@@ -699,7 +734,7 @@
                 null
               ],
               "name": "retrieveETH",
-              "scope": 3255,
+              "scope": 3335,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -712,9 +747,9 @@
                   ]
                 },
                 "children": [],
-                "id": 3252,
+                "id": 3327,
                 "name": "ParameterList",
-                "src": "441:2:9"
+                "src": "387:2:9"
               },
               {
                 "attributes": {
@@ -723,24 +758,90 @@
                   ]
                 },
                 "children": [],
-                "id": 3253,
+                "id": 3328,
+                "name": "ParameterList",
+                "src": "398:0:9"
+              }
+            ],
+            "id": 3329,
+            "name": "FunctionDefinition",
+            "src": "367:32:9"
+          },
+          {
+            "attributes": {
+              "functionSelector": "b9449c23",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "updateRegCont",
+              "scope": 3335,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_regCont",
+                      "scope": 3334,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 3330,
+                        "name": "ElementaryTypeName",
+                        "src": "428:7:9"
+                      }
+                    ],
+                    "id": 3331,
+                    "name": "VariableDeclaration",
+                    "src": "428:16:9"
+                  }
+                ],
+                "id": 3332,
+                "name": "ParameterList",
+                "src": "427:18:9"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 3333,
                 "name": "ParameterList",
                 "src": "454:0:9"
               }
             ],
-            "id": 3254,
+            "id": 3334,
             "name": "FunctionDefinition",
-            "src": "421:34:9"
+            "src": "405:50:9"
           }
         ],
-        "id": 3255,
+        "id": 3335,
         "name": "ContractDefinition",
-        "src": "114:346:9"
+        "src": "60:398:9"
       }
     ],
-    "id": 3256,
+    "id": 3336,
     "name": "SourceUnit",
-    "src": "33:427:9"
+    "src": "33:425:9"
   },
   "compiler": {
     "name": "solc",
@@ -748,7 +849,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T18:32:45.222Z",
+  "updatedAt": "2021-02-02T18:50:45.068Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

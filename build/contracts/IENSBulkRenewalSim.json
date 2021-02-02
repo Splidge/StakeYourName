@@ -75,17 +75,17 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_ensBaseRegAddress",
+          "name": "_regCont",
           "type": "address"
         }
       ],
-      "name": "updateBaseRegistrar",
+      "name": "updateRegCont",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"ens\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string[]\",\"name\":\"_id\",\"type\":\"string[]\"},{\"internalType\":\"uint256\",\"name\":\"_duration\",\"type\":\"uint256\"}],\"name\":\"renewAll\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ensBaseRegAddress\",\"type\":\"address\"}],\"name\":\"updateBaseRegistrar\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ensAddress\",\"type\":\"address\"}],\"name\":\"updateENS\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol\":\"IENSBulkRenewalSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol\":{\"keccak256\":\"0x208371c177c6e835986c8596302ed25324973a3e92a7289571768cef71e42204\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3e3b37e603e4560435eefbdaf910ef96e626ef3167b0fa32410e07b83b3d2882\",\"dweb:/ipfs/QmXTVCYH8Jr3dNZ5Ca23FXWxbYhMNESEe67pZtWe83MhUX\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"ens\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string[]\",\"name\":\"_id\",\"type\":\"string[]\"},{\"internalType\":\"uint256\",\"name\":\"_duration\",\"type\":\"uint256\"}],\"name\":\"renewAll\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_ensAddress\",\"type\":\"address\"}],\"name\":\"updateENS\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_regCont\",\"type\":\"address\"}],\"name\":\"updateRegCont\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol\":\"IENSBulkRenewalSim\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol\":{\"keccak256\":\"0xf58b7caacf959d54498281b11a415ac95687e87ad458b9d9d5353aa3ba031e1e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1ee42b1de7a204e4bce53bf77211b5567d06bb2a4f6c1b71521d4ed91532f335\",\"dweb:/ipfs/QmcbEWHXRntaPnKnvwT4EfvHr1wBDzYFxrqFmUYirSFuyx\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -93,21 +93,21 @@
   "deployedGeneratedSources": [],
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.6;\r\npragma abicoder v2;\r\n\r\ninterface IENSBulkRenewalSim {\r\n\r\n    // Simulated functions\r\n    function ens() external view returns(address);\r\n    function renewAll(string[] calldata _id, uint256 _duration) external payable ;\r\n    function supportsInterface(bytes4) external pure returns(bool);\r\n\r\n\r\n    // admin functions\r\n    function withdraw() external ;\r\n    function updateENS(address _ensAddress) external ;\r\n    function updateBaseRegistrar(address _ensBaseRegAddress) external ;\r\n}",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.7.6;\r\npragma abicoder v2;\r\n\r\ninterface IENSBulkRenewalSim {\r\n\r\n    // Simulated functions\r\n    function ens() external view returns(address);\r\n    function renewAll(string[] calldata _id, uint256 _duration) external payable;\r\n    function supportsInterface(bytes4) external pure returns(bool);\r\n    // admin functions\r\n    function withdraw() external;\r\n    function updateENS(address _ensAddress) external;\r\n    function updateRegCont(address _regCont) external;\r\n}",
   "sourcePath": "C:/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol",
   "ast": {
     "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol",
     "exportedSymbols": {
       "IENSBulkRenewalSim": [
-        3292
+        3372
       ]
     },
-    "id": 3293,
+    "id": 3373,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3257,
+        "id": 3337,
         "literals": [
           "solidity",
           "^",
@@ -118,7 +118,7 @@
         "src": "33:23:10"
       },
       {
-        "id": 3258,
+        "id": 3338,
         "literals": [
           "abicoder",
           "v2"
@@ -132,38 +132,38 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 3292,
+        "id": 3372,
         "linearizedBaseContracts": [
-          3292
+          3372
         ],
         "name": "IENSBulkRenewalSim",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "3f15457f",
-            "id": 3263,
+            "id": 3343,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "ens",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3259,
+              "id": 3339,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "159:2:10"
             },
             "returnParameters": {
-              "id": 3262,
+              "id": 3342,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3261,
+                  "id": 3341,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3263,
+                  "scope": 3343,
                   "src": "184:7:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -172,7 +172,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3260,
+                    "id": 3340,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "184:7:10",
@@ -187,7 +187,7 @@
               ],
               "src": "183:9:10"
             },
-            "scope": 3292,
+            "scope": 3372,
             "src": "147:46:10",
             "stateMutability": "view",
             "virtual": false,
@@ -195,23 +195,23 @@
           },
           {
             "functionSelector": "e8d6dbb4",
-            "id": 3271,
+            "id": 3351,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "renewAll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3269,
+              "id": 3349,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3266,
+                  "id": 3346,
                   "mutability": "mutable",
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3271,
+                  "scope": 3351,
                   "src": "217:21:10",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -221,7 +221,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 3264,
+                      "id": 3344,
                       "name": "string",
                       "nodeType": "ElementaryTypeName",
                       "src": "217:6:10",
@@ -230,7 +230,7 @@
                         "typeString": "string"
                       }
                     },
-                    "id": 3265,
+                    "id": 3345,
                     "nodeType": "ArrayTypeName",
                     "src": "217:8:10",
                     "typeDescriptions": {
@@ -242,11 +242,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3268,
+                  "id": 3348,
                   "mutability": "mutable",
                   "name": "_duration",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3271,
+                  "scope": 3351,
                   "src": "240:17:10",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -255,7 +255,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3267,
+                    "id": 3347,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "240:7:10",
@@ -270,37 +270,37 @@
               "src": "216:42:10"
             },
             "returnParameters": {
-              "id": 3270,
+              "id": 3350,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "276:0:10"
+              "src": "275:0:10"
             },
-            "scope": 3292,
-            "src": "199:78:10",
+            "scope": 3372,
+            "src": "199:77:10",
             "stateMutability": "payable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "01ffc9a7",
-            "id": 3278,
+            "id": 3358,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3274,
+              "id": 3354,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3273,
+                  "id": 3353,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3278,
-                  "src": "310:6:10",
+                  "scope": 3358,
+                  "src": "309:6:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -308,10 +308,10 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 3272,
+                    "id": 3352,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
-                    "src": "310:6:10",
+                    "src": "309:6:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes4",
                       "typeString": "bytes4"
@@ -320,20 +320,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "309:8:10"
+              "src": "308:8:10"
             },
             "returnParameters": {
-              "id": 3277,
+              "id": 3357,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3276,
+                  "id": 3356,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3278,
-                  "src": "340:4:10",
+                  "scope": 3358,
+                  "src": "339:4:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -341,10 +341,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3275,
+                    "id": 3355,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "340:4:10",
+                    "src": "339:4:10",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -353,60 +353,60 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "339:6:10"
+              "src": "338:6:10"
             },
-            "scope": 3292,
-            "src": "283:63:10",
+            "scope": 3372,
+            "src": "282:63:10",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "3ccfd60b",
-            "id": 3281,
+            "id": 3361,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3279,
+              "id": 3359,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "397:2:10"
+              "src": "392:2:10"
             },
             "returnParameters": {
-              "id": 3280,
+              "id": 3360,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "409:0:10"
+              "src": "403:0:10"
             },
-            "scope": 3292,
-            "src": "380:30:10",
+            "scope": 3372,
+            "src": "375:29:10",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "functionSelector": "ae55c35d",
-            "id": 3286,
+            "id": 3366,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "updateENS",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3284,
+              "id": 3364,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3283,
+                  "id": 3363,
                   "mutability": "mutable",
                   "name": "_ensAddress",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3286,
-                  "src": "435:19:10",
+                  "scope": 3366,
+                  "src": "429:19:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -414,10 +414,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3282,
+                    "id": 3362,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "435:7:10",
+                    "src": "429:7:10",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -427,40 +427,40 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "434:21:10"
+              "src": "428:21:10"
             },
             "returnParameters": {
-              "id": 3285,
+              "id": 3365,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "465:0:10"
+              "src": "458:0:10"
             },
-            "scope": 3292,
-            "src": "416:50:10",
+            "scope": 3372,
+            "src": "410:49:10",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
-            "functionSelector": "97246671",
-            "id": 3291,
+            "functionSelector": "b9449c23",
+            "id": 3371,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "updateBaseRegistrar",
+            "name": "updateRegCont",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3289,
+              "id": 3369,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3288,
+                  "id": 3368,
                   "mutability": "mutable",
-                  "name": "_ensBaseRegAddress",
+                  "name": "_regCont",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3291,
-                  "src": "501:26:10",
+                  "scope": 3371,
+                  "src": "488:16:10",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -468,10 +468,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3287,
+                    "id": 3367,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "501:7:10",
+                    "src": "488:7:10",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -481,33 +481,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "500:28:10"
+              "src": "487:18:10"
             },
             "returnParameters": {
-              "id": 3290,
+              "id": 3370,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "538:0:10"
+              "src": "514:0:10"
             },
-            "scope": 3292,
-            "src": "472:67:10",
+            "scope": 3372,
+            "src": "465:50:10",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 3293,
-        "src": "81:461:10"
+        "scope": 3373,
+        "src": "81:437:10"
       }
     ],
-    "src": "33:509:10"
+    "src": "33:485:10"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/SimulatedContracts/IENSBulkRenewalSim.sol",
       "exportedSymbols": {
         "IENSBulkRenewalSim": [
-          3292
+          3372
         ]
       },
       "license": "MIT"
@@ -522,7 +522,7 @@
             ".6"
           ]
         },
-        "id": 3257,
+        "id": 3337,
         "name": "PragmaDirective",
         "src": "33:23:10"
       },
@@ -533,7 +533,7 @@
             "v2"
           ]
         },
-        "id": 3258,
+        "id": 3338,
         "name": "PragmaDirective",
         "src": "58:19:10"
       },
@@ -549,10 +549,10 @@
           "contractKind": "interface",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            3292
+            3372
           ],
           "name": "IENSBulkRenewalSim",
-          "scope": 3293
+          "scope": 3373
         },
         "children": [
           {
@@ -565,7 +565,7 @@
                 null
               ],
               "name": "ens",
-              "scope": 3292,
+              "scope": 3372,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -578,7 +578,7 @@
                   ]
                 },
                 "children": [],
-                "id": 3259,
+                "id": 3339,
                 "name": "ParameterList",
                 "src": "159:2:10"
               },
@@ -589,7 +589,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 3263,
+                      "scope": 3343,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -602,22 +602,22 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3260,
+                        "id": 3340,
                         "name": "ElementaryTypeName",
                         "src": "184:7:10"
                       }
                     ],
-                    "id": 3261,
+                    "id": 3341,
                     "name": "VariableDeclaration",
                     "src": "184:7:10"
                   }
                 ],
-                "id": 3262,
+                "id": 3342,
                 "name": "ParameterList",
                 "src": "183:9:10"
               }
             ],
-            "id": 3263,
+            "id": 3343,
             "name": "FunctionDefinition",
             "src": "147:46:10"
           },
@@ -631,7 +631,7 @@
                 null
               ],
               "name": "renewAll",
-              "scope": 3292,
+              "scope": 3372,
               "stateMutability": "payable",
               "virtual": false,
               "visibility": "external"
@@ -644,7 +644,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_id",
-                      "scope": 3271,
+                      "scope": 3351,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "string[]",
@@ -661,17 +661,17 @@
                               "name": "string",
                               "type": "string"
                             },
-                            "id": 3264,
+                            "id": 3344,
                             "name": "ElementaryTypeName",
                             "src": "217:6:10"
                           }
                         ],
-                        "id": 3265,
+                        "id": 3345,
                         "name": "ArrayTypeName",
                         "src": "217:8:10"
                       }
                     ],
-                    "id": 3266,
+                    "id": 3346,
                     "name": "VariableDeclaration",
                     "src": "217:21:10"
                   },
@@ -680,7 +680,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_duration",
-                      "scope": 3271,
+                      "scope": 3351,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -692,17 +692,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 3267,
+                        "id": 3347,
                         "name": "ElementaryTypeName",
                         "src": "240:7:10"
                       }
                     ],
-                    "id": 3268,
+                    "id": 3348,
                     "name": "VariableDeclaration",
                     "src": "240:17:10"
                   }
                 ],
-                "id": 3269,
+                "id": 3349,
                 "name": "ParameterList",
                 "src": "216:42:10"
               },
@@ -713,14 +713,14 @@
                   ]
                 },
                 "children": [],
-                "id": 3270,
+                "id": 3350,
                 "name": "ParameterList",
-                "src": "276:0:10"
+                "src": "275:0:10"
               }
             ],
-            "id": 3271,
+            "id": 3351,
             "name": "FunctionDefinition",
-            "src": "199:78:10"
+            "src": "199:77:10"
           },
           {
             "attributes": {
@@ -732,7 +732,7 @@
                 null
               ],
               "name": "supportsInterface",
-              "scope": 3292,
+              "scope": 3372,
               "stateMutability": "pure",
               "virtual": false,
               "visibility": "external"
@@ -745,7 +745,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 3278,
+                      "scope": 3358,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -757,19 +757,19 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 3272,
+                        "id": 3352,
                         "name": "ElementaryTypeName",
-                        "src": "310:6:10"
+                        "src": "309:6:10"
                       }
                     ],
-                    "id": 3273,
+                    "id": 3353,
                     "name": "VariableDeclaration",
-                    "src": "310:6:10"
+                    "src": "309:6:10"
                   }
                 ],
-                "id": 3274,
+                "id": 3354,
                 "name": "ParameterList",
-                "src": "309:8:10"
+                "src": "308:8:10"
               },
               {
                 "children": [
@@ -778,7 +778,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 3278,
+                      "scope": 3358,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -790,24 +790,24 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 3275,
+                        "id": 3355,
                         "name": "ElementaryTypeName",
-                        "src": "340:4:10"
+                        "src": "339:4:10"
                       }
                     ],
-                    "id": 3276,
+                    "id": 3356,
                     "name": "VariableDeclaration",
-                    "src": "340:4:10"
+                    "src": "339:4:10"
                   }
                 ],
-                "id": 3277,
+                "id": 3357,
                 "name": "ParameterList",
-                "src": "339:6:10"
+                "src": "338:6:10"
               }
             ],
-            "id": 3278,
+            "id": 3358,
             "name": "FunctionDefinition",
-            "src": "283:63:10"
+            "src": "282:63:10"
           },
           {
             "attributes": {
@@ -819,7 +819,7 @@
                 null
               ],
               "name": "withdraw",
-              "scope": 3292,
+              "scope": 3372,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -832,9 +832,9 @@
                   ]
                 },
                 "children": [],
-                "id": 3279,
+                "id": 3359,
                 "name": "ParameterList",
-                "src": "397:2:10"
+                "src": "392:2:10"
               },
               {
                 "attributes": {
@@ -843,14 +843,14 @@
                   ]
                 },
                 "children": [],
-                "id": 3280,
+                "id": 3360,
                 "name": "ParameterList",
-                "src": "409:0:10"
+                "src": "403:0:10"
               }
             ],
-            "id": 3281,
+            "id": 3361,
             "name": "FunctionDefinition",
-            "src": "380:30:10"
+            "src": "375:29:10"
           },
           {
             "attributes": {
@@ -862,7 +862,7 @@
                 null
               ],
               "name": "updateENS",
-              "scope": 3292,
+              "scope": 3372,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -875,7 +875,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "_ensAddress",
-                      "scope": 3286,
+                      "scope": 3366,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -888,19 +888,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3282,
+                        "id": 3362,
                         "name": "ElementaryTypeName",
-                        "src": "435:7:10"
+                        "src": "429:7:10"
                       }
                     ],
-                    "id": 3283,
+                    "id": 3363,
                     "name": "VariableDeclaration",
-                    "src": "435:19:10"
+                    "src": "429:19:10"
                   }
                 ],
-                "id": 3284,
+                "id": 3364,
                 "name": "ParameterList",
-                "src": "434:21:10"
+                "src": "428:21:10"
               },
               {
                 "attributes": {
@@ -909,26 +909,26 @@
                   ]
                 },
                 "children": [],
-                "id": 3285,
+                "id": 3365,
                 "name": "ParameterList",
-                "src": "465:0:10"
+                "src": "458:0:10"
               }
             ],
-            "id": 3286,
+            "id": 3366,
             "name": "FunctionDefinition",
-            "src": "416:50:10"
+            "src": "410:49:10"
           },
           {
             "attributes": {
-              "functionSelector": "97246671",
+              "functionSelector": "b9449c23",
               "implemented": false,
               "isConstructor": false,
               "kind": "function",
               "modifiers": [
                 null
               ],
-              "name": "updateBaseRegistrar",
-              "scope": 3292,
+              "name": "updateRegCont",
+              "scope": 3372,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -940,8 +940,8 @@
                     "attributes": {
                       "constant": false,
                       "mutability": "mutable",
-                      "name": "_ensBaseRegAddress",
-                      "scope": 3291,
+                      "name": "_regCont",
+                      "scope": 3371,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -954,19 +954,19 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 3287,
+                        "id": 3367,
                         "name": "ElementaryTypeName",
-                        "src": "501:7:10"
+                        "src": "488:7:10"
                       }
                     ],
-                    "id": 3288,
+                    "id": 3368,
                     "name": "VariableDeclaration",
-                    "src": "501:26:10"
+                    "src": "488:16:10"
                   }
                 ],
-                "id": 3289,
+                "id": 3369,
                 "name": "ParameterList",
-                "src": "500:28:10"
+                "src": "487:18:10"
               },
               {
                 "attributes": {
@@ -975,24 +975,24 @@
                   ]
                 },
                 "children": [],
-                "id": 3290,
+                "id": 3370,
                 "name": "ParameterList",
-                "src": "538:0:10"
+                "src": "514:0:10"
               }
             ],
-            "id": 3291,
+            "id": 3371,
             "name": "FunctionDefinition",
-            "src": "472:67:10"
+            "src": "465:50:10"
           }
         ],
-        "id": 3292,
+        "id": 3372,
         "name": "ContractDefinition",
-        "src": "81:461:10"
+        "src": "81:437:10"
       }
     ],
-    "id": 3293,
+    "id": 3373,
     "name": "SourceUnit",
-    "src": "33:509:10"
+    "src": "33:485:10"
   },
   "compiler": {
     "name": "solc",
@@ -1000,7 +1000,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T18:32:45.223Z",
+  "updatedAt": "2021-02-02T18:50:45.069Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

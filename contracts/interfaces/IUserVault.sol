@@ -27,4 +27,8 @@ interface IUserVault{
     function removeAsset(address _asset) external;
     function readableName(uint256 _name) external view returns(string[] memory);
     function countAssets() external view returns(uint256);
+    function countNames() external view returns(uint256);
+    function readNames() external view returns(uint256[] memory);
+    function assembleName(uint256 _index) external view returns(string memory _name);
+    function readSubName(uint256 _hash, uint256 _index) external view returns(string memory _name);
 }

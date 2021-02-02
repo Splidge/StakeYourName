@@ -97,4 +97,22 @@ contract UserVault is Initializable{
     function countAssets() external view returns(uint256){
         return assets.length;
     }
+    function countNames() external view returns(uint256){
+        return names.length;
+    }
+    function readNames() external view returns(uint256[] memory){
+        return names;
+    }
+    function readSubName(uint256 _hash, uint256 _index) external view returns(string memory _name){
+        _name = readableName[_hash][_index];
+    }
+
+    /// @notice assmebles the parts of the readable name into a single string
+    function assembleName(uint256 _index) external view returns(string memory _name){
+        _name = string(abi.encodePacked(readableName[_index][1],".",readableName[_index][0]));
+        for(uint256 i = 2; i < readableName[_index].length; i++){
+            _name = string(abi.encodePacked(readableName[_index][i],".",_name));
+        }
+        return _name;
+    }
 }

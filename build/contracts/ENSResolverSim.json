@@ -2479,12 +2479,12 @@
     "42": {
       "events": {},
       "links": {},
-      "address": "0x20a3DB359192f6263F2b6104c1999EC79404846b",
-      "transactionHash": "0x5eb7895d9be06653de1743235898ec587ee04a84d4658ff618d1e3afb4c28c57"
+      "address": "0xAED62067634fb908AEb1c2F5995B7D1C098b71f6",
+      "transactionHash": "0x3a3454eb47740fc5b42107631d66bb32d4690320f3da48af983cdeddf62421b6"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T18:35:33.362Z",
+  "updatedAt": "2021-02-02T18:52:05.436Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

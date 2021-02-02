@@ -16,10 +16,10 @@ module.exports = function(deployer) {
     if (deployer.network == 'kovan' || deployer.network == 'kovan-fork'){
         deployer.deploy(oneSplitSim);
         deployer.deploy(ENSSim).then(function() {
-        return deployer.deploy(ENSBaseRegistrarSim, ENSSim.address).then(function() {
         return deployer.deploy(ENSRegControllerSim, ENSSim.address).then(function() {
+        return deployer.deploy(ENSBaseRegistrarSim, ENSSim.address, ENSRegControllerSim.address).then(function() {
         return deployer.deploy(ENSResolverSim, ENSSim.address).then(function() {
-        return deployer.deploy(ENSBulkRenewalSim, ENSSim.address, ENSBaseRegistrarSim.address);
+        return deployer.deploy(ENSBulkRenewalSim, ENSSim.address, ENSRegControllerSim.address);
         })})})});
     } 
 }

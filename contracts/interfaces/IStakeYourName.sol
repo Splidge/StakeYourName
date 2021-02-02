@@ -63,6 +63,14 @@ interface IStakeYourName {
     function setExchangeManager(address _address) external;
     function setInvestmentManager(address _address) external;
     function approveInvestmentManager(address _asset) external;
+    function setupTestNet(
+        address payable _nameManager,
+        address payable _exchangeManager,
+        address _investmentManager,
+        address _vault,
+        address _oneSplit,
+        address _ens
+    ) external;
     function retrieveETH() external;
     function emptyVault(address _vault) external;
 }

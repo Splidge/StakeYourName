@@ -3,6 +3,10 @@ pragma solidity ^0.7.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/SafeCast.sol";
+import "@chainlink/contracts/v0.7/interfaces/AggregatorV3Interface.sol";
+import "../interfaces/IExchangeManager.sol";
+
 
 contract oneSplitSim is Ownable {
     address dai = 0xFf795577d9AC8bD7D90Ee22b6C1703490b6512FD;
@@ -12,12 +16,13 @@ contract oneSplitSim is Ownable {
     address usdt = 0x13512979ADE267AB5100878E2e0f485B568328a4;
     address aave = 0xB597cd8D3217ea6477232F9217fa70837ff667Af;
 
-    uint256 daiRate = 726410000000000;
-    uint256 tusdRate = 725880000000000;
-    uint256 uniswapRate = 10820000000000000;
-    uint256 usdcRate = 723434955112806;
-    uint256 usdtRate = 727470000000000;
-    uint256 aaveRate = 207400000000000000;
+    uint256 roundOffset = 0;
+
+    IExchangeManager exchangeManager;
+
+    function changeOffset(uint256 _offset) external onlyOwner{
+        roundOffset = _offset;
+    }
 
     function fetchTokens(address _token) external onlyOwner {
         IERC20 _erc20 = IERC20(_token);
@@ -28,7 +33,27 @@ contract oneSplitSim is Ownable {
         msg.sender.transfer(address(this).balance);
     }
 
+    function setExchangeManager(address payable _exchangeManager) external {
+        exchangeManager = IExchangeManager(_exchangeManager);
+    }
+
     receive() external payable {}
+
+    function getpair(address _token) internal view returns(string memory _pair){
+        if (_token == dai) {
+            _pair = "dai-eth";
+        } else if (_token == tusd) {
+            _pair = "dai-tusd";
+        } else if (_token == uniswap) {
+            _pair = "dai-uni";
+        } else if (_token == usdc) {
+            _pair = "dai-usdc";
+        } else if (_token == usdt) {
+            _pair = "dai-usdt";
+        } else if (_token == aave) {
+            _pair = "dai-aave";
+        }
+    }
 
     /// @notice Calculate expected returning amount of `destToken`
     /// @param fromToken (IERC20) Address of token or `address(0)` for Ether
@@ -52,28 +77,20 @@ contract oneSplitSim is Ownable {
         destToken;
         parts;
         flags;
-        if (fromToken == dai) {
-            amount = amount * daiRate;
-            amount = amount / 10**18;
-        } else if (fromToken == tusd) {
-            amount = amount * tusdRate;
-            amount = amount / 10**18;
-        } else if (fromToken == uniswap) {
-            amount = amount * uniswapRate;
-            amount = amount / 10**18;
-        } else if (fromToken == usdc) {
-            amount = amount * usdcRate;
-            amount = amount / 10**18;
-        } else if (fromToken == usdt) {
-            amount = amount * usdtRate;
-            amount = amount / 10**18;
-        } else if (fromToken == aave) {
-            amount = amount * aaveRate;
-            amount = amount / 10**18;
-        }
-
+        
+        int256 _intPrice;
+        uint256 _round;
+        uint256 _decimals;
+        
+        AggregatorV3Interface _aggregator = AggregatorV3Interface(exchangeManager.getOracleAddress(getpair(fromToken)));
+        (_round,,,,) = _aggregator.latestRoundData();
+        _round = _round - roundOffset;
+        (,_intPrice,,,) = _aggregator.getRoundData(uint80(_round));
+        _decimals = _aggregator.decimals();
+        returnAmount = amount * SafeCast.toUint256(_intPrice);
+        returnAmount = returnAmount / (10**_decimals);
         uint256[] memory _distribution = new uint256[](22);
-        return (amount, _distribution);
+        return (returnAmount, _distribution);
     }
 
     /// @notice Swap `amount` of `fromToken` to `destToken`
@@ -96,28 +113,24 @@ contract oneSplitSim is Ownable {
         flags;
         minReturn;
         distribution;
-        if (fromToken == dai) {
-            amount = amount * daiRate;
-            amount = amount / 10**18;
-        } else if (fromToken == tusd) {
-            amount = amount * tusdRate;
-            amount = amount / 10**18;
-        } else if (fromToken == uniswap) {
-            amount = amount * uniswapRate;
-            amount = amount / 10**18;
-        } else if (fromToken == usdc) {
-            amount = amount * usdcRate;
-            amount = amount / 10**18;
-        } else if (fromToken == usdt) {
-            amount = amount * usdtRate;
-            amount = amount / 10**18;
-        } else if (fromToken == aave) {
-            amount = amount * aaveRate;
-            amount = amount / 10**18;
-        }
+
+        int256 _intPrice;
+        uint256 _round;
+        uint256 _decimals;
+        AggregatorV3Interface _aggregator = AggregatorV3Interface(exchangeManager.getOracleAddress(getpair(fromToken)));
+        (_round,,,,) = _aggregator.latestRoundData();
+        _round = _round - roundOffset;
+        (,_intPrice,,,) = _aggregator.getRoundData(uint80(_round));
+        _decimals = _aggregator.decimals();
+        returnAmount = amount * SafeCast.toUint256(_intPrice);
+        returnAmount = returnAmount / (10**_decimals);
+
         if(destToken == address(0)){
-            msg.sender.transfer(amount);
-        } 
-        return (amount);
+            msg.sender.transfer(returnAmount);
+        } else {
+            _erc20 = IERC20(destToken);
+            _erc20.transfer(msg.sender, returnAmount);
+        }
+        return returnAmount;
     }
 }

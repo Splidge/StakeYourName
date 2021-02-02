@@ -423,15 +423,15 @@
     "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/interfaces/ENS_Resolver.sol",
     "exportedSymbols": {
       "ENSResolver": [
-        6590
+        6797
       ]
     },
-    "id": 6591,
+    "id": 6798,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 6416,
+        "id": 6623,
         "literals": [
           "solidity",
           "^",
@@ -447,38 +447,38 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 6590,
+        "id": 6797,
         "linearizedBaseContracts": [
-          6590
+          6797
         ],
         "name": "ENSResolver",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "documentation": {
-              "id": 6417,
+              "id": 6624,
               "nodeType": "StructuredDocumentation",
               "src": "89:298:24",
               "text": " Sets the ABI associated with an ENS node.\n Nodes may have one ABI of each content type. To remove an ABI, set it to\n the empty string.\n @param node The node to update.\n @param contentType The content type of the ABI\n @param data The ABI data."
             },
             "functionSelector": "623195b0",
-            "id": 6426,
+            "id": 6633,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setABI",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6424,
+              "id": 6631,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6419,
+                  "id": 6626,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6426,
+                  "scope": 6633,
                   "src": "419:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -487,7 +487,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6418,
+                    "id": 6625,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "419:7:24",
@@ -500,11 +500,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6421,
+                  "id": 6628,
                   "mutability": "mutable",
                   "name": "contentType",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6426,
+                  "scope": 6633,
                   "src": "442:19:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -513,7 +513,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 6420,
+                    "id": 6627,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "442:7:24",
@@ -526,11 +526,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6423,
+                  "id": 6630,
                   "mutability": "mutable",
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6426,
+                  "scope": 6633,
                   "src": "472:19:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -539,7 +539,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 6422,
+                    "id": 6629,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "472:5:24",
@@ -554,12 +554,12 @@
               "src": "408:90:24"
             },
             "returnParameters": {
-              "id": 6425,
+              "id": 6632,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "507:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "393:115:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -567,29 +567,29 @@
           },
           {
             "documentation": {
-              "id": 6427,
+              "id": 6634,
               "nodeType": "StructuredDocumentation",
               "src": "516:317:24",
               "text": " Returns the ABI associated with an ENS node.\n Defined in EIP205.\n @param node The ENS node to query\n @param contentTypes A bitwise OR of the ABI formats accepted by the caller.\n @return contentType The content type of the return value\n @return data The ABI data"
             },
             "functionSelector": "2203ab56",
-            "id": 6438,
+            "id": 6645,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "ABI",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6432,
+              "id": 6639,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6429,
+                  "id": 6636,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6438,
+                  "scope": 6645,
                   "src": "852:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -598,7 +598,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6428,
+                    "id": 6635,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "852:7:24",
@@ -611,11 +611,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6431,
+                  "id": 6638,
                   "mutability": "mutable",
                   "name": "contentTypes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6438,
+                  "scope": 6645,
                   "src": "866:20:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -624,7 +624,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 6430,
+                    "id": 6637,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "866:7:24",
@@ -639,16 +639,16 @@
               "src": "851:36:24"
             },
             "returnParameters": {
-              "id": 6437,
+              "id": 6644,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6434,
+                  "id": 6641,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6438,
+                  "scope": 6645,
                   "src": "938:7:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -657,7 +657,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 6433,
+                    "id": 6640,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "938:7:24",
@@ -670,11 +670,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6436,
+                  "id": 6643,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6438,
+                  "scope": 6645,
                   "src": "947:12:24",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -683,7 +683,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 6435,
+                    "id": 6642,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "947:5:24",
@@ -697,7 +697,7 @@
               ],
               "src": "937:23:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "839:122:24",
             "stateMutability": "view",
             "virtual": false,
@@ -705,29 +705,29 @@
           },
           {
             "documentation": {
-              "id": 6439,
+              "id": 6646,
               "nodeType": "StructuredDocumentation",
               "src": "969:217:24",
               "text": " Sets the address associated with an ENS node.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param a The address to set."
             },
             "functionSelector": "d5fa2b00",
-            "id": 6446,
+            "id": 6653,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setAddr",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6444,
+              "id": 6651,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6441,
+                  "id": 6648,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6446,
+                  "scope": 6653,
                   "src": "1209:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -736,7 +736,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6440,
+                    "id": 6647,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1209:7:24",
@@ -749,11 +749,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6443,
+                  "id": 6650,
                   "mutability": "mutable",
                   "name": "a",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6446,
+                  "scope": 6653,
                   "src": "1223:9:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -762,7 +762,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 6442,
+                    "id": 6649,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1223:7:24",
@@ -778,12 +778,12 @@
               "src": "1208:25:24"
             },
             "returnParameters": {
-              "id": 6445,
+              "id": 6652,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1242:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "1192:51:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -791,29 +791,29 @@
           },
           {
             "documentation": {
-              "id": 6447,
+              "id": 6654,
               "nodeType": "StructuredDocumentation",
               "src": "1251:152:24",
               "text": " Returns the address associated with an ENS node.\n @param node The ENS node to query.\n @return The associated address."
             },
             "functionSelector": "3b3b57de",
-            "id": 6454,
+            "id": 6661,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "addr",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6450,
+              "id": 6657,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6449,
+                  "id": 6656,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6454,
+                  "scope": 6661,
                   "src": "1423:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -822,7 +822,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6448,
+                    "id": 6655,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1423:7:24",
@@ -837,16 +837,16 @@
               "src": "1422:14:24"
             },
             "returnParameters": {
-              "id": 6453,
+              "id": 6660,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6452,
+                  "id": 6659,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6454,
+                  "scope": 6661,
                   "src": "1460:15:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -855,7 +855,7 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 6451,
+                    "id": 6658,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1460:15:24",
@@ -870,7 +870,7 @@
               ],
               "src": "1459:17:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "1409:68:24",
             "stateMutability": "view",
             "virtual": false,
@@ -878,29 +878,29 @@
           },
           {
             "documentation": {
-              "id": 6455,
+              "id": 6662,
               "nodeType": "StructuredDocumentation",
               "src": "1485:227:24",
               "text": " Sets the contenthash associated with an ENS node.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param hash The contenthash to set"
             },
             "functionSelector": "304e6ade",
-            "id": 6462,
+            "id": 6669,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setContenthash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6460,
+              "id": 6667,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6457,
+                  "id": 6664,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6462,
+                  "scope": 6669,
                   "src": "1742:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -909,7 +909,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6456,
+                    "id": 6663,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1742:7:24",
@@ -922,11 +922,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6459,
+                  "id": 6666,
                   "mutability": "mutable",
                   "name": "hash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6462,
+                  "scope": 6669,
                   "src": "1756:19:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -935,7 +935,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 6458,
+                    "id": 6665,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "1756:5:24",
@@ -950,12 +950,12 @@
               "src": "1741:35:24"
             },
             "returnParameters": {
-              "id": 6461,
+              "id": 6668,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1785:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "1718:68:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -963,29 +963,29 @@
           },
           {
             "documentation": {
-              "id": 6463,
+              "id": 6670,
               "nodeType": "StructuredDocumentation",
               "src": "1794:160:24",
               "text": " Returns the contenthash associated with an ENS node.\n @param node The ENS node to query.\n @return The associated contenthash."
             },
             "functionSelector": "bc1c58d1",
-            "id": 6470,
+            "id": 6677,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "contenthash",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6466,
+              "id": 6673,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6465,
+                  "id": 6672,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6470,
+                  "scope": 6677,
                   "src": "1981:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -994,7 +994,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6464,
+                    "id": 6671,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1981:7:24",
@@ -1009,16 +1009,16 @@
               "src": "1980:14:24"
             },
             "returnParameters": {
-              "id": 6469,
+              "id": 6676,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6468,
+                  "id": 6675,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6470,
+                  "scope": 6677,
                   "src": "2018:12:24",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1027,7 +1027,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 6467,
+                    "id": 6674,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "2018:5:24",
@@ -1041,7 +1041,7 @@
               ],
               "src": "2017:14:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "1960:72:24",
             "stateMutability": "view",
             "virtual": false,
@@ -1049,29 +1049,29 @@
           },
           {
             "documentation": {
-              "id": 6471,
+              "id": 6678,
               "nodeType": "StructuredDocumentation",
               "src": "2040:930:24",
               "text": " Set one or more DNS records.  Records are supplied in wire-format.\n Records with the same node/name/resource must be supplied one after the\n other to ensure the data is updated correctly. For example, if the data\n was supplied:\n     a.example.com IN A 1.2.3.4\n     a.example.com IN A 5.6.7.8\n     www.example.com IN CNAME a.example.com.\n then this would store the two A records for a.example.com correctly as a\n single RRSET, however if the data was supplied:\n     a.example.com IN A 1.2.3.4\n     www.example.com IN CNAME a.example.com.\n     a.example.com IN A 5.6.7.8\n then this would store the first A record, the CNAME, then the second A\n record which would overwrite the first.\n @param node the namehash of the node for which to set the records\n @param data the DNS wire format records to set"
             },
             "functionSelector": "0af179d7",
-            "id": 6478,
+            "id": 6685,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setDNSRecords",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6476,
+              "id": 6683,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6473,
+                  "id": 6680,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6478,
+                  "scope": 6685,
                   "src": "2999:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1080,7 +1080,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6472,
+                    "id": 6679,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2999:7:24",
@@ -1093,11 +1093,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6475,
+                  "id": 6682,
                   "mutability": "mutable",
                   "name": "data",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6478,
+                  "scope": 6685,
                   "src": "3013:19:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -1106,7 +1106,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 6474,
+                    "id": 6681,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "3013:5:24",
@@ -1121,12 +1121,12 @@
               "src": "2998:35:24"
             },
             "returnParameters": {
-              "id": 6477,
+              "id": 6684,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "3042:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "2976:67:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1134,29 +1134,29 @@
           },
           {
             "documentation": {
-              "id": 6479,
+              "id": 6686,
               "nodeType": "StructuredDocumentation",
               "src": "3051:397:24",
               "text": " Obtain a DNS record.\n @param node the namehash of the node for which to fetch the record\n @param name the keccak-256 hash of the fully-qualified name for which to fetch the record\n @param resource the ID of the resource as per https://en.wikipedia.org/wiki/List_of_DNS_record_types\n @return the DNS record in wire format if present, otherwise empty"
             },
             "functionSelector": "a8fa5682",
-            "id": 6490,
+            "id": 6697,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "dnsRecord",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6486,
+              "id": 6693,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6481,
+                  "id": 6688,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6490,
+                  "scope": 6697,
                   "src": "3483:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1165,7 +1165,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6480,
+                    "id": 6687,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "3483:7:24",
@@ -1178,11 +1178,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6483,
+                  "id": 6690,
                   "mutability": "mutable",
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6490,
+                  "scope": 6697,
                   "src": "3506:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1191,7 +1191,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6482,
+                    "id": 6689,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "3506:7:24",
@@ -1204,11 +1204,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6485,
+                  "id": 6692,
                   "mutability": "mutable",
                   "name": "resource",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6490,
+                  "scope": 6697,
                   "src": "3529:15:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1217,7 +1217,7 @@
                     "typeString": "uint16"
                   },
                   "typeName": {
-                    "id": 6484,
+                    "id": 6691,
                     "name": "uint16",
                     "nodeType": "ElementaryTypeName",
                     "src": "3529:6:24",
@@ -1232,16 +1232,16 @@
               "src": "3472:79:24"
             },
             "returnParameters": {
-              "id": 6489,
+              "id": 6696,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6488,
+                  "id": 6695,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6490,
+                  "scope": 6697,
                   "src": "3575:12:24",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1250,7 +1250,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 6487,
+                    "id": 6694,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "3575:5:24",
@@ -1264,7 +1264,7 @@
               ],
               "src": "3574:14:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "3454:135:24",
             "stateMutability": "view",
             "virtual": false,
@@ -1272,29 +1272,29 @@
           },
           {
             "documentation": {
-              "id": 6491,
+              "id": 6698,
               "nodeType": "StructuredDocumentation",
               "src": "3597:207:24",
               "text": " Check if a given node has records.\n @param node the namehash of the node for which to check the records\n @param name the namehash of the node for which to check the records"
             },
             "functionSelector": "4cbf6ba4",
-            "id": 6500,
+            "id": 6707,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "hasDNSRecords",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6496,
+              "id": 6703,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6493,
+                  "id": 6700,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6500,
+                  "scope": 6707,
                   "src": "3833:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1303,7 +1303,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6492,
+                    "id": 6699,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "3833:7:24",
@@ -1316,11 +1316,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6495,
+                  "id": 6702,
                   "mutability": "mutable",
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6500,
+                  "scope": 6707,
                   "src": "3847:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1329,7 +1329,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6494,
+                    "id": 6701,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "3847:7:24",
@@ -1344,16 +1344,16 @@
               "src": "3832:28:24"
             },
             "returnParameters": {
-              "id": 6499,
+              "id": 6706,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6498,
+                  "id": 6705,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6500,
+                  "scope": 6707,
                   "src": "3911:4:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1362,7 +1362,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 6497,
+                    "id": 6704,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "3911:4:24",
@@ -1376,7 +1376,7 @@
               ],
               "src": "3910:6:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "3810:107:24",
             "stateMutability": "view",
             "virtual": false,
@@ -1384,29 +1384,29 @@
           },
           {
             "documentation": {
-              "id": 6501,
+              "id": 6708,
               "nodeType": "StructuredDocumentation",
               "src": "3925:131:24",
               "text": " Clear all information for a DNS zone.\n @param node the namehash of the node for which to clear the zone"
             },
             "functionSelector": "ad5780af",
-            "id": 6506,
+            "id": 6713,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "clearDNSZone",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6504,
+              "id": 6711,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6503,
+                  "id": 6710,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6506,
+                  "scope": 6713,
                   "src": "4084:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1415,7 +1415,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6502,
+                    "id": 6709,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4084:7:24",
@@ -1430,12 +1430,12 @@
               "src": "4083:14:24"
             },
             "returnParameters": {
-              "id": 6505,
+              "id": 6712,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "4106:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "4062:45:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1443,29 +1443,29 @@
           },
           {
             "documentation": {
-              "id": 6507,
+              "id": 6714,
               "nodeType": "StructuredDocumentation",
               "src": "4115:378:24",
               "text": " Sets an interface associated with a name.\n Setting the address to 0 restores the default behaviour of querying the contract at `addr()` for interface support.\n @param node The node to update.\n @param interfaceID The EIP 168 interface ID.\n @param implementer The address of a contract that implements this interface for this node."
             },
             "functionSelector": "e59d895d",
-            "id": 6516,
+            "id": 6723,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6514,
+              "id": 6721,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6509,
+                  "id": 6716,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6516,
+                  "scope": 6723,
                   "src": "4531:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1474,7 +1474,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6508,
+                    "id": 6715,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4531:7:24",
@@ -1487,11 +1487,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6511,
+                  "id": 6718,
                   "mutability": "mutable",
                   "name": "interfaceID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6516,
+                  "scope": 6723,
                   "src": "4554:18:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1500,7 +1500,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 6510,
+                    "id": 6717,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "4554:6:24",
@@ -1513,11 +1513,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6513,
+                  "id": 6720,
                   "mutability": "mutable",
                   "name": "implementer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6516,
+                  "scope": 6723,
                   "src": "4583:19:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1526,7 +1526,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 6512,
+                    "id": 6719,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "4583:7:24",
@@ -1542,12 +1542,12 @@
               "src": "4520:89:24"
             },
             "returnParameters": {
-              "id": 6515,
+              "id": 6722,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "4618:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "4499:120:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1555,29 +1555,29 @@
           },
           {
             "documentation": {
-              "id": 6517,
+              "id": 6724,
               "nodeType": "StructuredDocumentation",
               "src": "4627:635:24",
               "text": " Returns the address of a contract that implements the specified interface for this name.\n If an implementer has not been set for this interfaceID and name, the resolver will query\n the contract at `addr()`. If `addr()` is set, a contract exists at that address, and that\n contract implements EIP168 and returns `true` for the specified interfaceID, its address\n will be returned.\n @param node The ENS node to query.\n @param interfaceID The EIP 168 interface ID to check for.\n @return The address that implements this interface, or 0 if the interface is unsupported."
             },
             "functionSelector": "124a319c",
-            "id": 6526,
+            "id": 6733,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "interfaceImplementer",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6522,
+              "id": 6729,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6519,
+                  "id": 6726,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6526,
+                  "scope": 6733,
                   "src": "5298:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1586,7 +1586,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6518,
+                    "id": 6725,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "5298:7:24",
@@ -1599,11 +1599,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6521,
+                  "id": 6728,
                   "mutability": "mutable",
                   "name": "interfaceID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6526,
+                  "scope": 6733,
                   "src": "5312:18:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1612,7 +1612,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 6520,
+                    "id": 6727,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "5312:6:24",
@@ -1627,16 +1627,16 @@
               "src": "5297:34:24"
             },
             "returnParameters": {
-              "id": 6525,
+              "id": 6732,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6524,
+                  "id": 6731,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6526,
+                  "scope": 6733,
                   "src": "5382:7:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1645,7 +1645,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 6523,
+                    "id": 6730,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "5382:7:24",
@@ -1660,7 +1660,7 @@
               ],
               "src": "5381:9:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "5268:123:24",
             "stateMutability": "view",
             "virtual": false,
@@ -1668,29 +1668,29 @@
           },
           {
             "documentation": {
-              "id": 6527,
+              "id": 6734,
               "nodeType": "StructuredDocumentation",
               "src": "5399:235:24",
               "text": " Sets the name associated with an ENS node, for reverse records.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param name The name to set."
             },
             "functionSelector": "77372213",
-            "id": 6534,
+            "id": 6741,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setName",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6532,
+              "id": 6739,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6529,
+                  "id": 6736,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6534,
+                  "scope": 6741,
                   "src": "5657:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1699,7 +1699,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6528,
+                    "id": 6735,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "5657:7:24",
@@ -1712,11 +1712,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6531,
+                  "id": 6738,
                   "mutability": "mutable",
                   "name": "name",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6534,
+                  "scope": 6741,
                   "src": "5671:20:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -1725,7 +1725,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6530,
+                    "id": 6737,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "5671:6:24",
@@ -1740,12 +1740,12 @@
               "src": "5656:36:24"
             },
             "returnParameters": {
-              "id": 6533,
+              "id": 6740,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "5701:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "5640:62:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1753,29 +1753,29 @@
           },
           {
             "documentation": {
-              "id": 6535,
+              "id": 6742,
               "nodeType": "StructuredDocumentation",
               "src": "5710:194:24",
               "text": " Returns the name associated with an ENS node, for reverse records.\n Defined in EIP181.\n @param node The ENS node to query.\n @return The associated name."
             },
             "functionSelector": "691f3431",
-            "id": 6542,
+            "id": 6749,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "name",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6538,
+              "id": 6745,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6537,
+                  "id": 6744,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6542,
+                  "scope": 6749,
                   "src": "5924:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1784,7 +1784,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6536,
+                    "id": 6743,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "5924:7:24",
@@ -1799,16 +1799,16 @@
               "src": "5923:14:24"
             },
             "returnParameters": {
-              "id": 6541,
+              "id": 6748,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6540,
+                  "id": 6747,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6542,
+                  "scope": 6749,
                   "src": "5961:13:24",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1817,7 +1817,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6539,
+                    "id": 6746,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "5961:6:24",
@@ -1831,7 +1831,7 @@
               ],
               "src": "5960:15:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "5910:66:24",
             "stateMutability": "view",
             "virtual": false,
@@ -1839,29 +1839,29 @@
           },
           {
             "documentation": {
-              "id": 6543,
+              "id": 6750,
               "nodeType": "StructuredDocumentation",
               "src": "5984:267:24",
               "text": " Sets the SECP256k1 public key associated with an ENS node.\n @param node The ENS node to query\n @param x the X coordinate of the curve point for the public key.\n @param y the Y coordinate of the curve point for the public key."
             },
             "functionSelector": "29cd62ea",
-            "id": 6552,
+            "id": 6759,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setPubkey",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6550,
+              "id": 6757,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6545,
+                  "id": 6752,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6552,
+                  "scope": 6759,
                   "src": "6286:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1870,7 +1870,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6544,
+                    "id": 6751,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6286:7:24",
@@ -1883,11 +1883,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6547,
+                  "id": 6754,
                   "mutability": "mutable",
                   "name": "x",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6552,
+                  "scope": 6759,
                   "src": "6309:9:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1896,7 +1896,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6546,
+                    "id": 6753,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6309:7:24",
@@ -1909,11 +1909,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6549,
+                  "id": 6756,
                   "mutability": "mutable",
                   "name": "y",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6552,
+                  "scope": 6759,
                   "src": "6329:9:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1922,7 +1922,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6548,
+                    "id": 6755,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6329:7:24",
@@ -1937,12 +1937,12 @@
               "src": "6275:70:24"
             },
             "returnParameters": {
-              "id": 6551,
+              "id": 6758,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "6354:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "6257:98:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1950,29 +1950,29 @@
           },
           {
             "documentation": {
-              "id": 6553,
+              "id": 6760,
               "nodeType": "StructuredDocumentation",
               "src": "6363:237:24",
               "text": " Returns the SECP256k1 public key associated with an ENS node.\n Defined in EIP 619.\n @param node The ENS node to query\n @return x , y the X and Y coordinates of the curve point for the public key."
             },
             "functionSelector": "c8690233",
-            "id": 6562,
+            "id": 6769,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "pubkey",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6556,
+              "id": 6763,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6555,
+                  "id": 6762,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6562,
+                  "scope": 6769,
                   "src": "6622:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1981,7 +1981,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6554,
+                    "id": 6761,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6622:7:24",
@@ -1996,16 +1996,16 @@
               "src": "6621:14:24"
             },
             "returnParameters": {
-              "id": 6561,
+              "id": 6768,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6558,
+                  "id": 6765,
                   "mutability": "mutable",
                   "name": "x",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6562,
+                  "scope": 6769,
                   "src": "6659:9:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2014,7 +2014,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6557,
+                    "id": 6764,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6659:7:24",
@@ -2027,11 +2027,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6560,
+                  "id": 6767,
                   "mutability": "mutable",
                   "name": "y",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6562,
+                  "scope": 6769,
                   "src": "6670:9:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2040,7 +2040,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6559,
+                    "id": 6766,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6670:7:24",
@@ -2054,7 +2054,7 @@
               ],
               "src": "6658:22:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "6606:75:24",
             "stateMutability": "view",
             "virtual": false,
@@ -2062,29 +2062,29 @@
           },
           {
             "documentation": {
-              "id": 6563,
+              "id": 6770,
               "nodeType": "StructuredDocumentation",
               "src": "6689:274:24",
               "text": " Sets the text data associated with an ENS node and key.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param key The key to set.\n @param value The text data value to set."
             },
             "functionSelector": "10f13a8c",
-            "id": 6572,
+            "id": 6779,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "setText",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6570,
+              "id": 6777,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6565,
+                  "id": 6772,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6572,
+                  "scope": 6779,
                   "src": "6996:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2093,7 +2093,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6564,
+                    "id": 6771,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6996:7:24",
@@ -2106,11 +2106,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6567,
+                  "id": 6774,
                   "mutability": "mutable",
                   "name": "key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6572,
+                  "scope": 6779,
                   "src": "7019:19:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -2119,7 +2119,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6566,
+                    "id": 6773,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "7019:6:24",
@@ -2132,11 +2132,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6569,
+                  "id": 6776,
                   "mutability": "mutable",
                   "name": "value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6572,
+                  "scope": 6779,
                   "src": "7049:21:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -2145,7 +2145,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6568,
+                    "id": 6775,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "7049:6:24",
@@ -2160,12 +2160,12 @@
               "src": "6985:92:24"
             },
             "returnParameters": {
-              "id": 6571,
+              "id": 6778,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "7086:0:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "6969:118:24",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -2173,29 +2173,29 @@
           },
           {
             "documentation": {
-              "id": 6573,
+              "id": 6780,
               "nodeType": "StructuredDocumentation",
               "src": "7095:211:24",
               "text": " Returns the text data associated with an ENS node and key.\n @param node The ENS node to query.\n @param key The text data key to query.\n @return The associated text data."
             },
             "functionSelector": "59d1d43c",
-            "id": 6582,
+            "id": 6789,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "text",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6578,
+              "id": 6785,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6575,
+                  "id": 6782,
                   "mutability": "mutable",
                   "name": "node",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6582,
+                  "scope": 6789,
                   "src": "7326:12:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2204,7 +2204,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 6574,
+                    "id": 6781,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "7326:7:24",
@@ -2217,11 +2217,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 6577,
+                  "id": 6784,
                   "mutability": "mutable",
                   "name": "key",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6582,
+                  "scope": 6789,
                   "src": "7340:19:24",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -2230,7 +2230,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6576,
+                    "id": 6783,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "7340:6:24",
@@ -2245,16 +2245,16 @@
               "src": "7325:35:24"
             },
             "returnParameters": {
-              "id": 6581,
+              "id": 6788,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6580,
+                  "id": 6787,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6582,
+                  "scope": 6789,
                   "src": "7411:13:24",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2263,7 +2263,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6579,
+                    "id": 6786,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "7411:6:24",
@@ -2277,7 +2277,7 @@
               ],
               "src": "7410:15:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "7312:114:24",
             "stateMutability": "view",
             "virtual": false,
@@ -2285,23 +2285,23 @@
           },
           {
             "functionSelector": "01ffc9a7",
-            "id": 6589,
+            "id": 6796,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "supportsInterface",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 6585,
+              "id": 6792,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6584,
+                  "id": 6791,
                   "mutability": "mutable",
                   "name": "interfaceID",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6589,
+                  "scope": 6796,
                   "src": "7461:18:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2310,7 +2310,7 @@
                     "typeString": "bytes4"
                   },
                   "typeName": {
-                    "id": 6583,
+                    "id": 6790,
                     "name": "bytes4",
                     "nodeType": "ElementaryTypeName",
                     "src": "7461:6:24",
@@ -2325,16 +2325,16 @@
               "src": "7460:20:24"
             },
             "returnParameters": {
-              "id": 6588,
+              "id": 6795,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6587,
+                  "id": 6794,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6589,
+                  "scope": 6796,
                   "src": "7504:4:24",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2343,7 +2343,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 6586,
+                    "id": 6793,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "7504:4:24",
@@ -2357,14 +2357,14 @@
               ],
               "src": "7503:6:24"
             },
-            "scope": 6590,
+            "scope": 6797,
             "src": "7434:76:24",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 6591,
+        "scope": 6798,
         "src": "60:7453:24"
       }
     ],
@@ -2375,7 +2375,7 @@
       "absolutePath": "/C/Users/anyth/Documents/GitHub/StakeYourName/contracts/interfaces/ENS_Resolver.sol",
       "exportedSymbols": {
         "ENSResolver": [
-          6590
+          6797
         ]
       },
       "license": "MIT"
@@ -2390,7 +2390,7 @@
             ".0"
           ]
         },
-        "id": 6416,
+        "id": 6623,
         "name": "PragmaDirective",
         "src": "33:23:24"
       },
@@ -2406,10 +2406,10 @@
           "contractKind": "interface",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            6590
+            6797
           ],
           "name": "ENSResolver",
-          "scope": 6591
+          "scope": 6798
         },
         "children": [
           {
@@ -2422,7 +2422,7 @@
                 null
               ],
               "name": "setABI",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -2432,7 +2432,7 @@
                 "attributes": {
                   "text": " Sets the ABI associated with an ENS node.\n Nodes may have one ABI of each content type. To remove an ABI, set it to\n the empty string.\n @param node The node to update.\n @param contentType The content type of the ABI\n @param data The ABI data."
                 },
-                "id": 6417,
+                "id": 6624,
                 "name": "StructuredDocumentation",
                 "src": "89:298:24"
               },
@@ -2443,7 +2443,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6426,
+                      "scope": 6633,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2455,12 +2455,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6418,
+                        "id": 6625,
                         "name": "ElementaryTypeName",
                         "src": "419:7:24"
                       }
                     ],
-                    "id": 6419,
+                    "id": 6626,
                     "name": "VariableDeclaration",
                     "src": "419:12:24"
                   },
@@ -2469,7 +2469,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "contentType",
-                      "scope": 6426,
+                      "scope": 6633,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2481,12 +2481,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 6420,
+                        "id": 6627,
                         "name": "ElementaryTypeName",
                         "src": "442:7:24"
                       }
                     ],
-                    "id": 6421,
+                    "id": 6628,
                     "name": "VariableDeclaration",
                     "src": "442:19:24"
                   },
@@ -2495,7 +2495,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "data",
-                      "scope": 6426,
+                      "scope": 6633,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "bytes",
@@ -2507,17 +2507,17 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 6422,
+                        "id": 6629,
                         "name": "ElementaryTypeName",
                         "src": "472:5:24"
                       }
                     ],
-                    "id": 6423,
+                    "id": 6630,
                     "name": "VariableDeclaration",
                     "src": "472:19:24"
                   }
                 ],
-                "id": 6424,
+                "id": 6631,
                 "name": "ParameterList",
                 "src": "408:90:24"
               },
@@ -2528,12 +2528,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6425,
+                "id": 6632,
                 "name": "ParameterList",
                 "src": "507:0:24"
               }
             ],
-            "id": 6426,
+            "id": 6633,
             "name": "FunctionDefinition",
             "src": "393:115:24"
           },
@@ -2547,7 +2547,7 @@
                 null
               ],
               "name": "ABI",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -2557,7 +2557,7 @@
                 "attributes": {
                   "text": " Returns the ABI associated with an ENS node.\n Defined in EIP205.\n @param node The ENS node to query\n @param contentTypes A bitwise OR of the ABI formats accepted by the caller.\n @return contentType The content type of the return value\n @return data The ABI data"
                 },
-                "id": 6427,
+                "id": 6634,
                 "name": "StructuredDocumentation",
                 "src": "516:317:24"
               },
@@ -2568,7 +2568,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6438,
+                      "scope": 6645,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2580,12 +2580,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6428,
+                        "id": 6635,
                         "name": "ElementaryTypeName",
                         "src": "852:7:24"
                       }
                     ],
-                    "id": 6429,
+                    "id": 6636,
                     "name": "VariableDeclaration",
                     "src": "852:12:24"
                   },
@@ -2594,7 +2594,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "contentTypes",
-                      "scope": 6438,
+                      "scope": 6645,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2606,17 +2606,17 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 6430,
+                        "id": 6637,
                         "name": "ElementaryTypeName",
                         "src": "866:7:24"
                       }
                     ],
-                    "id": 6431,
+                    "id": 6638,
                     "name": "VariableDeclaration",
                     "src": "866:20:24"
                   }
                 ],
-                "id": 6432,
+                "id": 6639,
                 "name": "ParameterList",
                 "src": "851:36:24"
               },
@@ -2627,7 +2627,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6438,
+                      "scope": 6645,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -2639,12 +2639,12 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 6433,
+                        "id": 6640,
                         "name": "ElementaryTypeName",
                         "src": "938:7:24"
                       }
                     ],
-                    "id": 6434,
+                    "id": 6641,
                     "name": "VariableDeclaration",
                     "src": "938:7:24"
                   },
@@ -2653,7 +2653,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6438,
+                      "scope": 6645,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "bytes",
@@ -2665,22 +2665,22 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 6435,
+                        "id": 6642,
                         "name": "ElementaryTypeName",
                         "src": "947:5:24"
                       }
                     ],
-                    "id": 6436,
+                    "id": 6643,
                     "name": "VariableDeclaration",
                     "src": "947:12:24"
                   }
                 ],
-                "id": 6437,
+                "id": 6644,
                 "name": "ParameterList",
                 "src": "937:23:24"
               }
             ],
-            "id": 6438,
+            "id": 6645,
             "name": "FunctionDefinition",
             "src": "839:122:24"
           },
@@ -2694,7 +2694,7 @@
                 null
               ],
               "name": "setAddr",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -2704,7 +2704,7 @@
                 "attributes": {
                   "text": " Sets the address associated with an ENS node.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param a The address to set."
                 },
-                "id": 6439,
+                "id": 6646,
                 "name": "StructuredDocumentation",
                 "src": "969:217:24"
               },
@@ -2715,7 +2715,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6446,
+                      "scope": 6653,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2727,12 +2727,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6440,
+                        "id": 6647,
                         "name": "ElementaryTypeName",
                         "src": "1209:7:24"
                       }
                     ],
-                    "id": 6441,
+                    "id": 6648,
                     "name": "VariableDeclaration",
                     "src": "1209:12:24"
                   },
@@ -2741,7 +2741,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "a",
-                      "scope": 6446,
+                      "scope": 6653,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -2754,17 +2754,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 6442,
+                        "id": 6649,
                         "name": "ElementaryTypeName",
                         "src": "1223:7:24"
                       }
                     ],
-                    "id": 6443,
+                    "id": 6650,
                     "name": "VariableDeclaration",
                     "src": "1223:9:24"
                   }
                 ],
-                "id": 6444,
+                "id": 6651,
                 "name": "ParameterList",
                 "src": "1208:25:24"
               },
@@ -2775,12 +2775,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6445,
+                "id": 6652,
                 "name": "ParameterList",
                 "src": "1242:0:24"
               }
             ],
-            "id": 6446,
+            "id": 6653,
             "name": "FunctionDefinition",
             "src": "1192:51:24"
           },
@@ -2794,7 +2794,7 @@
                 null
               ],
               "name": "addr",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -2804,7 +2804,7 @@
                 "attributes": {
                   "text": " Returns the address associated with an ENS node.\n @param node The ENS node to query.\n @return The associated address."
                 },
-                "id": 6447,
+                "id": 6654,
                 "name": "StructuredDocumentation",
                 "src": "1251:152:24"
               },
@@ -2815,7 +2815,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6454,
+                      "scope": 6661,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2827,17 +2827,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6448,
+                        "id": 6655,
                         "name": "ElementaryTypeName",
                         "src": "1423:7:24"
                       }
                     ],
-                    "id": 6449,
+                    "id": 6656,
                     "name": "VariableDeclaration",
                     "src": "1423:12:24"
                   }
                 ],
-                "id": 6450,
+                "id": 6657,
                 "name": "ParameterList",
                 "src": "1422:14:24"
               },
@@ -2848,7 +2848,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6454,
+                      "scope": 6661,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address payable",
@@ -2861,22 +2861,22 @@
                           "stateMutability": "payable",
                           "type": "address payable"
                         },
-                        "id": 6451,
+                        "id": 6658,
                         "name": "ElementaryTypeName",
                         "src": "1460:15:24"
                       }
                     ],
-                    "id": 6452,
+                    "id": 6659,
                     "name": "VariableDeclaration",
                     "src": "1460:15:24"
                   }
                 ],
-                "id": 6453,
+                "id": 6660,
                 "name": "ParameterList",
                 "src": "1459:17:24"
               }
             ],
-            "id": 6454,
+            "id": 6661,
             "name": "FunctionDefinition",
             "src": "1409:68:24"
           },
@@ -2890,7 +2890,7 @@
                 null
               ],
               "name": "setContenthash",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -2900,7 +2900,7 @@
                 "attributes": {
                   "text": " Sets the contenthash associated with an ENS node.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param hash The contenthash to set"
                 },
-                "id": 6455,
+                "id": 6662,
                 "name": "StructuredDocumentation",
                 "src": "1485:227:24"
               },
@@ -2911,7 +2911,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6462,
+                      "scope": 6669,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -2923,12 +2923,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6456,
+                        "id": 6663,
                         "name": "ElementaryTypeName",
                         "src": "1742:7:24"
                       }
                     ],
-                    "id": 6457,
+                    "id": 6664,
                     "name": "VariableDeclaration",
                     "src": "1742:12:24"
                   },
@@ -2937,7 +2937,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "hash",
-                      "scope": 6462,
+                      "scope": 6669,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "bytes",
@@ -2949,17 +2949,17 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 6458,
+                        "id": 6665,
                         "name": "ElementaryTypeName",
                         "src": "1756:5:24"
                       }
                     ],
-                    "id": 6459,
+                    "id": 6666,
                     "name": "VariableDeclaration",
                     "src": "1756:19:24"
                   }
                 ],
-                "id": 6460,
+                "id": 6667,
                 "name": "ParameterList",
                 "src": "1741:35:24"
               },
@@ -2970,12 +2970,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6461,
+                "id": 6668,
                 "name": "ParameterList",
                 "src": "1785:0:24"
               }
             ],
-            "id": 6462,
+            "id": 6669,
             "name": "FunctionDefinition",
             "src": "1718:68:24"
           },
@@ -2989,7 +2989,7 @@
                 null
               ],
               "name": "contenthash",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -2999,7 +2999,7 @@
                 "attributes": {
                   "text": " Returns the contenthash associated with an ENS node.\n @param node The ENS node to query.\n @return The associated contenthash."
                 },
-                "id": 6463,
+                "id": 6670,
                 "name": "StructuredDocumentation",
                 "src": "1794:160:24"
               },
@@ -3010,7 +3010,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6470,
+                      "scope": 6677,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3022,17 +3022,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6464,
+                        "id": 6671,
                         "name": "ElementaryTypeName",
                         "src": "1981:7:24"
                       }
                     ],
-                    "id": 6465,
+                    "id": 6672,
                     "name": "VariableDeclaration",
                     "src": "1981:12:24"
                   }
                 ],
-                "id": 6466,
+                "id": 6673,
                 "name": "ParameterList",
                 "src": "1980:14:24"
               },
@@ -3043,7 +3043,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6470,
+                      "scope": 6677,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "bytes",
@@ -3055,22 +3055,22 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 6467,
+                        "id": 6674,
                         "name": "ElementaryTypeName",
                         "src": "2018:5:24"
                       }
                     ],
-                    "id": 6468,
+                    "id": 6675,
                     "name": "VariableDeclaration",
                     "src": "2018:12:24"
                   }
                 ],
-                "id": 6469,
+                "id": 6676,
                 "name": "ParameterList",
                 "src": "2017:14:24"
               }
             ],
-            "id": 6470,
+            "id": 6677,
             "name": "FunctionDefinition",
             "src": "1960:72:24"
           },
@@ -3084,7 +3084,7 @@
                 null
               ],
               "name": "setDNSRecords",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3094,7 +3094,7 @@
                 "attributes": {
                   "text": " Set one or more DNS records.  Records are supplied in wire-format.\n Records with the same node/name/resource must be supplied one after the\n other to ensure the data is updated correctly. For example, if the data\n was supplied:\n     a.example.com IN A 1.2.3.4\n     a.example.com IN A 5.6.7.8\n     www.example.com IN CNAME a.example.com.\n then this would store the two A records for a.example.com correctly as a\n single RRSET, however if the data was supplied:\n     a.example.com IN A 1.2.3.4\n     www.example.com IN CNAME a.example.com.\n     a.example.com IN A 5.6.7.8\n then this would store the first A record, the CNAME, then the second A\n record which would overwrite the first.\n @param node the namehash of the node for which to set the records\n @param data the DNS wire format records to set"
                 },
-                "id": 6471,
+                "id": 6678,
                 "name": "StructuredDocumentation",
                 "src": "2040:930:24"
               },
@@ -3105,7 +3105,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6478,
+                      "scope": 6685,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3117,12 +3117,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6472,
+                        "id": 6679,
                         "name": "ElementaryTypeName",
                         "src": "2999:7:24"
                       }
                     ],
-                    "id": 6473,
+                    "id": 6680,
                     "name": "VariableDeclaration",
                     "src": "2999:12:24"
                   },
@@ -3131,7 +3131,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "data",
-                      "scope": 6478,
+                      "scope": 6685,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "bytes",
@@ -3143,17 +3143,17 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 6474,
+                        "id": 6681,
                         "name": "ElementaryTypeName",
                         "src": "3013:5:24"
                       }
                     ],
-                    "id": 6475,
+                    "id": 6682,
                     "name": "VariableDeclaration",
                     "src": "3013:19:24"
                   }
                 ],
-                "id": 6476,
+                "id": 6683,
                 "name": "ParameterList",
                 "src": "2998:35:24"
               },
@@ -3164,12 +3164,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6477,
+                "id": 6684,
                 "name": "ParameterList",
                 "src": "3042:0:24"
               }
             ],
-            "id": 6478,
+            "id": 6685,
             "name": "FunctionDefinition",
             "src": "2976:67:24"
           },
@@ -3183,7 +3183,7 @@
                 null
               ],
               "name": "dnsRecord",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -3193,7 +3193,7 @@
                 "attributes": {
                   "text": " Obtain a DNS record.\n @param node the namehash of the node for which to fetch the record\n @param name the keccak-256 hash of the fully-qualified name for which to fetch the record\n @param resource the ID of the resource as per https://en.wikipedia.org/wiki/List_of_DNS_record_types\n @return the DNS record in wire format if present, otherwise empty"
                 },
-                "id": 6479,
+                "id": 6686,
                 "name": "StructuredDocumentation",
                 "src": "3051:397:24"
               },
@@ -3204,7 +3204,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6490,
+                      "scope": 6697,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3216,12 +3216,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6480,
+                        "id": 6687,
                         "name": "ElementaryTypeName",
                         "src": "3483:7:24"
                       }
                     ],
-                    "id": 6481,
+                    "id": 6688,
                     "name": "VariableDeclaration",
                     "src": "3483:12:24"
                   },
@@ -3230,7 +3230,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "name",
-                      "scope": 6490,
+                      "scope": 6697,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3242,12 +3242,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6482,
+                        "id": 6689,
                         "name": "ElementaryTypeName",
                         "src": "3506:7:24"
                       }
                     ],
-                    "id": 6483,
+                    "id": 6690,
                     "name": "VariableDeclaration",
                     "src": "3506:12:24"
                   },
@@ -3256,7 +3256,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "resource",
-                      "scope": 6490,
+                      "scope": 6697,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint16",
@@ -3268,17 +3268,17 @@
                           "name": "uint16",
                           "type": "uint16"
                         },
-                        "id": 6484,
+                        "id": 6691,
                         "name": "ElementaryTypeName",
                         "src": "3529:6:24"
                       }
                     ],
-                    "id": 6485,
+                    "id": 6692,
                     "name": "VariableDeclaration",
                     "src": "3529:15:24"
                   }
                 ],
-                "id": 6486,
+                "id": 6693,
                 "name": "ParameterList",
                 "src": "3472:79:24"
               },
@@ -3289,7 +3289,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6490,
+                      "scope": 6697,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "bytes",
@@ -3301,22 +3301,22 @@
                           "name": "bytes",
                           "type": "bytes"
                         },
-                        "id": 6487,
+                        "id": 6694,
                         "name": "ElementaryTypeName",
                         "src": "3575:5:24"
                       }
                     ],
-                    "id": 6488,
+                    "id": 6695,
                     "name": "VariableDeclaration",
                     "src": "3575:12:24"
                   }
                 ],
-                "id": 6489,
+                "id": 6696,
                 "name": "ParameterList",
                 "src": "3574:14:24"
               }
             ],
-            "id": 6490,
+            "id": 6697,
             "name": "FunctionDefinition",
             "src": "3454:135:24"
           },
@@ -3330,7 +3330,7 @@
                 null
               ],
               "name": "hasDNSRecords",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -3340,7 +3340,7 @@
                 "attributes": {
                   "text": " Check if a given node has records.\n @param node the namehash of the node for which to check the records\n @param name the namehash of the node for which to check the records"
                 },
-                "id": 6491,
+                "id": 6698,
                 "name": "StructuredDocumentation",
                 "src": "3597:207:24"
               },
@@ -3351,7 +3351,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6500,
+                      "scope": 6707,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3363,12 +3363,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6492,
+                        "id": 6699,
                         "name": "ElementaryTypeName",
                         "src": "3833:7:24"
                       }
                     ],
-                    "id": 6493,
+                    "id": 6700,
                     "name": "VariableDeclaration",
                     "src": "3833:12:24"
                   },
@@ -3377,7 +3377,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "name",
-                      "scope": 6500,
+                      "scope": 6707,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3389,17 +3389,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6494,
+                        "id": 6701,
                         "name": "ElementaryTypeName",
                         "src": "3847:7:24"
                       }
                     ],
-                    "id": 6495,
+                    "id": 6702,
                     "name": "VariableDeclaration",
                     "src": "3847:12:24"
                   }
                 ],
-                "id": 6496,
+                "id": 6703,
                 "name": "ParameterList",
                 "src": "3832:28:24"
               },
@@ -3410,7 +3410,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6500,
+                      "scope": 6707,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -3422,22 +3422,22 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 6497,
+                        "id": 6704,
                         "name": "ElementaryTypeName",
                         "src": "3911:4:24"
                       }
                     ],
-                    "id": 6498,
+                    "id": 6705,
                     "name": "VariableDeclaration",
                     "src": "3911:4:24"
                   }
                 ],
-                "id": 6499,
+                "id": 6706,
                 "name": "ParameterList",
                 "src": "3910:6:24"
               }
             ],
-            "id": 6500,
+            "id": 6707,
             "name": "FunctionDefinition",
             "src": "3810:107:24"
           },
@@ -3451,7 +3451,7 @@
                 null
               ],
               "name": "clearDNSZone",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3461,7 +3461,7 @@
                 "attributes": {
                   "text": " Clear all information for a DNS zone.\n @param node the namehash of the node for which to clear the zone"
                 },
-                "id": 6501,
+                "id": 6708,
                 "name": "StructuredDocumentation",
                 "src": "3925:131:24"
               },
@@ -3472,7 +3472,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6506,
+                      "scope": 6713,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3484,17 +3484,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6502,
+                        "id": 6709,
                         "name": "ElementaryTypeName",
                         "src": "4084:7:24"
                       }
                     ],
-                    "id": 6503,
+                    "id": 6710,
                     "name": "VariableDeclaration",
                     "src": "4084:12:24"
                   }
                 ],
-                "id": 6504,
+                "id": 6711,
                 "name": "ParameterList",
                 "src": "4083:14:24"
               },
@@ -3505,12 +3505,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6505,
+                "id": 6712,
                 "name": "ParameterList",
                 "src": "4106:0:24"
               }
             ],
-            "id": 6506,
+            "id": 6713,
             "name": "FunctionDefinition",
             "src": "4062:45:24"
           },
@@ -3524,7 +3524,7 @@
                 null
               ],
               "name": "setInterface",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3534,7 +3534,7 @@
                 "attributes": {
                   "text": " Sets an interface associated with a name.\n Setting the address to 0 restores the default behaviour of querying the contract at `addr()` for interface support.\n @param node The node to update.\n @param interfaceID The EIP 168 interface ID.\n @param implementer The address of a contract that implements this interface for this node."
                 },
-                "id": 6507,
+                "id": 6714,
                 "name": "StructuredDocumentation",
                 "src": "4115:378:24"
               },
@@ -3545,7 +3545,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6516,
+                      "scope": 6723,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3557,12 +3557,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6508,
+                        "id": 6715,
                         "name": "ElementaryTypeName",
                         "src": "4531:7:24"
                       }
                     ],
-                    "id": 6509,
+                    "id": 6716,
                     "name": "VariableDeclaration",
                     "src": "4531:12:24"
                   },
@@ -3571,7 +3571,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "interfaceID",
-                      "scope": 6516,
+                      "scope": 6723,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -3583,12 +3583,12 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 6510,
+                        "id": 6717,
                         "name": "ElementaryTypeName",
                         "src": "4554:6:24"
                       }
                     ],
-                    "id": 6511,
+                    "id": 6718,
                     "name": "VariableDeclaration",
                     "src": "4554:18:24"
                   },
@@ -3597,7 +3597,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "implementer",
-                      "scope": 6516,
+                      "scope": 6723,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -3610,17 +3610,17 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 6512,
+                        "id": 6719,
                         "name": "ElementaryTypeName",
                         "src": "4583:7:24"
                       }
                     ],
-                    "id": 6513,
+                    "id": 6720,
                     "name": "VariableDeclaration",
                     "src": "4583:19:24"
                   }
                 ],
-                "id": 6514,
+                "id": 6721,
                 "name": "ParameterList",
                 "src": "4520:89:24"
               },
@@ -3631,12 +3631,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6515,
+                "id": 6722,
                 "name": "ParameterList",
                 "src": "4618:0:24"
               }
             ],
-            "id": 6516,
+            "id": 6723,
             "name": "FunctionDefinition",
             "src": "4499:120:24"
           },
@@ -3650,7 +3650,7 @@
                 null
               ],
               "name": "interfaceImplementer",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -3660,7 +3660,7 @@
                 "attributes": {
                   "text": " Returns the address of a contract that implements the specified interface for this name.\n If an implementer has not been set for this interfaceID and name, the resolver will query\n the contract at `addr()`. If `addr()` is set, a contract exists at that address, and that\n contract implements EIP168 and returns `true` for the specified interfaceID, its address\n will be returned.\n @param node The ENS node to query.\n @param interfaceID The EIP 168 interface ID to check for.\n @return The address that implements this interface, or 0 if the interface is unsupported."
                 },
-                "id": 6517,
+                "id": 6724,
                 "name": "StructuredDocumentation",
                 "src": "4627:635:24"
               },
@@ -3671,7 +3671,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6526,
+                      "scope": 6733,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3683,12 +3683,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6518,
+                        "id": 6725,
                         "name": "ElementaryTypeName",
                         "src": "5298:7:24"
                       }
                     ],
-                    "id": 6519,
+                    "id": 6726,
                     "name": "VariableDeclaration",
                     "src": "5298:12:24"
                   },
@@ -3697,7 +3697,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "interfaceID",
-                      "scope": 6526,
+                      "scope": 6733,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -3709,17 +3709,17 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 6520,
+                        "id": 6727,
                         "name": "ElementaryTypeName",
                         "src": "5312:6:24"
                       }
                     ],
-                    "id": 6521,
+                    "id": 6728,
                     "name": "VariableDeclaration",
                     "src": "5312:18:24"
                   }
                 ],
-                "id": 6522,
+                "id": 6729,
                 "name": "ParameterList",
                 "src": "5297:34:24"
               },
@@ -3730,7 +3730,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6526,
+                      "scope": 6733,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -3743,22 +3743,22 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
-                        "id": 6523,
+                        "id": 6730,
                         "name": "ElementaryTypeName",
                         "src": "5382:7:24"
                       }
                     ],
-                    "id": 6524,
+                    "id": 6731,
                     "name": "VariableDeclaration",
                     "src": "5382:7:24"
                   }
                 ],
-                "id": 6525,
+                "id": 6732,
                 "name": "ParameterList",
                 "src": "5381:9:24"
               }
             ],
-            "id": 6526,
+            "id": 6733,
             "name": "FunctionDefinition",
             "src": "5268:123:24"
           },
@@ -3772,7 +3772,7 @@
                 null
               ],
               "name": "setName",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3782,7 +3782,7 @@
                 "attributes": {
                   "text": " Sets the name associated with an ENS node, for reverse records.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param name The name to set."
                 },
-                "id": 6527,
+                "id": 6734,
                 "name": "StructuredDocumentation",
                 "src": "5399:235:24"
               },
@@ -3793,7 +3793,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6534,
+                      "scope": 6741,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3805,12 +3805,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6528,
+                        "id": 6735,
                         "name": "ElementaryTypeName",
                         "src": "5657:7:24"
                       }
                     ],
-                    "id": 6529,
+                    "id": 6736,
                     "name": "VariableDeclaration",
                     "src": "5657:12:24"
                   },
@@ -3819,7 +3819,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "name",
-                      "scope": 6534,
+                      "scope": 6741,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "string",
@@ -3831,17 +3831,17 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 6530,
+                        "id": 6737,
                         "name": "ElementaryTypeName",
                         "src": "5671:6:24"
                       }
                     ],
-                    "id": 6531,
+                    "id": 6738,
                     "name": "VariableDeclaration",
                     "src": "5671:20:24"
                   }
                 ],
-                "id": 6532,
+                "id": 6739,
                 "name": "ParameterList",
                 "src": "5656:36:24"
               },
@@ -3852,12 +3852,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6533,
+                "id": 6740,
                 "name": "ParameterList",
                 "src": "5701:0:24"
               }
             ],
-            "id": 6534,
+            "id": 6741,
             "name": "FunctionDefinition",
             "src": "5640:62:24"
           },
@@ -3871,7 +3871,7 @@
                 null
               ],
               "name": "name",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -3881,7 +3881,7 @@
                 "attributes": {
                   "text": " Returns the name associated with an ENS node, for reverse records.\n Defined in EIP181.\n @param node The ENS node to query.\n @return The associated name."
                 },
-                "id": 6535,
+                "id": 6742,
                 "name": "StructuredDocumentation",
                 "src": "5710:194:24"
               },
@@ -3892,7 +3892,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6542,
+                      "scope": 6749,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3904,17 +3904,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6536,
+                        "id": 6743,
                         "name": "ElementaryTypeName",
                         "src": "5924:7:24"
                       }
                     ],
-                    "id": 6537,
+                    "id": 6744,
                     "name": "VariableDeclaration",
                     "src": "5924:12:24"
                   }
                 ],
-                "id": 6538,
+                "id": 6745,
                 "name": "ParameterList",
                 "src": "5923:14:24"
               },
@@ -3925,7 +3925,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6542,
+                      "scope": 6749,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -3937,22 +3937,22 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 6539,
+                        "id": 6746,
                         "name": "ElementaryTypeName",
                         "src": "5961:6:24"
                       }
                     ],
-                    "id": 6540,
+                    "id": 6747,
                     "name": "VariableDeclaration",
                     "src": "5961:13:24"
                   }
                 ],
-                "id": 6541,
+                "id": 6748,
                 "name": "ParameterList",
                 "src": "5960:15:24"
               }
             ],
-            "id": 6542,
+            "id": 6749,
             "name": "FunctionDefinition",
             "src": "5910:66:24"
           },
@@ -3966,7 +3966,7 @@
                 null
               ],
               "name": "setPubkey",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -3976,7 +3976,7 @@
                 "attributes": {
                   "text": " Sets the SECP256k1 public key associated with an ENS node.\n @param node The ENS node to query\n @param x the X coordinate of the curve point for the public key.\n @param y the Y coordinate of the curve point for the public key."
                 },
-                "id": 6543,
+                "id": 6750,
                 "name": "StructuredDocumentation",
                 "src": "5984:267:24"
               },
@@ -3987,7 +3987,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6552,
+                      "scope": 6759,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -3999,12 +3999,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6544,
+                        "id": 6751,
                         "name": "ElementaryTypeName",
                         "src": "6286:7:24"
                       }
                     ],
-                    "id": 6545,
+                    "id": 6752,
                     "name": "VariableDeclaration",
                     "src": "6286:12:24"
                   },
@@ -4013,7 +4013,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "x",
-                      "scope": 6552,
+                      "scope": 6759,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4025,12 +4025,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6546,
+                        "id": 6753,
                         "name": "ElementaryTypeName",
                         "src": "6309:7:24"
                       }
                     ],
-                    "id": 6547,
+                    "id": 6754,
                     "name": "VariableDeclaration",
                     "src": "6309:9:24"
                   },
@@ -4039,7 +4039,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "y",
-                      "scope": 6552,
+                      "scope": 6759,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4051,17 +4051,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6548,
+                        "id": 6755,
                         "name": "ElementaryTypeName",
                         "src": "6329:7:24"
                       }
                     ],
-                    "id": 6549,
+                    "id": 6756,
                     "name": "VariableDeclaration",
                     "src": "6329:9:24"
                   }
                 ],
-                "id": 6550,
+                "id": 6757,
                 "name": "ParameterList",
                 "src": "6275:70:24"
               },
@@ -4072,12 +4072,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6551,
+                "id": 6758,
                 "name": "ParameterList",
                 "src": "6354:0:24"
               }
             ],
-            "id": 6552,
+            "id": 6759,
             "name": "FunctionDefinition",
             "src": "6257:98:24"
           },
@@ -4091,7 +4091,7 @@
                 null
               ],
               "name": "pubkey",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -4101,7 +4101,7 @@
                 "attributes": {
                   "text": " Returns the SECP256k1 public key associated with an ENS node.\n Defined in EIP 619.\n @param node The ENS node to query\n @return x , y the X and Y coordinates of the curve point for the public key."
                 },
-                "id": 6553,
+                "id": 6760,
                 "name": "StructuredDocumentation",
                 "src": "6363:237:24"
               },
@@ -4112,7 +4112,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6562,
+                      "scope": 6769,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4124,17 +4124,17 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6554,
+                        "id": 6761,
                         "name": "ElementaryTypeName",
                         "src": "6622:7:24"
                       }
                     ],
-                    "id": 6555,
+                    "id": 6762,
                     "name": "VariableDeclaration",
                     "src": "6622:12:24"
                   }
                 ],
-                "id": 6556,
+                "id": 6763,
                 "name": "ParameterList",
                 "src": "6621:14:24"
               },
@@ -4145,7 +4145,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "x",
-                      "scope": 6562,
+                      "scope": 6769,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4157,12 +4157,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6557,
+                        "id": 6764,
                         "name": "ElementaryTypeName",
                         "src": "6659:7:24"
                       }
                     ],
-                    "id": 6558,
+                    "id": 6765,
                     "name": "VariableDeclaration",
                     "src": "6659:9:24"
                   },
@@ -4171,7 +4171,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "y",
-                      "scope": 6562,
+                      "scope": 6769,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4183,22 +4183,22 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6559,
+                        "id": 6766,
                         "name": "ElementaryTypeName",
                         "src": "6670:7:24"
                       }
                     ],
-                    "id": 6560,
+                    "id": 6767,
                     "name": "VariableDeclaration",
                     "src": "6670:9:24"
                   }
                 ],
-                "id": 6561,
+                "id": 6768,
                 "name": "ParameterList",
                 "src": "6658:22:24"
               }
             ],
-            "id": 6562,
+            "id": 6769,
             "name": "FunctionDefinition",
             "src": "6606:75:24"
           },
@@ -4212,7 +4212,7 @@
                 null
               ],
               "name": "setText",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "external"
@@ -4222,7 +4222,7 @@
                 "attributes": {
                   "text": " Sets the text data associated with an ENS node and key.\n May only be called by the owner of that node in the ENS registry.\n @param node The node to update.\n @param key The key to set.\n @param value The text data value to set."
                 },
-                "id": 6563,
+                "id": 6770,
                 "name": "StructuredDocumentation",
                 "src": "6689:274:24"
               },
@@ -4233,7 +4233,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6572,
+                      "scope": 6779,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4245,12 +4245,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6564,
+                        "id": 6771,
                         "name": "ElementaryTypeName",
                         "src": "6996:7:24"
                       }
                     ],
-                    "id": 6565,
+                    "id": 6772,
                     "name": "VariableDeclaration",
                     "src": "6996:12:24"
                   },
@@ -4259,7 +4259,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "key",
-                      "scope": 6572,
+                      "scope": 6779,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "string",
@@ -4271,12 +4271,12 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 6566,
+                        "id": 6773,
                         "name": "ElementaryTypeName",
                         "src": "7019:6:24"
                       }
                     ],
-                    "id": 6567,
+                    "id": 6774,
                     "name": "VariableDeclaration",
                     "src": "7019:19:24"
                   },
@@ -4285,7 +4285,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "value",
-                      "scope": 6572,
+                      "scope": 6779,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "string",
@@ -4297,17 +4297,17 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 6568,
+                        "id": 6775,
                         "name": "ElementaryTypeName",
                         "src": "7049:6:24"
                       }
                     ],
-                    "id": 6569,
+                    "id": 6776,
                     "name": "VariableDeclaration",
                     "src": "7049:21:24"
                   }
                 ],
-                "id": 6570,
+                "id": 6777,
                 "name": "ParameterList",
                 "src": "6985:92:24"
               },
@@ -4318,12 +4318,12 @@
                   ]
                 },
                 "children": [],
-                "id": 6571,
+                "id": 6778,
                 "name": "ParameterList",
                 "src": "7086:0:24"
               }
             ],
-            "id": 6572,
+            "id": 6779,
             "name": "FunctionDefinition",
             "src": "6969:118:24"
           },
@@ -4337,7 +4337,7 @@
                 null
               ],
               "name": "text",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "view",
               "virtual": false,
               "visibility": "external"
@@ -4347,7 +4347,7 @@
                 "attributes": {
                   "text": " Returns the text data associated with an ENS node and key.\n @param node The ENS node to query.\n @param key The text data key to query.\n @return The associated text data."
                 },
-                "id": 6573,
+                "id": 6780,
                 "name": "StructuredDocumentation",
                 "src": "7095:211:24"
               },
@@ -4358,7 +4358,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "node",
-                      "scope": 6582,
+                      "scope": 6789,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes32",
@@ -4370,12 +4370,12 @@
                           "name": "bytes32",
                           "type": "bytes32"
                         },
-                        "id": 6574,
+                        "id": 6781,
                         "name": "ElementaryTypeName",
                         "src": "7326:7:24"
                       }
                     ],
-                    "id": 6575,
+                    "id": 6782,
                     "name": "VariableDeclaration",
                     "src": "7326:12:24"
                   },
@@ -4384,7 +4384,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "key",
-                      "scope": 6582,
+                      "scope": 6789,
                       "stateVariable": false,
                       "storageLocation": "calldata",
                       "type": "string",
@@ -4396,17 +4396,17 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 6576,
+                        "id": 6783,
                         "name": "ElementaryTypeName",
                         "src": "7340:6:24"
                       }
                     ],
-                    "id": 6577,
+                    "id": 6784,
                     "name": "VariableDeclaration",
                     "src": "7340:19:24"
                   }
                 ],
-                "id": 6578,
+                "id": 6785,
                 "name": "ParameterList",
                 "src": "7325:35:24"
               },
@@ -4417,7 +4417,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6582,
+                      "scope": 6789,
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -4429,22 +4429,22 @@
                           "name": "string",
                           "type": "string"
                         },
-                        "id": 6579,
+                        "id": 6786,
                         "name": "ElementaryTypeName",
                         "src": "7411:6:24"
                       }
                     ],
-                    "id": 6580,
+                    "id": 6787,
                     "name": "VariableDeclaration",
                     "src": "7411:13:24"
                   }
                 ],
-                "id": 6581,
+                "id": 6788,
                 "name": "ParameterList",
                 "src": "7410:15:24"
               }
             ],
-            "id": 6582,
+            "id": 6789,
             "name": "FunctionDefinition",
             "src": "7312:114:24"
           },
@@ -4458,7 +4458,7 @@
                 null
               ],
               "name": "supportsInterface",
-              "scope": 6590,
+              "scope": 6797,
               "stateMutability": "pure",
               "virtual": false,
               "visibility": "external"
@@ -4471,7 +4471,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "interfaceID",
-                      "scope": 6589,
+                      "scope": 6796,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bytes4",
@@ -4483,17 +4483,17 @@
                           "name": "bytes4",
                           "type": "bytes4"
                         },
-                        "id": 6583,
+                        "id": 6790,
                         "name": "ElementaryTypeName",
                         "src": "7461:6:24"
                       }
                     ],
-                    "id": 6584,
+                    "id": 6791,
                     "name": "VariableDeclaration",
                     "src": "7461:18:24"
                   }
                 ],
-                "id": 6585,
+                "id": 6792,
                 "name": "ParameterList",
                 "src": "7460:20:24"
               },
@@ -4504,7 +4504,7 @@
                       "constant": false,
                       "mutability": "mutable",
                       "name": "",
-                      "scope": 6589,
+                      "scope": 6796,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -4516,32 +4516,32 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 6586,
+                        "id": 6793,
                         "name": "ElementaryTypeName",
                         "src": "7504:4:24"
                       }
                     ],
-                    "id": 6587,
+                    "id": 6794,
                     "name": "VariableDeclaration",
                     "src": "7504:4:24"
                   }
                 ],
-                "id": 6588,
+                "id": 6795,
                 "name": "ParameterList",
                 "src": "7503:6:24"
               }
             ],
-            "id": 6589,
+            "id": 6796,
             "name": "FunctionDefinition",
             "src": "7434:76:24"
           }
         ],
-        "id": 6590,
+        "id": 6797,
         "name": "ContractDefinition",
         "src": "60:7453:24"
       }
     ],
-    "id": 6591,
+    "id": 6798,
     "name": "SourceUnit",
     "src": "33:7482:24"
   },
@@ -4551,7 +4551,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.3",
-  "updatedAt": "2021-02-01T18:32:45.237Z",
+  "updatedAt": "2021-02-02T18:50:45.083Z",
   "devdoc": {
     "kind": "dev",
     "methods": {

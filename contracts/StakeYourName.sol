@@ -11,6 +11,9 @@ import "./interfaces/IInvestmentManager.sol";
 import "./interfaces/IExchangeManager.sol";
 import "./interfaces/IUserVault.sol";
 
+// for test deployment only
+import "./SimulatedContracts/IoneSplitSim.sol";
+
 //import "interfaces/ENS_BulkRenewal.sol";
 //import "interfaces/ENS_Resolver.sol";
 
@@ -216,13 +219,13 @@ contract StakeYourName is Ownable {
         }
         IUserVault _userVault = IUserVault(_user);
         require(
-            _userVault.names().length != 0 && _userVault.assets().length != 0,
+            _userVault.countNames() != 0 && _userVault.countAssets() != 0,
             "User has no funds or no names registered"
         );
         uint256[] memory _names =
-            new uint256[](nameManager.countRenewals(_userVault.names()));
+            new uint256[](nameManager.countRenewals(_userVault.readNames()));
         uint256 _cost;
-        (_names, _cost) = nameManager.checkForRenewals(_userVault.names());
+        (_names, _cost) = nameManager.checkForRenewals(_userVault.readNames());
         require(_cost > 0, "No names are due for renewal");
         bool _success;
         address _asset;
@@ -235,7 +238,7 @@ contract StakeYourName is Ownable {
         uint256 _inputValue;
         string[] memory _readableNames = new string[](_names.length);
         for (uint256 i; i < _names.length; i++) {
-            _readableNames[i] = _userVault.readableName(_names[i]);
+            _readableNames[i] = _userVault.readSubName(_names[i], 1);
         }
         (_inputValue, _distribution) = exchangeManager.getExchangePrice(
             _asset,
@@ -275,14 +278,14 @@ contract StakeYourName is Ownable {
             IUserVault _userVault = IUserVault(vault[users[i]]);
             // check they have names and assets in the vault, otherwise move on
             if (
-                _userVault.names().length != 0 &&
-                _userVault.assets().length != 0
+                _userVault.countNames() != 0 &&
+                _userVault.countAssets() != 0
             ) {
                 uint256 _cost;
                 // if we haven't found any renewals yet lets check if this user has the funds to renew a name
                 if (_success == false) {
                     (, _costs[0]) = nameManager.checkForRenewals(
-                        _userVault.names()
+                        _userVault.readNames()
                     );
                     (_success, _asset) = exchangeManager.estimateFunds(
                         _cost,
@@ -291,11 +294,11 @@ contract StakeYourName is Ownable {
                     _users[0] = users[i];
                 } else {
                     // lets find more users with a matching asset that needs a renewal
-                    for (uint256 j = 0; j < _userVault.assets().length; j++) {
-                        if (_userVault.assets()[i] == _asset) {
+                    for (uint256 j = 0; j < _userVault.countAssets(); j++) {
+                        if (_userVault.assets(i) == _asset) {
                             uint256 _addCost;
                             (, _addCost) = nameManager.checkForRenewals(
-                                _userVault.names()
+                                _userVault.readNames()
                             );
                             if (
                                 exchangeManager.estimateSpecificAssetFunds(
@@ -322,11 +325,11 @@ contract StakeYourName is Ownable {
             if (_users[i] != address(0)) {
                 IUserVault _userVault = IUserVault(vault[_users[i]]);
                 uint256[] memory _userNames =
-                    new uint256[](_userVault.names().length);
+                    new uint256[](_userVault.countNames());
                 (_userNames, ) = nameManager.checkForRenewals(
-                    _userVault.names()
+                    _userVault.readNames()
                 );
-                for (uint256 k; k < _userVault.names().length; k++) {
+                for (uint256 k; k < _userVault.countNames(); k++) {
                     if (_userNames[k] != 0) {
                         _names[l] = _userNames[k];
                         l++;
@@ -346,7 +349,7 @@ contract StakeYourName is Ownable {
     {
         for (uint256 i; i < _users.length; i++) {
             IUserVault _userVault = IUserVault(vault[users[i]]);
-            (, uint256 _add) = nameManager.checkForRenewals(_userVault.names());
+            (, uint256 _add) = nameManager.checkForRenewals(_userVault.readNames());
             _count = _count + _add;
         }
     }
@@ -413,16 +416,19 @@ contract StakeYourName is Ownable {
         address payable _exchangeManager,
         address _investmentManager,
         address _vault,
-        address _oneSplit,
+        address payable _oneSplit,
         address _ens
     ) external onlyOwner {
         nameManager = INameManager(_nameManager);
         exchangeManager = IExchangeManager(_exchangeManager);
         investmentManager = IInvestmentManager(_investmentManager);
         exchangeManager.updateNameManagerAddress(_nameManager);
+        exchangeManager.updateInvestmentManagerAddress(_investmentManager);
         exchangeManager.setOneSplitAddress(_oneSplit);
         nameManager.updateAddresses(_ens);
         setMasterVault(_vault);
+        IoneSplitSim _IoneSplit = IoneSplitSim(_oneSplit);
+        _IoneSplit.setExchangeManager(_exchangeManager);
     }
 
     /// @notice do not use this contract if this still exists

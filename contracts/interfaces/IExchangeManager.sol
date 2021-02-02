@@ -49,6 +49,7 @@ interface IExchangeManager {
     function updatePercentageIncrease(uint256 _newPercent) external;
     function updateIterations(uint256 _newIterations) external;
     function updateNameManagerAddress(address payable _nameManager) external;
+    function updateInvestmentManagerAddress(address _investmentManager) external;
     function updateFresh(uint256 _fresh) external;
     function updateMargin(uint256 _margin) external;
     function updateSlippage(uint256 _slippage) external;
