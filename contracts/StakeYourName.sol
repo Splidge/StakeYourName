@@ -245,12 +245,15 @@ contract StakeYourName is Ownable {
             _cost,
             zeroAddress
         );
+
         IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
         _erc20.transferFrom(
             vault[_user],
-            address(exchangeManager),
+            address(investmentManager),
             _inputValue
         );
+        investmentManager.withdraw(_asset, _inputValue, address(exchangeManager));
+
         exchangeManager.swap(
             _asset,
             zeroAddress,
@@ -259,7 +262,7 @@ contract StakeYourName is Ownable {
             _distribution,
             0
         );
-        nameManager.executeBulkRenewal(_readableNames, 0);
+        nameManager.executeBulkRenewal{value:address(this).balance}(_readableNames, 0);
         payable(address(_userVault)).transfer(address(this).balance);
     }
 

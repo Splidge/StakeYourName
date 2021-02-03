@@ -35,6 +35,15 @@ contract ENSBulkRenewalSim is Ownable {
         return (true);
     }
 
+    function rentPrice(string[] calldata _names, uint256 _duration) public view returns(uint256){
+        IENSRegControllerSim _baseReg = IENSRegControllerSim(ensRegCont);
+        uint256 _cost;
+        for(uint256 i; i < _names.length; i++){
+            _cost += _baseReg.rentPrice(_names[i], _duration);
+        }
+        return _cost;
+    }
+
     // admin functions
     function withdraw() public onlyOwner {
         msg.sender.transfer(address(this).balance);

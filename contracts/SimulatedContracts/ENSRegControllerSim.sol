@@ -23,7 +23,7 @@ contract ENSRegControllerSim is Ownable {
         return (ensAddress);
     }
     function renew(string calldata _id, uint256 _duration) public payable {
-        require(msg.value > _duration * renewPrice);
+        require(msg.value >= _duration * renewPrice);
         uint256 _cost = _duration * renewPrice;
         string memory _eth;
         _eth = "eth";

@@ -49,7 +49,7 @@ contract NameManager is Ownable {
 
     receive() external payable {}
 
-    function executeBulkRenewal(string[] memory _names, uint256 _duration) external {
+    function executeBulkRenewal(string[] memory _names, uint256 _duration) external payable {
         if(_duration == 0){ _duration = renewalPeriod;}
         bytes4 _interfaceID = 0x3150bfba;
         require(ensBulkRenewal.supportsInterface(_interfaceID),"Incorrect ENS BulkRenewal address");

@@ -10,7 +10,7 @@ pragma abicoder v2;
 interface INameManager {
     receive() external payable;
     function returnHash(string [] calldata _name) external pure returns(bytes32);
-    function executeBulkRenewal(string[] memory _names, uint256 _duration) external;
+    function executeBulkRenewal(string[] memory _names, uint256 _duration) external payable;
     function checkBulkPrice(string[] memory _names, uint256 _duration) external view returns(uint256);
     function checkPrice(string memory _name, uint256 _duration) external view returns(uint256);
     function uintArrayToStringsArray(uint256[] memory _ints) external pure returns(string[] memory);

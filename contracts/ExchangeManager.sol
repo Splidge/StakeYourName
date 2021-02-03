@@ -240,7 +240,12 @@ contract ExchangeManager is Ownable {
             IERC20 _erc20 = IERC20(_fromToken);
             _erc20.approve(address(oneSplit),MAX_INT);
             _returnAmount = oneSplit.swap(_fromToken, _destToken, _amount, _minReturn, _distribution, _flags);
-            msg.sender.transfer(address(this).balance);
+            if(_destToken == address(0)){
+                msg.sender.transfer(address(this).balance);
+            } else {
+                _erc20 = IERC20(_destToken);
+                _erc20.transfer(msg.sender, _amount);
+            }
         }
 
     function updateExchangeParts(uint256 _newParts) external onlyOwner {
