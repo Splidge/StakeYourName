@@ -217,11 +217,12 @@ contract StakeYourName is Ownable {
         if (_user == address(0)) {
             _user = msg.sender;
         }
-        IUserVault _userVault = IUserVault(_user);
+        IUserVault _userVault = IUserVault(vault[_user]);
         require(
             _userVault.countNames() != 0 && _userVault.countAssets() != 0,
             "User has no funds or no names registered"
         );
+        
         uint256[] memory _names =
             new uint256[](nameManager.countRenewals(_userVault.readNames()));
         uint256 _cost;
@@ -234,6 +235,7 @@ contract StakeYourName is Ownable {
             address(_userVault)
         );
         require(_success, "Not enough funds");
+        
         uint256[] memory _distribution = new uint256[](22);
         uint256 _inputValue;
         string[] memory _readableNames = new string[](_names.length);
@@ -263,7 +265,7 @@ contract StakeYourName is Ownable {
             0
         );
         nameManager.executeBulkRenewal{value:address(this).balance}(_readableNames, 0);
-        payable(address(_userVault)).transfer(address(this).balance);
+        payable(address(_userVault)).transfer(address(this).balance); 
     }
 
     /// @dev lets check each user to see if they have any names that need renewing
