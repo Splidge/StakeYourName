@@ -33,7 +33,7 @@ const ropstenPrivateKey = process.env.ROPSTEN_PRIVATE_KEY;
 const infuraKey = process.env.INFURA_PROJECT_ID;
 
 module.exports = {
-  plugins: ["truffle-plugin-verify", "truffle-security",'truffle-contract-size'],
+  plugins: ["truffle-plugin-verify", "truffle-security",'truffle-contract-size','truffle-web3-generator'],
   /**
    * Networks define how you connect to your ethereum client and let you set the
    * defaults web3 uses to send transactions. If you don't specify one truffle
