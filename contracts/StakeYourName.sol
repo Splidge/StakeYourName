@@ -22,6 +22,14 @@ import "./SimulatedContracts/IoneSplitSim.sol";
 /// @notice other StakeYourName contracts.
 /// @author Daniel Chilvers
 
+
+/// Known issues:
+/// Names that expired in the past are still treated as requiring renewal
+/// Names that don't exist are treated as requiring renewal
+/// Futher testing needs to be done on the groupRenewNames to ensure any change is fairly distributed after
+/// many testing functions to be removed
+/// lots of code cleanup
+
 contract StakeYourName is Ownable {
     INameManager nameManager;
     IExchangeManager exchangeManager;
@@ -125,7 +133,7 @@ contract StakeYourName is Ownable {
     function withdraw(address _asset, uint256 _amount) external onlyUser {
         require(_asset != address(0));
         require(_amount > 0, "Amount must be more than 0");
-        uint256 _balance = investmentManager.getTotal(_asset, msg.sender);
+        uint256 _balance = investmentManager.getTotal(_asset, vault[msg.sender]);
         require(_balance > 0, "No balance left to withdraw");
         uint256 _transfer = 0;
         if (_amount > _balance) {

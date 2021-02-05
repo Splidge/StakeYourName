@@ -18,6 +18,19 @@ contract ENSRegControllerSim is Ownable {
         ensSim.updateRegController(address(this));
     }
 
+    function available(string calldata _name) external view returns(bool){
+        string memory _eth;
+        _eth = "eth";
+        bytes32 nameHash = computeHash(_name,computeHash(_eth, bytes32(0x0)));
+        uint256 uintNameHash = convertBytesToUint(nameHash);
+        for (uint256 i; i < names.length; i++){
+            if(names[i] == uintNameHash){
+                return false;
+            }
+        }
+        return true;        
+    }
+
     // Simulated functions
     function ens() public view returns(address){
         return (ensAddress);

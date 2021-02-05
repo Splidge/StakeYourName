@@ -4,6 +4,7 @@ pragma solidity ^0.7.0;
 interface IENSRegControllerSim {
     // Simulated functions
     function ens() external view returns(address);
+    function available(string calldata _name) external view returns(bool);
     function renew(string calldata _id, uint256 _duration) external payable;
     function rentPrice(string memory _name, uint256 _duration) external view returns(uint256);
     // admin functions

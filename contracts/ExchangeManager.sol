@@ -3,14 +3,15 @@ pragma solidity ^0.7.6;
 pragma abicoder v2;
 
 import "@openzeppelin/contracts/access/Ownable.sol"; 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+//import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/utils/SafeCast.sol";
-import "./interfaces/IOneSplit.sol";
+import "./interfaces/IERC20.sol";
+import {IOneSplit} from "./interfaces/IOneSplit.sol";
 import "./interfaces/IUserVault.sol";
 import "./interfaces/INameManager.sol";
 import "./interfaces/IInvestmentManager.sol";
-import "@chainlink/contracts/v0.7/interfaces/AggregatorV3Interface.sol";
+import "@chainlink/contracts/src/v0.7/interfaces/AggregatorV3Interface.sol";
 
   /**
    * @title Manages exchanging tokens and ETH

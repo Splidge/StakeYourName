@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "contracts/SimulatedContracts/IENSSim.sol";
+import "./IENSSim.sol";
 
 contract ENSResolverSim {
     address alice = 0x54534C4FB48f541F44F2097B8DA24A1c4Fa61aB2;
