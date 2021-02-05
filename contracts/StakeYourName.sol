@@ -70,7 +70,7 @@ contract StakeYourName is Ownable {
     /// @notice e.g. splidge.eth would be _name[0] = 'eth', _name[1] = 'splidge'
     /// @dev reading in as string so we can store the readable name if the user
     /// @dev doesn't have reverse resolving set
-    function addName(string[] calldata _name) external onlyUser {
+    function addName(string[] calldata _name) public onlyUser {
         uint256 _hash = uint256(nameManager.returnHash(_name));
         IUserVault _userVault = IUserVault(vault[msg.sender]);
         _userVault.addName(_hash, _name);
@@ -96,11 +96,16 @@ contract StakeYourName is Ownable {
         _userVault.removeMultipleNames(_names);
     }
 
+    function openAccount(address _asset, uint _amount, string[] calldata _name) public {
+        deposit(_asset, _amount);
+        addName(_name);
+    }
+
     /// @notice deposits tokens to the Aave LendingPool contract
     /// @notice updates vault with new balance
     /// @param _asset the contract address of the token to deposit
     /// @param _amount the amount to deposit in wei
-    function deposit(address _asset, uint256 _amount) external {
+    function deposit(address _asset, uint256 _amount) public {
         require(
             _asset != address(0),
             "Asset contract can not be the zero address"
