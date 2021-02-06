@@ -31,6 +31,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 const ropstenPrivateKey = process.env.ROPSTEN_PRIVATE_KEY;
 const infuraKey = process.env.INFURA_PROJECT_ID;
+const etherkey = process.env.ETHERSCAN_API;
 
 module.exports = {
   plugins: ["truffle-plugin-verify", "truffle-security",'truffle-contract-size','truffle-web3-generator'],
@@ -115,6 +116,6 @@ module.exports = {
     enabled: true
   },   
   api_keys: {
-    etherscan: 'ETHERSCAN_API'
+    etherscan: etherkey
   }
 };
