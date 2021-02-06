@@ -226,6 +226,12 @@ contract StakeYourName is Ownable {
      *                                           *
      ********************************************/
 
+    function renewAllNames() public {
+        for (uint256 i; i < users.length; i++){
+            renewNames(users[i]);
+        }
+    }
+
     function renewNames(address _user) public {
         if (_user == address(0)) {
             _user = msg.sender;
@@ -260,6 +266,8 @@ contract StakeYourName is Ownable {
             _cost,
             zeroAddress
         );
+        _userVault = IUserVault(vault[_user]);
+        _userVault.setBalance(_asset, investmentManager.getBalance(_asset, vault[_user]).sub(_inputValue));
 
         IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
         _erc20.transferFrom(

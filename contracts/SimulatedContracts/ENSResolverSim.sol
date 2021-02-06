@@ -11,7 +11,7 @@ contract ENSResolverSim {
 
     bytes32 aliceHash = 0x787192fc5378cc32aa956ddfdedbf26b24e8d78e40109add0eea2c1a012c3dec;
     bytes32 bobHash = 0xbe11069ec59144113f438b6ef59dd30497769fc2dce8e2b52e3ae71ac18e47c9;
-    bytes32 charlieHash = 0xbe11069ec59144113f438b6ef59dd30497769fc2dce8e2b52e3ae71ac18e47c9;
+    bytes32 charlieHash = 0xab5941f17af267ac13cc2361e95a3d83ce347f05d5192baabe0cc7cc26b81a9c;
     bytes32 splidgeHash = 0x6332e6cb2f726edb4a48f583318dedd5ec9ddc8622b76b1d6d44748169fffd51;
 
     address ens;
