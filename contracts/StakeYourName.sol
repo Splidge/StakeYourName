@@ -237,6 +237,8 @@ contract StakeYourName is Ownable {
             _user = msg.sender;
         }
         IUserVault _userVault = IUserVault(vault[_user]);
+
+        /// to renew all names this needs to be an IF statement instead.
         require(
             _userVault.countNames() != 0 && _userVault.countAssets() != 0,
             "User has no funds or no names registered"
@@ -267,7 +269,8 @@ contract StakeYourName is Ownable {
             zeroAddress
         );
         _userVault = IUserVault(vault[_user]);
-        _userVault.setBalance(_asset, investmentManager.getBalance(_asset, vault[_user]).sub(_inputValue));
+        uint256 _newBal = investmentManager.getBalance(_asset, vault[_user]);
+        _userVault.setBalance(_asset, _newBal.sub(_inputValue));
 
         IERC20 _erc20 = IERC20(investmentManager.getAToken(_asset));
         _erc20.transferFrom(
